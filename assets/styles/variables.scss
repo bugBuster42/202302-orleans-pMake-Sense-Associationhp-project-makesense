@@ -2,10 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 $primary: #16434E;
-$primary-fond:#0D3843;
-$primary-clair: #275561;
 $secondary: #C1E94E;
-$secondary-fond: #A0C537;
 $tertiary: #FFFAF6;
 $light: #f7f7f7;
 $dark: #0e0e0e;
@@ -13,6 +10,5 @@ $font-title: "Raleway";
 $font-text: "Lato";
 
 body {
-    margin:0;
     background-color: $tertiary;
 }
