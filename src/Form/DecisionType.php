@@ -16,7 +16,7 @@ class DecisionType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, ['label' => 'Titre'])
-            ->add('limitDate', DateType::class, ['widget' => 'single_text', 'label' => 'Date Limite'])
+            ->add('startDate', DateType::class, ['widget' => 'single_text', 'label' => 'Date début'])
             ->add('description', CKEditorType::class);
     }
 
