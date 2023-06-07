@@ -1,0 +1,22 @@
+.navbar-brand {
+    font-family: $font-title;
+}
+
+.link {
+    font-family: $font-title;
+}
+
+.link:hover {
+    border: 1px solid $secondary;
+    border-radius: 2rem;
+}
+
+.bell {
+    transition: 0.4s;
+}
+
+.bell:hover {
+    transition: 0.25s;
+    transform: rotate(8deg);
+}
+
