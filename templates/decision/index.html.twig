@@ -10,7 +10,7 @@
            
                 
                <h2>{{ decision.title }}</h2>
-                <p>{{ decision.limitDate ? decision.limitDate|date('d-m-Y') : '' }}</p>
+                <p>{{ decision.startDate ? decision.startDate|date('d-m-Y') : '' }}</p>
                 <p>{{ decision.description | raw }}</p>
                
                     <a href="{{ path('app_decision_show', {'id': decision.id}) }}">show</a>
