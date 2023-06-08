@@ -13,7 +13,7 @@ class HomeController extends AbstractController
     public function index(DecisionRepository $decisionRepository): Response
     {
         return $this->render('home/index.html.twig', [
-            'decisions' => $decisionRepository->findAll(),
+            'decisions' => $decisionRepository->findBy([], ['startDate' =>  'DESC']),
         ]);
     }
 }
