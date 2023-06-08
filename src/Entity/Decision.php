@@ -16,16 +16,17 @@ class Decision
     private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotBlank(message: 'le champ titre est obligatoire')]
-    #[Assert\Length(max: 255, maxMessage: 'le titre ne doit pas dépasser {{ limit }} caractères')]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\GreaterThan('today')]
     #[Assert\NotNull]
-    private ?\DateTimeInterface $limitDate = null;
+    private ?\DateTimeInterface $startDate = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank(message: 'le champ description est obligatoire')]
+    #[Assert\NotBlank]
     private ?string $description = null;
 
     public function getId(): ?int
@@ -45,14 +46,14 @@ class Decision
         return $this;
     }
 
-    public function getLimitDate(): ?\DateTimeInterface
+    public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->limitDate;
+        return $this->startDate;
     }
 
-    public function setLimitDate(\DateTimeInterface $limitDate): self
+    public function setStartDate(\DateTimeInterface $startDate): self
     {
-        $this->limitDate = $limitDate;
+        $this->startDate = $startDate;
 
         return $this;
     }
