@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+{% block body %}
+	<h1 class="text-center fw-bold fs-1 my-5">
+		Les décisions
+	</h1>
+
+	<div class="navbar-button mx-auto d-flex d-grid gap-2 justify-content-center mb-5">
+
+		<button type="button" class="btn btn-outline-primary rounded-pill">Prise de décision commencée</button>
+		<button type="button" class="btn btn-outline-primary rounded-pill">Première décision prise</button>
+		<button type="button" class="btn btn-outline-primary rounded-pill">Conflit sur la décision</button>
+		<button type="button" class="btn btn-outline-primary rounded-pill">Décision définitive</button>
+		<button type="button" class="btn btn-outline-primary rounded-pill">Décision non aboutie</button>
+		<button type="button" class="btn btn-outline-primary rounded-pill">Décision terminée</button>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-6">
+				<div class="card shadow mb-5 border border-0 rounded bg-primary">
+					<div class="card-body">
+						<div class="img1"></div>
+						<div class="position-relative">
+							<img class="img rounded-circle position-absolute mx-4 bg-light" src="{{ asset('build/images/profil.png')}}" width="90px">
+							<div class="statut mt-3 mx-3 text-end">
+								<div class="btn btn-outline-primary bg-danger fw-bolder fs-6 btn-rounded rounded-pill text-light">Statut</div>
+							</div>
+							<h4 class="card-title text-light fw-bolder p-3 fs-4 mb-0">{{ decision.title }}</h4>
+							<p class="card-text text-light mb-1 p-3">With supporting text below as a natural lead-in to additional content: category</p>
+							<div class="text-end p-3 text-light btn-rounded">
+								<a href="#" class="btn btn-outline-primary bg-light fw-bolder fs-6 btn-rounded rounded-pill">En savoir plus</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="card shadow mb-5 border border-0 rounded bg-primary">
+					<div class="card-body">
+						<div class="img1"></div>
+						<div class="position-relative">
+							<img class="img rounded-circle position-absolute mx-4 bg-light" src="{{ asset('build/images/profil.png')}}" width="90px">
+							<div class="statut mt-3 mx-3 text-end">
+								<div class="btn btn-outline-primary bg-danger fw-bolder fs-6 btn-rounded rounded-pill text-light">Statut</div>
+							</div>
+							<h4 class="card-title text-light fw-bolder p-3 fs-4 mb-0">Titre de la décision</h4>
+							<p class="card-text text-light mb-1 p-3">With supporting text below as a natural lead-in to additional content: category</p>
+							<div class="text-end p-3 text-light btn-rounded">
+								<a href="#" class="btn btn-outline-primary bg-light fw-bolder fs-6 btn-rounded rounded-pill">En savoir plus</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-6">
+				<div class="card shadow mb-5 border border-0 rounded bg-primary">
+					<div class="card-body">
+						<div class="img1"></div>
+						<div class="position-relative">
+							<img class="img rounded-circle position-absolute mx-4 bg-light" src="{{ asset('build/images/profil.png')}}" width="90px">
+							<div class="statut mt-3 mx-3 text-end">
+								<div class="btn btn-outline-primary bg-danger fw-bolder fs-6 btn-rounded rounded-pill text-light">Statut</div>
+							</div>
+							<h4 class="card-title text-light fw-bolder p-3 fs-4 mb-0">Titre de la décision</h4>
+							<p class="card-text text-light mb-1 p-3">With supporting text below as a natural lead-in to additional content: category</p>
+							<div class="text-end p-3 text-light btn-rounded">
+								<a href="#" class="btn btn-outline-primary bg-light fw-bolder fs-6 btn-rounded rounded-pill">En savoir plus</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+{% endblock %}
