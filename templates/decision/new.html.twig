@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter nouvelle décision
+{% endblock %}
+
+{% block body %}
+		<div class="container bg-primary">
+			<h1 class="text-center text-secondary">Créer une nouvelle décision</h1>
+
+			{{ include('decision/_form.html.twig') }}
+
+			<a href="{{ path('app_decision_index') }}">Retour a la liste</a>
+		</div>
+{% endblock %}
