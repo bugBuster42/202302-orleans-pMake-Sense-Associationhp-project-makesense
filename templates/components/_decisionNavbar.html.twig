@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+{% block body %}
+	<h1 class="text-center fw-bold fs-1 my-5">
+		Les décisions
+	</h1>
+	<div class="navbar-button mx-auto d-flex d-grid gap-2 justify-content-center mb-5">
+		{% for status in statuses %}
+			<button type="button" class="btn btn-outline-primary rounded-pill">{{ status.name }}</button>
+		{% endfor %}
+	</div>
+{% endblock %}
