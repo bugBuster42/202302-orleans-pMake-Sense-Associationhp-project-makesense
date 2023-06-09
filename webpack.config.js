@@ -21,9 +21,12 @@ Encore
 
         // if versioning is enabled, add the file hash too
         to: 'images/[path][name].[hash:8].[ext]',
-
-        // only copy files matching this pattern
-        // pattern: /\.(png|jpg|jpeg)$/
+    })
+    // only copy files matching this pattern
+    // pattern: /\.(png|jpg|jpeg)$/
+    .copyFiles({
+        from: './node_modules/ckeditor4/',
+        to: 'ckeditor/[path][name].[ext]', pattern: /\.(js|css)$/, includeSubdirectories: false,
     })
     /*
      * ENTRY CONFIG
@@ -65,20 +68,7 @@ Encore
         config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
-    // uncomment if you use TypeScript
-    // .enableTypeScriptLoader()
-
-// uncomment if you use React
-// .enableReactPreset()
-
-// uncomment to get integrity="..." attributes on your script & link tags
-// requires WebpackEncoreBundle 1.4 or higher
-// .enableIntegrityHashes(Encore.isProduction())
-
-// uncomment if you're having problems with a jQuery plugin
-// .autoProvidejQuery()
-
-    // enables Sass/SCSS support
+    
     .enableSassLoader();
 const fullConfig = Encore.getWebpackConfig();
 fullConfig.devServer = {
