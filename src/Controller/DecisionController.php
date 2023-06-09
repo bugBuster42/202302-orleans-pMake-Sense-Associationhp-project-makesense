@@ -60,7 +60,7 @@ class DecisionController extends AbstractController
             return $this->redirectToRoute('app_decision_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('decision/edit.html.twig', [
+        return $this->render('decision/edit.html.twig', [
             'decision' => $decision,
             'form' => $form,
         ]);
