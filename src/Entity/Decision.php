@@ -29,6 +29,9 @@ class Decision
     #[Assert\NotBlank]
     private ?string $description = null;
 
+    #[ORM\ManyToOne(inversedBy: 'decisions')]
+    private ?Status $status = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,6 +69,18 @@ class Decision
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

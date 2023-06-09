@@ -19,10 +19,10 @@ class StatusFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        foreach (self::STATUS as $statusName) {
+        foreach (self::STATUS as $key => $statusName) {
             $status = new Status();
             $status->setName($statusName);
-            $this->addReference('status_' . $statusName, $status);
+            $this->addReference('status_' . $key, $status);
 
             $manager->persist($status);
         }
