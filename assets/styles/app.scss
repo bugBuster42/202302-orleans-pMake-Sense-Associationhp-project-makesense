@@ -11,6 +11,3 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import "~bootstrap/scss/bootstrap";
 @import "_navbar";
 
-.form-label {
-    color: $secondary;
-}
