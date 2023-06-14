@@ -1,0 +1,35 @@
+.container-fluid {
+    display: flex;
+    justify-content: center;
+}
+
+.bg-image {
+    background-image: url('../images/fond-login.png');
+    background-size: cover;
+    background-repeat: none;
+    background-position: center;
+    border-radius: 1rem;
+    max-width: 560px;
+    width: 100%;
+    height: auto;
+    padding: clamp(30px, 15%, 100px);
+}
+
+h1 {
+    font-family: $font-title;
+}
+
+p, label, .signup, .forget {
+    font-family: $font-text;
+}
+
+input {
+    background-color: transparent;
+    border: 1px solid $secondary;
+}
+
+
+button {
+    font-family: $font-title;
+    border-radius: 1rem;
+}
