@@ -11,15 +11,7 @@
 			Personnes impactées
 		</button>
 		<ul class="dropdown-menu">
-			<li>
-				<a class="dropdown-item" href="#">Michelle</a>
-			</li>
-			<li>
-				<a class="dropdown-item" href="#">Jackie</a>
-			</li>
-			<li>
-				<a class="dropdown-item" href="#">Jean-Louis</a>
-			</li>
+			
 		</ul>
 	</div>
     <div class="dropdown  mx-2">
@@ -27,27 +19,18 @@
 			Personnes expertes
 		</button>
 		<ul class="dropdown-menu">
-			<li>
-				<a class="dropdown-item" href="#">Michelle</a>
-			</li>
-			<li>
-				<a class="dropdown-item" href="#">Jackie</a>
-			</li>
-			<li>
-				<a class="dropdown-item" href="#">Jean-Louis</a>
-			</li>
 		</ul>
 	</div>
     </div>
 	<div class="container">
 		<h2>Titre</h2>
 		<p>{{ decision.title }}</p>
-		<h2>Date début de la décision</h2>
+		<h2>Date de début de la décision</h2>
 		<p>{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
 		<h2>Description de la décision</h2>
 		<p>{{ decision.description }}</p>
 	</div>
 	<div class="container">
-		<a class="btn btn-primary mt-3" href="{{ path('app_home') }}">back to list</a>
+		<a class="btn btn-primary mt-3" href="{{ path('app_home') }}">Retour à la liste</a>
 	</div>
 {% endblock %}
