@@ -10,12 +10,4 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
-    public function index(DecisionRepository $decisionRepository, StatusRepository $statusRepository): Response
-    {
-        return $this->render('home/index.html.twig', [
-            'decisions' => $decisionRepository->findBy([], ['startDate' =>  'DESC']),
-            'statuses' => $statusRepository->findAll(),
-        ]);
-    }
 }

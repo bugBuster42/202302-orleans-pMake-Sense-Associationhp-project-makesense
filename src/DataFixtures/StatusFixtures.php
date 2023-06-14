@@ -2,9 +2,11 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Decision;
 use App\Entity\Status;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class StatusFixtures extends Fixture
 {
