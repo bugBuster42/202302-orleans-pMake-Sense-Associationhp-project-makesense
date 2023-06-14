@@ -24,12 +24,12 @@ class UserFixtures extends Fixture
         $user->setPassword($hashedPassword);
         $manager->persist($user);
 
-        $employe = new User();
-        $employe->setEmail('employe@makesense.com');
-        $employe->setRoles(['ROLE_EMPLOYE']);
-        $hashedPassword = $this->passwordHasher->hashPassword($employe, 'azertyuiop');
-        $employe->setPassword($hashedPassword);
-        $manager->persist($employe);
+        $employee = new User();
+        $employee->setEmail('employee@makesense.com');
+        $employee->setRoles(['ROLE_EMPLOYEE']);
+        $hashedPassword = $this->passwordHasher->hashPassword($employee, 'azertyuiop');
+        $employee->setPassword($hashedPassword);
+        $manager->persist($employee);
 
         $admin = new User();
         $admin->setEmail('admin@makesense.com');
