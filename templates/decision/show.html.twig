@@ -1,34 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Decision{% endblock %}
+{% block title %}Decision
+{% endblock %}
 
 {% block body %}
-    <h1>Decision</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ decision.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ decision.title }}</td>
-            </tr>
-            <tr>
-                <th>LimitDate</th>
-                <td>{{ decision.limitDate ? decision.limitDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ decision.description }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_decision_index') }}">back to list</a>
-
-    <a href="{{ path('app_decision_edit', {'id': decision.id}) }}">edit</a>
-
-    {{ include('decision/_delete_form.html.twig') }}
+	<h1 class="text-primary text-center fw-bold fs-1 my-5">Décision</h1>
+    <div class="d-flex justify-content-end">
+	<div class="dropdown  mx-2">
+		<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			Personnes impactées
+		</button>
+		<ul class="dropdown-menu">
+			<li>
+				<a class="dropdown-item" href="#">Michelle</a>
+			</li>
+			<li>
+				<a class="dropdown-item" href="#">Jackie</a>
+			</li>
+			<li>
+				<a class="dropdown-item" href="#">Jean-Louis</a>
+			</li>
+		</ul>
+	</div>
+    <div class="dropdown  mx-2">
+		<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			Personnes expertes
+		</button>
+		<ul class="dropdown-menu">
+			<li>
+				<a class="dropdown-item" href="#">Michelle</a>
+			</li>
+			<li>
+				<a class="dropdown-item" href="#">Jackie</a>
+			</li>
+			<li>
+				<a class="dropdown-item" href="#">Jean-Louis</a>
+			</li>
+		</ul>
+	</div>
+    </div>
+	<div class="container">
+		<h2>Titre</h2>
+		<p>{{ decision.title }}</p>
+		<h2>Date début de la décision</h2>
+		<p>{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
+		<h2>Description de la décision</h2>
+		<p>{{ decision.description }}</p>
+	</div>
+	<div class="container">
+		<a class="btn btn-primary mt-3" href="{{ path('app_home') }}">back to list</a>
+	</div>
 {% endblock %}
