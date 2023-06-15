@@ -40,13 +40,6 @@ class AdminUserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_user_show', methods: ['GET'])]
-    public function show(User $user): Response
-    {
-        return $this->render('admin_user/show.html.twig', [
-            'user' => $user,
-        ]);
-    }
 
     #[Route('/{id}/edit', name: 'app_admin_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
