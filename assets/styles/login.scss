@@ -1,0 +1,40 @@
+@import "variables";
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+}
+
+.bg-image {
+    background-image: url('../images/fond-login.png');
+    background-repeat: none;
+    background-position: center;
+    border-radius: 1rem;
+    max-width: 564px;
+    width: 100%;
+    height: 510px;
+    padding: 60px clamp(50px, 17%, 100px);
+}
+
+h2 {
+    font-family: $font-title;
+}
+
+p, label, a {
+    font-family: $font-text;
+}
+
+.form-control {
+    background-color: transparentize($light, 0.88);
+    border: 1px solid $secondary;
+}
+
+.form-label {
+    margin-bottom: 0.25rem;
+}
+
+.btn {
+    font-family: $font-title;
+    outline-offset: 6px;
+    outline: 1px solid $secondary;
+}

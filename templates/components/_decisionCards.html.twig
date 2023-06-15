@@ -2,18 +2,19 @@
 	<div class="row">
 		{% for decision in decisions %}
 			<div class="col-lg-4 col-md-6">
-				<div class="card shadow mb-5 border border-0 rounded bg-primary">
+				<div class="card shadow mb-5 border border-0 rounded bg-tertiary">
 					<div class="card-body">
 						<div class="img1"></div>
 						<div class="position-relative">
-							<img class="img rounded-circle position-absolute mx-4 bg-light" src="{{ asset('build/images/profil.png')}}" width="90px">
+							<img class="img rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}" width="90px">
 							<div class="statut mt-3 mx-3 text-end">
-								<div class="btn btn-outline-primary bg-danger fw-bolder fs-6 btn-rounded rounded-pill text-light">Statut</div>
+								<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded rounded-pill shadow text-tertiary">Statut</div>
 							</div>
-							<h4 class="card-title text-light fw-bolder p-3 fs-4 mb-0" style="height: 8rem">{{ decision.title }}</h4>
-							<p class="card-text text-light mb-1 p-3">Titre de la catégorie</p>
-							<div class="text-end p-3 text-light btn-rounded">
-								<a href="#" class="btn btn-outline-primary bg-light fw-bolder fs-6 btn-rounded rounded-pill">En savoir plus</a>
+							<p class="text-primary border-primary fw-bolder fs-6 mx-3 mb-2 border-2 p-2 border-bottom">{{ decision.status.name }}</p>
+							<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0" style="height: 8rem">{{ decision.title }}</h4>
+							<p class="card-text text-primary fw-bolder mb-1 p-3">Titre de la catégorie</p>
+							<div class="text-end p-3 text-lprimary btn-rounded">
+								<a href="#" class="btn btn-outline-primary bg-light border-secondary shadow fw-bolder fs-6 btn-rounded rounded-pill">En savoir plus</a>
 							</div>
 						</div>
 					</div>

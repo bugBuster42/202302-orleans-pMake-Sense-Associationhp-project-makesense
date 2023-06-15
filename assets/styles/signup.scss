@@ -1,0 +1,46 @@
+@import "variables";
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+}
+
+.bg-image {
+    background-image: url('../images/fond-signup.png');
+    background-repeat: none;
+    background-position: center;
+    border-radius: 1rem;
+    max-width: 564px;
+    width: 100%;
+    height: 640px;
+    padding: clamp(50px, 17%, 100px);
+    padding-top: 75px;
+}
+
+h2 {
+    font-family: $font-title;
+}
+
+p, label {
+    font-family: $font-text;
+}
+
+input {
+    font-family: $font-text;
+    color: $light;
+}
+
+.form-control {
+    background-color: transparentize($light, 0.85);
+    border: 1px solid $secondary;
+}
+
+.form-label {
+    margin-bottom: 0.25rem;
+}
+
+.btn {
+    font-family: $font-title;
+    outline-offset: 6px;
+    outline: 1px solid $secondary;
+}
