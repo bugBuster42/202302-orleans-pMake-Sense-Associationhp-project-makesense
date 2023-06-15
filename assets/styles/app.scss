@@ -4,6 +4,7 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/variables-dark";
 @import "home.scss";
+@import "_buttonTop.scss";
 
 $custom-colors: (
     "tertiary": $tertiary,
