@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('signup') }}
+{% endblock %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container-fluid mt-5">
+    <div class="bg-image text-center text-light">
+        <h2 class="fw-bold mb-4">Inscription</h2>
+        {{ form_errors(registrationForm) }}
+        {{ form_start(registrationForm) }}
+            <div class="text-start fw-semibold">
+                {{ form_row(registrationForm.firstname, {label: 'Prénom :'}) }}
+            </div>
+            <div class="text-start fw-semibold">
+                {{ form_row(registrationForm.lastname, {label: 'Nom :'}) }}
+            </div>
+            <div class="text-start fw-semibold">
+                {{ form_row(registrationForm.email, {label: 'Adresse email :'}) }}
+            </div>
+            <div class="text-start fw-semibold">
+                {{ form_row(registrationForm.plainPassword, {label: 'Mot de passe :'}) }}
+            </div>
+            <div class="text-start fw-semibold">
+                {{ form_row(registrationForm.agreeTerms, {label: 'Accepter les conditions'}) }}
+            </div>
+            <button class="mt-4 btn btn-light rounded-pill px-3 text-primary fw-bold" type="submit" class="btn">INSCRIPTION</button>
+        </div>
+    {{ form_end(registrationForm) }}
+    </div>
+</div>
+{% endblock %}
