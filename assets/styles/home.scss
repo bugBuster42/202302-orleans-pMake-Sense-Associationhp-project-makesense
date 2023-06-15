@@ -1,10 +1,11 @@
 header {
-
-    background-image: url('../images/MakesensecartographieVertPomme\ \(1\).png');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-attachment: fixed;
-    height: 100vh;
+    .home {
+        background-image: url('../images/map.png');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-attachment: fixed;
+        height: 100vh;
+    }
 
 }
