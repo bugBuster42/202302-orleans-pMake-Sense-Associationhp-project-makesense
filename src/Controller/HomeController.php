@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Decision;
+use App\Form\DecisionType;
 use App\Repository\DecisionRepository;
 use App\Repository\StatusRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +17,7 @@ class HomeController extends AbstractController
     public function index(DecisionRepository $decisionRepository, StatusRepository $statusRepository): Response
     {
         return $this->render('home/index.html.twig', [
-            'decisions' => $decisionRepository->findBy([], ['startDate' =>  'DESC']),
+            'decisions' => $decisionRepository->findBy([], ['id' =>  'DESC'], 3, 0),
             'statuses' => $statusRepository->findAll(),
         ]);
     }
