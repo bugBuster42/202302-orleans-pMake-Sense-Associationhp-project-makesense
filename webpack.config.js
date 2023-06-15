@@ -36,6 +36,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addStyleEntry('login', './assets/styles/login.scss')
+    .addStyleEntry('admin', './assets/styles/admin.scss')
     .addStyleEntry('signup', './assets/styles/signup.scss')
 
 

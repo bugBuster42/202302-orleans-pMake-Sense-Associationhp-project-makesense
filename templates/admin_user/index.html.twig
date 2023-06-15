@@ -1,0 +1,56 @@
+{% extends 'adminLayout.html.twig' %}
+
+{% block title %}Gestion des utilisateurs
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<h1 class="text_primary">Gestion des utilisateurs</h1>
+
+		<table class="table table-success table-striped table-header-fixed">
+			<thead>
+				<tr>
+					<th>Email</th>
+					<th>Status</th>
+					<th></th>
+					<th>Compte</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{ user.email }}</td>
+						<td>
+							{% if 'ROLE_USER' in user.roles %}
+								{% if 'ROLE_ADMIN' in user.roles %}
+									Administrateur
+								{% elseif 'ROLE_EMPLOYEE' in user.roles %}
+									Salarié
+								{% else %}
+									Bénévole
+								{% endif %}
+							{% endif %}
+						</td>
+						<td>
+							<a class="btn btn-sm btn-outline-primary" href="{{ path('app_admin_user_edit', {'id': user.id}) }}">
+								{% include 'icons/pencil.svg'%}
+								Modifier</a>
+						</td>
+						<td>
+							<button class="btn btn-sm btn-success">Activé</button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Aucun utilisateur trouvé</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</main>
+{% endblock %}
