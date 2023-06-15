@@ -18,6 +18,8 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $user = new User();
+        $user->setFirstname('Gojo');
+        $user->setLastname('Satoru');
         $user->setEmail('user@makesense.com');
         $user->setRoles(['ROLE_USER']);
         $hashedPassword = $this->passwordHasher->hashPassword($user, 'azertyuiop');
@@ -25,6 +27,8 @@ class UserFixtures extends Fixture
         $manager->persist($user);
 
         $employee = new User();
+        $employee->setFirstname('Kirua');
+        $employee->setLastname('Zoldik');
         $employee->setEmail('employee@makesense.com');
         $employee->setRoles(['ROLE_EMPLOYEE']);
         $hashedPassword = $this->passwordHasher->hashPassword($employee, 'azertyuiop');
@@ -32,6 +36,8 @@ class UserFixtures extends Fixture
         $manager->persist($employee);
 
         $admin = new User();
+        $admin->setFirstname('Gon');
+        $admin->setLastname('Freecss');
         $admin->setEmail('admin@makesense.com');
         $admin->setRoles(['ROLE_ADMIN']);
         $hashedPassword = $this->passwordHasher->hashPassword($admin, 'azertyuiop');
