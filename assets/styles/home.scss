@@ -1,22 +1,30 @@
-header {
-    .home {
-        background-image: url('../images/map.png');
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-attachment: fixed;
-        height: 100vh;
+.home {
+    background-image: url('../images/map.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    // background-size: contain;
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow: auto;
+
+    .container {
+        width: 80%;
     }
 
-}
+    .card-body {
 
-main {
-    .home {
-        background-image: url('../images/map.png');
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-attachment: fixed;
-        min-height: 100vh;
+        .img1 {
+            background-image: url('../images/environement.jpg');
+            background-size: cover;
+            height: 10rem;
+            padding: 0;
+            border-top-left-radius: 0.2rem;
+            border-top-right-radius: 0.2rem;
+        }
+
+        .img {
+            top: -65px;
+        }
     }
 }

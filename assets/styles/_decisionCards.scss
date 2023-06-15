@@ -1,4 +1,8 @@
-.container {
+.decision {
+
+    .container {
+        width: 80%;
+    }
 
     .card-body {
         padding: 0;
@@ -15,14 +19,5 @@
         .img {
             top: -65px;
         }
-    }
-}
-
-.navbar-button {
-
-    .btn {
-        border: none;
-        box-shadow: 0 0.5rem 1rem rgba(0.15, 0, 0, 0.15);
-        font-size: 0.9rem;
     }
 }
