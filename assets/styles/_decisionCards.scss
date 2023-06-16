@@ -1,23 +1,3 @@
-.title {
-    .pastille {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        text-align: center;
-    }
-
-    .pastille::after {
-        content: "";
-        position: absolute;
-        background-color: #FFF30D;
-        width: 20px;
-        height: 10px;
-        border-radius: 40%;
-        top: 84px;
-        left: -5px;
-    }
-}
-
 .decision {
 
     .container {
