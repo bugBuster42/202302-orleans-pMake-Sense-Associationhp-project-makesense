@@ -4,28 +4,15 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    // background-size: contain;
     min-height: 100vh;
     overflow: auto;
 
-    .vedette {
+    .title {
+        .vedette {
 
-        .pastille {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            text-align: center;
-        }
-
-        .pastille::after {
-            content: "";
-            position: absolute;
-            background-color: #FFF30D;
-            width: 20px;
-            height: 10px;
-            border-radius: 40%;
-            top: 84px;
-            left: -4px;
+            .pastille::after {
+                left: -4px;
+            }
         }
     }
 
