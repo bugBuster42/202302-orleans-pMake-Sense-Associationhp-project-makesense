@@ -1,8 +1,12 @@
-<h1 class="text-center fw-bold fs-1 my-5">
-	Les décisions
-</h1>
+<div class="title d-flex justify-content-center">
+	<h1 class="text-center fw-bold fs-1 my-5">Les</h1>
+	<span class="pastille"></span>
+	<h1 class="text-center fw-bold fs-1 px-2 my-5">décisions
+	</h1>
+</div>
+
 <div clas="nav-decision">
-	<nav class="navbar navbar-expand-lg bg-none shadow border border-2 border-primary mb-3 rounded-pill container" style="width:80%;">
+	<nav class="navbar navbar-expand-lg bg-none shadow border border-2 border-primary mb-5 rounded-pill container" style="width:80%;">
 		<div class="container nav-item bg-none">
 			{% for status in statuses %}
 				<a class="link nav-link fw-bold px-2 mx-auto d-flex p-1 text-primary text-center d-grid gap-2 justify-content-center" href=" {{ path('status_decision', {'id': status.id} ) }}">{{ status.name }}

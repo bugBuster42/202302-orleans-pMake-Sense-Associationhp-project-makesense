@@ -3,10 +3,31 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    // background-size: contain;
     background-attachment: fixed;
+    // background-size: contain;
     min-height: 100vh;
     overflow: auto;
+
+    .vedette {
+
+        .pastille {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .pastille::after {
+            content: "";
+            position: absolute;
+            background-color: #FFF30D;
+            width: 20px;
+            height: 10px;
+            border-radius: 40%;
+            top: 84px;
+            left: -4px;
+        }
+    }
 
     .container {
         width: 80%;
