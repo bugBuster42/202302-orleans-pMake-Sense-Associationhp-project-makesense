@@ -5,32 +5,58 @@
 
 {% block body %}
 	<h1 class="text-primary text-center fw-bold fs-1 my-5">Décision</h1>
-    <div class="d-flex justify-content-end">
-	<div class="dropdown  mx-2">
-		<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-			Personnes impactées
-		</button>
-		<ul class="dropdown-menu">
-			
-		</ul>
+	<div class="d-flex justify-content-end">
+		<div class="dropdown  mx-2">
+			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				Personnes impactées
+			</button>
+			<ul class="dropdown-menu"></ul>
+		</div>
+		<div class="dropdown  mx-2">
+			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				Personnes expertes
+			</button>
+			<ul class="dropdown-menu"></ul>
+		</div>
 	</div>
-    <div class="dropdown  mx-2">
-		<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-			Personnes expertes
-		</button>
-		<ul class="dropdown-menu">
-		</ul>
-	</div>
-    </div>
 	<div class="container">
 		<h2>Titre</h2>
 		<p>{{ decision.title }}</p>
 		<h2>Date de début de la décision</h2>
 		<p>{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
 		<h2>Description de la décision</h2>
-		<p>{{ decision.description }}</p>
+		<p>{{ decision.description | raw }}</p>
 	</div>
 	<div class="container">
-		<a class="btn btn-primary mt-3" href="{{ path('app_home') }}">Retour à la liste</a>
+		<div class="accordion" id="accordionExample">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingOne">
+					<button class="accordion-button bg-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						Avis
+					</button>
+				</h2>
+				<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+					{% for comment in decision.comments %}
+						<div class="accordion-body">
+							<div class="border-bottom border-dark ">
+								<p>{{ comment.user.email }}</p>
+								<p>{{ comment.text}}</p>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="my-3 ">
+			{% if app.user %}
+				{{ form_start(form) }}
+				{{ form_widget(form) }}
+				<button class="btn btn-light text-primary my-2 border border-secondary rounded-pill">{{ button_label|default('Laissez un commentaire') }}</button>
+				{{ form_end(form) }}
+			{% endif %}
+			<a class="btn btn-primary mt-3" href="{{ path('status_home') }}">Retour à la liste</a>
+		</div>
 	</div>
 {% endblock %}
