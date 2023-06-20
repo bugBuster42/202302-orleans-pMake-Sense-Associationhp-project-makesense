@@ -22,7 +22,7 @@ class SearchDecisionType extends AbstractType
                 [
                     'class' => Status::class,
                     'choice_label' => 'name',
-                    'placeholder' => 'Rechercher',
+                    'placeholder' => 'Avancée de la décision',
                 ]
             );
     }
