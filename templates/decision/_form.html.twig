@@ -1,5 +1,9 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
+<div class="form-decision bg-white m-auto rounded shadow p-5" style="width:70%;">
 
-    <button  class="btn btn-light text-primary my-2 border border-secondary rounded-pill">{{ button_label|default('Soumettre la décision') }}</button>
-{{ form_end(form) }}
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+
+	<button class="btn btn-light text-primary my-2 border border-secondary bg-white rounded-pill">{{ button_label|default('Soumettre la décision') }}</button>
+	{{ form_end(form) }}
+
+</div>
