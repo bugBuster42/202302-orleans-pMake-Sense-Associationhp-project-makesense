@@ -14,7 +14,7 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('Text', TextareaType::class, [
-                'label' => 'Ecrire son commentaire'
+                'label' => 'Commenter la décision'
             ]);
     }
     public function configureOptions(OptionsResolver $resolver): void
