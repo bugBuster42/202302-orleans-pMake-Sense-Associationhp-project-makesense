@@ -22,11 +22,11 @@ class StatusController extends AbstractController
         StatusRepository $statusRepository
     ): Response {
 
+        $decisions = $decisionRepository->findAll();
+        $statuses = $statusRepository->findAll();
+
         $form = $this->createForm(SearchDecisionType::class);
         $form->handleRequest($request);
-
-        $decisions = [];
-        $statuses = [];
 
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData()['search'];
