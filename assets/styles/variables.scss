@@ -40,3 +40,9 @@ body {
 
     }
 }
+
+.vertical-line {
+    border-left: 2px solid $primary;
+    display: inline-block;
+    height: 3rem;
+}

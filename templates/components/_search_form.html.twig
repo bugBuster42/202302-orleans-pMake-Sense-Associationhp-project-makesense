@@ -1,17 +1,19 @@
 <div clas="nav-decision">
 	<nav class="navbar navbar-expand-lg bg-none shadow border border-2 border-primary mb-5 rounded-pill container" style="width:80%;">
-		<div class="container nav-item bg-none flex-end">
+		<div class="container nav-item bg-none">
 			<p class="my-auto text-primary mx-3 fw-bold">Filtres</p>
+			<span class="vertical-line"></span>
 			{{ form_start(form, {'attr': {'class': 'form-class bg-tertiary', 'style': 'width:80%;'}}) }}
 			<div class="row">
-				<div class="col">
-					{{ form_widget(form.status, {'attr': {'class': 'form-class form-control bg-tertiary'}}) }}
+				<div class="col-4">
+					{{ form_widget(form.status, {'attr': {'class': 'form-class text text-primary fw-bold border border-light form-control bg-tertiary'}}) }}
+				</div>
+
+				<div class="col-3">
+					{{ form_widget(form.search, {'attr': {'class': 'form-class form-control border-light bg-tertiary', 'placeholder': 'Rechercher'}}) }}
 				</div>
 				<div class="col">
-					{{ form_widget(form.search, {'attr': {'class': 'form-class form-control bg-tertiary', 'placeholder': 'Rechercher'}}) }}
-				</div>
-				<div class="col">
-					<button class="btn border-none rounded-pill" type="submit"><img src="{{ asset('build/images/search.svg')}}" alt="Rechercher"></button>
+					<button class="btn border-none rounded-pill" type="submit"><img src="{{ asset('build/images/search.svg')}}" style="width:25px" alt="Rechercher"></button>
 				</div>
 				{{ form_end(form) }}
 			</div>
