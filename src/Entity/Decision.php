@@ -37,6 +37,14 @@ class Decision
     #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?Category $category = null;
 
+    #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Comment::class)]
+    private Collection $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -98,6 +106,36 @@ class Decision
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setDecision($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getDecision() === $this) {
+                $comment->setDecision(null);
+            }
+        }
 
         return $this;
     }
