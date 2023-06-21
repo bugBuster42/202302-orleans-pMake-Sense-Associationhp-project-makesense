@@ -3,6 +3,8 @@
 @import "_decisionCards";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/variables-dark";
+@import "home.scss";
+@import "_buttonTop.scss";
 
 $custom-colors: (
     "tertiary": $tertiary,
@@ -11,4 +13,3 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 @import "~bootstrap/scss/bootstrap";
 @import "_navbar";
-

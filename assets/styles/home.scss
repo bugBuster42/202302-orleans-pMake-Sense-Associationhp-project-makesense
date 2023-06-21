@@ -1,11 +1,17 @@
-.decision {
+.home {
+    background-image: url('../images/map.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow: auto;
 
     .container {
         width: 80%;
     }
 
     .card-body {
-        padding: 0;
 
         .img1 {
             background-image: url('../images/environement.jpg');
@@ -19,6 +25,5 @@
         .img {
             top: -65px;
         }
-
     }
 }
