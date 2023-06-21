@@ -39,17 +39,6 @@ class StatusRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLikeName(string $name): array
-    {
-        $queryBuilder = $this->createQueryBuilder('p')
-            ->where('p.name LIKE :name')
-            ->setParameter('name', '%' . $name . '%')
-            ->orderBy('p.name', 'ASC')
-            ->getQuery();
-
-        return $queryBuilder->getResult();
-    }
-
     //    /**
     //     * @return Status[] Returns an array of Status objects
     //     */

@@ -19,19 +19,19 @@ class StatusController extends AbstractController
     public function index(
         Request $request,
         DecisionRepository $decisionRepository,
-        StatusRepository $statusRepository
+        StatusRepository $statusRepository,
+        ?Status $status,
     ): Response {
-
-        $decisions = $decisionRepository->findAll();
-        $statuses = $statusRepository->findAll();
 
         $form = $this->createForm(SearchDecisionType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData()['search'];
-            $decisions = $decisionRepository->findLikeName($search);
-            $statuses = $statusRepository->findlikeName($search);
+            $status = $form->getData()['status'];
+
+            $decisions = $decisionRepository->findDecision($search, $status);
+            $statuses = $statusRepository->findAll();
         } else {
             $decisions = $decisionRepository->findAll();
             $statuses = $statusRepository->findAll();

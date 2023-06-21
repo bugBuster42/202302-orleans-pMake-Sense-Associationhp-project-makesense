@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Status;
 use App\Entity\Decision;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Decision>
@@ -40,16 +41,22 @@ class DecisionRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLikeName(string $name): array
+    public function findDecision(string $title, ?Status $status): array
     {
-        $queryBuilder = $this->createQueryBuilder('p')
-            ->where('p.title LIKE :name')
-            ->setParameter('name', '%' . $name . '%')
-            ->orderBy('p.title', 'ASC')
-            ->getQuery();
+        $queryBuilder = $this->createQueryBuilder('p');
+        $queryBuilder->where('p.title LIKE :title');
+        $queryBuilder->setParameter('title', '%' . $title . '%');
 
-        return $queryBuilder->getResult();
+        if ($status) {
+            $queryBuilder->andWhere('p.status = :status');
+            $queryBuilder->setParameter('status', $status);
+        }
+        $queryBuilder->orderBy('p.title', 'ASC');
+
+        return $queryBuilder->getQuery()->getResult();
     }
+
+
 
     //    /**
     //     * @return Decision[] Returns an array of Decision objects
