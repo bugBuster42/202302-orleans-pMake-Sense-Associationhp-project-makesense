@@ -34,9 +34,11 @@ class Decision
     #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?Status $status = null;
 
-    #[ORM\ManyToOne(inversedBy: 'decisions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'decisions')]
+    private ?Category $category = null;
 
     #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Comment::class)]
     private Collection $comments;
@@ -107,6 +109,18 @@ class Decision
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
