@@ -41,11 +41,14 @@ class DecisionRepository extends ServiceEntityRepository
         }
     }
 
-    public function findDecision(string $title, ?Status $status): array
+    public function findDecision(?string $title, ?Status $status): array
     {
         $queryBuilder = $this->createQueryBuilder('p');
-        $queryBuilder->where('p.title LIKE :title');
-        $queryBuilder->setParameter('title', '%' . $title . '%');
+
+        if ($title) {
+            $queryBuilder->where('p.title LIKE :title');
+            $queryBuilder->setParameter('title', '%' . $title . '%');
+        }
 
         if ($status) {
             $queryBuilder->andWhere('p.status = :status');
