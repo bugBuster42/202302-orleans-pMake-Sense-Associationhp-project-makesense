@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DecisionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -31,6 +33,9 @@ class Decision
 
     #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?Status $status = null;
+
+    #[ORM\ManyToOne(inversedBy: 'decisions')]
+    private ?Category $category = null;
 
     public function getId(): ?int
     {
@@ -81,6 +86,18 @@ class Decision
     public function setStatus(?Status $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
