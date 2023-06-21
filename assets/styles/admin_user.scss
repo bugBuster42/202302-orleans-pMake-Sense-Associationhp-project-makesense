@@ -1,8 +1,12 @@
 @import "variables";
 
 .text_primary {
-    margin: 20px 0;
-  }
+  margin: 20px 0;
+}
+
+.table> :not(caption)>*>th {
+  background-color: $danger;
+}
 
   .table > :not(caption) > * > th {
     background-color: $fourthly; 
