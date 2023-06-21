@@ -1,11 +1,11 @@
-{% extends 'adminLayout.html.twig' %}
+{% extends 'admin/adminLayout.html.twig' %}
 
 {% block title %}Gestion des utilisateurs
 {% endblock %}
 
 {% block stylesheets %}
 	{{ parent() }}
-	{{ encore_entry_link_tags('admin') }}
+	{{ encore_entry_link_tags('admin_user') }}
 {% endblock %}
 
 {% block body %}
@@ -37,7 +37,7 @@
 							{% endif %}
 						</td>
 						<td>
-							<a class="btn btn-sm btn-outline-primary" href="{{ path('app_admin_user_edit', {'id': user.id}) }}">
+							<a class="btn btn-sm btn-outline-primary" href="{{ path('admin_user_edit', {'id': user.id}) }}">
 								{% include 'icons/pencil.svg'%}
 								Modifier</a>
 						</td>
