@@ -4,11 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center text-primary my-5">Créer une nouvelle décision</h1>
+	<h1 class="text-center text-primary mt-5 fw-bold fs-1 px-2">Créer une nouvelle décision</h1>
+
 	<div class="container bg-light p-4 rounded">
 		{{ include('decision/_form.html.twig') }}
 	</div>
-	<div class="container">
-		<a class="btn btn-primary mb-5 mt-3" href="{{ path('app_decision_index') }}">Retour a la liste</a>
+	<div class="container form-decision">
+		<a class="btn btn-primary rounded-pill mb-5 mx-5 mt-3" href="{{ path('app_decision_index') }}">Retour a la liste</a>
 	</div>
 {% endblock %}
