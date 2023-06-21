@@ -28,14 +28,12 @@
 						<td>{{ user.lastname }}</td>
 						<td>{{ user.firstname }}</td>
 						<td>
-							{% if 'ROLE_USER' in user.roles %}
-								{% if 'ROLE_ADMIN' in user.roles %}
-									Administrateur
-								{% elseif 'ROLE_EMPLOYEE' in user.roles %}
-									Salarié
-								{% else %}
-									Bénévole
-								{% endif %}
+							{% if 'ROLE_ADMIN' in user.roles %}
+								Administrateur
+							{% elseif 'ROLE_EMPLOYEE' in user.roles %}
+								Salarié
+							{% else %}
+								Bénévole
 							{% endif %}
 						</td>
 						<td>
