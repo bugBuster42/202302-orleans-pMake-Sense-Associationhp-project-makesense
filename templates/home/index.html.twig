@@ -4,14 +4,50 @@
 {% endblock %}
 {% block header %}{% endblock %}
 {% block body %}
-	<header>
-		<div class="home">
-			<div class="position-absolute top-50 start-50 translate-middle fs-1">
-				<div class="logo"></div>
-				<img src="{{ asset('build/images/logo-dark.png')}}" class="img-fluid">
-				<h1 class="fw-bold center">#balancetonidée</h1>
-				<h2 class="fw-bold center text-primary">en interne</h2>
+	<div class="home">
+		<div class="position-absolute top-50 start-50 translate-middle fs-1">
+			<div class="logo"></div>
+			<img src="{{ asset('build/images/logo-dark.png')}}" class="img-fluid">
+			<h1 class="fw-bold center">#balancetonidée</h1>
+			<h2 class="fw-bold center text-primary">en interne</h2>
+		</div>
+	</div>
+</header>
+
+<main>
+	<div class="home">
+
+		<div class="title title-vedette d-flex justify-content-center">
+			<h1 class="text-center fw-bold fs-1 my-5">En</h1>
+			<span class="pastille"></span>
+			<h1 class="text-center fw-bold fs-1 px-2 my-5">vedette
+			</h1>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				{% for decision in decisions %}
+					<div class="col-lg-4 col-md-6">
+						<div class="card shadow mb-5 border border-0 rounded bg-tertiary">
+							<div class="card-body p-0">
+								<div class="img1"></div>
+								<div class="position-relative">
+									<img class="img rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}" width="90px">
+									<div class="statut mt-3 mx-3 text-end">
+										<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded rounded-pill shadow text-tertiary">Statut</div>
+									</div>
+									<p class="text-primary border-primary fw-bolder fs-6 mx-3 mb-2 border-2 p-2 border-bottom">{{ decision.status.name }}</p>
+									<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0" style="height: 8rem">{{ decision.title }}</h4>
+									<p class="card-text text-primary fw-bolder mb-1 p-3">Titre de la catégorie</p>
+									<div class="text-end p-3 text-lprimary btn-rounded">
+										<a href="#" class="btn btn-outline-primary bg-light border-secondary shadow fw-bolder fs-6 btn-rounded rounded-pill">En savoir plus</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
 			</div>
 		</div>
-	</header>
+	</main>
 {% endblock %}

@@ -15,7 +15,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create();
+        $faker = Factory::create('fr_FR');
 
         for ($i = 0; $i < self::DECISION_NUMBER; $i++) {
             $decision = new Decision();
@@ -24,7 +24,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
             $decision->setDescription($faker->paragraph());
 
             $decision->setStatus($this->getReference('status_' . $faker->numberBetween(0, 5)));
-
+            $this->addReference('decision_' . $i, $decision);
             $manager->persist($decision);
         }
 
