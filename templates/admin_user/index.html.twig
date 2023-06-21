@@ -15,16 +15,18 @@
 		<table class="table table-success table-striped table-header-fixed">
 			<thead>
 				<tr>
-					<th>Email</th>
+					<th>Nom</th>
+					<th>Prénom</th>
 					<th>Status</th>
 					<th></th>
-					<th>Compte</th>
+
 				</tr>
 			</thead>
 			<tbody>
 				{% for user in users %}
 					<tr>
-						<td>{{ user.email }}</td>
+						<td>{{ user.lastname }}</td>
+						<td>{{ user.firstname }}</td>
 						<td>
 							{% if 'ROLE_USER' in user.roles %}
 								{% if 'ROLE_ADMIN' in user.roles %}
@@ -41,9 +43,7 @@
 								{% include 'icons/pencil.svg'%}
 								Modifier</a>
 						</td>
-						<td>
-							<button class="btn btn-sm btn-success">Activé</button>
-						</td>
+
 					</tr>
 				{% else %}
 					<tr>
@@ -52,5 +52,6 @@
 				{% endfor %}
 			</tbody>
 		</table>
+
 	</main>
 {% endblock %}
