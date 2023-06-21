@@ -36,10 +36,16 @@ body {
         width: 20px;
         height: 10px;
         border-radius: 40%;
-        top: 84px;
-        left: -5px;
+        top: 0;
+        left: -10px;
 
     }
+}
+
+.vertical-line {
+    border-left: 2px solid $primary;
+    display: inline-block;
+    height: 3rem;
 }
 
 .form-decision {

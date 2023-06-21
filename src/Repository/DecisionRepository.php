@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Status;
 use App\Entity\Decision;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Decision>
@@ -14,6 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Decision[]    findAll()
  * @method Decision[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class DecisionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -39,28 +41,48 @@ class DecisionRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Decision[] Returns an array of Decision objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('d.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findDecision(?string $title, ?Status $status): array
+    {
+        $queryBuilder = $this->createQueryBuilder('p');
 
-//    public function findOneBySomeField($value): ?Decision
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        if ($title) {
+            $queryBuilder->where('p.title LIKE :title');
+            $queryBuilder->setParameter('title', '%' . $title . '%');
+        }
+
+        if ($status) {
+            $queryBuilder->andWhere('p.status = :status');
+            $queryBuilder->setParameter('status', $status);
+        }
+        $queryBuilder->orderBy('p.title', 'ASC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
+
+    //    /**
+    //     * @return Decision[] Returns an array of Decision objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('d')
+    //            ->andWhere('d.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('d.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Decision
+    //    {
+    //        return $this->createQueryBuilder('d')
+    //            ->andWhere('d.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
