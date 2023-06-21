@@ -1,14 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter nouvelle décision
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('addDecision') }}
+{% endblock %}
+
+{% block title %}
+Ajout décision
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center text-primary my-5">Créer une nouvelle décision</h1>
-	<div class="container bg-light p-4 rounded">
+	<h1 class="text-center fw-bold mt-5">Ajouter une nouvelle décision</h1>
+	<div class="container p-5 rounded">
 		{{ include('decision/_form.html.twig') }}
-	</div>
-	<div class="container">
-		<a class="btn btn-primary mb-5 mt-3" href="{{ path('app_decision_index') }}">Retour a la liste</a>
-	</div>
+		<div class="container px-0">
+			<a class="btn btn-light mt-3 px-3 rounded-pill text-primary fw-bold" href="{{ path('app_decision_index') }}">Retour</a>
+		</div>
+	</div> 
 {% endblock %}

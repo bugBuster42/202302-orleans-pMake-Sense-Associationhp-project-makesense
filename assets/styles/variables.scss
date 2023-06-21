@@ -10,6 +10,7 @@ $font-title: "Raleway";
 $font-text: "Lato";
 $font-weight-bold: 800;
 $pills: #FFF30D;
+$fourthly: #196C84;
 
 body {
     background-color: $tertiary;
@@ -45,4 +46,8 @@ body {
     border-left: 2px solid $primary;
     display: inline-block;
     height: 3rem;
+}
+
+.form-decision {
+    width: 70%;
 }

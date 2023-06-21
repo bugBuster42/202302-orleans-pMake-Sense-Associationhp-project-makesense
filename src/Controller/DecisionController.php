@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Decision;
+use App\Entity\User;
 use App\Form\DecisionType;
+use App\Form\CommentType;
+use App\Repository\CommentRepository;
 use App\Repository\DecisionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/decision')]
 class DecisionController extends AbstractController
 {
-    #[Route('/', name: 'app_decision_index', methods: ['GET'])]
+    #[Route('/', name: 'app_decision_index', methods: ['GET', 'POST'])]
     public function index(DecisionRepository $decisionRepository): Response
     {
         return $this->render('decision/index.html.twig', [
@@ -21,7 +25,7 @@ class DecisionController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_decision_new', methods: ['GET', 'POST'])]
+    #[Route('/ajouter', name: 'app_decision_new', methods: ['GET', 'POST'])]
     public function new(Request $request, DecisionRepository $decisionRepository): Response
     {
         $decision = new Decision();
@@ -40,11 +44,24 @@ class DecisionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_decision_show', methods: ['GET'])]
-    public function show(Decision $decision): Response
+    #[Route('/{id}', name: 'app_decision_show', methods: ['GET', 'POST'])]
+    public function show(Request $request, Decision $decision, CommentRepository $commentRepository): Response
     {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setUser($this->getUser());
+            $comment->setDecision($decision);
+            $commentRepository->save($comment, true);
+
+            return $this->redirectToRoute('app_decision_show', ['id' => $decision->getId()], Response::HTTP_SEE_OTHER);
+        }
         return $this->render('decision/show.html.twig', [
             'decision' => $decision,
+            'form' => $form
+
         ]);
     }
 

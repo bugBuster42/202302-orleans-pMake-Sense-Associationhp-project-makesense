@@ -24,7 +24,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
             $decision->setDescription($faker->paragraph());
 
             $decision->setStatus($this->getReference('status_' . $faker->numberBetween(0, 5)));
-
+            $this->addReference('decision_' . $i, $decision);
             $manager->persist($decision);
         }
 

@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
 	{{ parent()}}
-	{{ encore_entry_link_tags('admin')}}
+	{{ encore_entry_link_tags('adminLayout')}}
 {% endblock %}
 {% block navbar %}
-	{% include 'components/_navbar.html.twig' %}
+	{% include 'components/_navbar_admin.html.twig' %}
 {% endblock %}
 {% block body %}{% endblock %}
+{% block footer %}{% endblock %}
