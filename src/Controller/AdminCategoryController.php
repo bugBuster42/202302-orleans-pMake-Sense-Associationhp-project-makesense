@@ -24,6 +24,25 @@ class AdminCategoryController extends AbstractController
         ]);
     }
 
+    #[Route('/new', name: 'category_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, CategoryRepository $categoryRepository): Response
+    {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $categoryRepository->save($category, true);
+
+            return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('admin/admin_category/new.html.twig', [
+            'category' => $category,
+            'form' => $form,
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {
@@ -33,10 +52,10 @@ class AdminCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->save($category, true);
 
-            return $this->redirectToRoute('category_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('/admin/admin_category/edit.html.twig', [
+        return $this->render('admin/admin_category/edit.html.twig', [
             'category' => $category,
             'form' => $form,
         ]);
