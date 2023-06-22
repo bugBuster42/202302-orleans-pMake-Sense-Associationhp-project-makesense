@@ -34,9 +34,6 @@ class Decision
     #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?Status $status = null;
 
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
-
     #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?Category $category = null;
 
@@ -97,18 +94,6 @@ class Decision
     public function setStatus(?Status $status): static
     {
         $this->status = $status;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
 
         return $this;
     }
