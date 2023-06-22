@@ -37,6 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->decisions = new ArrayCollection();
     }
 
     #[ORM\Column(length: 255)]
@@ -44,6 +45,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Decision::class)]
+    private Collection $decisions;
 
     public function getId(): ?int
     {
@@ -157,6 +161,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getFullname(): ?string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
+    /**
+     * @return Collection<int, Decision>
+     */
+    public function getDecisions(): Collection
+    {
+        return $this->decisions;
+    }
+
+    public function addDecision(Decision $decision): static
+    {
+        if (!$this->decisions->contains($decision)) {
+            $this->decisions->add($decision);
+            $decision->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDecision(Decision $decision): static
+    {
+        if ($this->decisions->removeElement($decision)) {
+            // set the owning side to null (unless already changed)
+            if ($decision->getUser() === $this) {
+                $decision->setUser(null);
             }
         }
 

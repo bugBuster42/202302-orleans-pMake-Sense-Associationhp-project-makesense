@@ -25,7 +25,7 @@ class DecisionController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_decision_new', methods: ['GET', 'POST'])]
+    #[Route('/ajouter', name: 'app_decision_new', methods: ['GET', 'POST'])]
     public function new(Request $request, DecisionRepository $decisionRepository): Response
     {
         $decision = new Decision();
