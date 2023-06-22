@@ -16,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 #[IsGranted('ROLE_ADMIN')]
 class AdminCategoryController extends AbstractController
 {
-    #[Route('/', name: 'category', methods: ['GET'])]
+    #[Route('/', name: 'category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
         return $this->render('admin/admin_category/index.html.twig', [
@@ -37,7 +37,25 @@ class AdminCategoryController extends AbstractController
             return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('category/new.html.twig', [
+        return $this->render('admin/admin_category/new.html.twig', [
+            'category' => $category,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'category_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
+    {
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $categoryRepository->save($category, true);
+
+            return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('admin/admin_category/edit.html.twig', [
             'category' => $category,
             'form' => $form,
         ]);

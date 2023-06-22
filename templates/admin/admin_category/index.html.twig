@@ -14,21 +14,28 @@
 
 
 		<table class="table table-success table-striped table-header-fixed">
-
 			<thead>
 				<tr>
 					<th>Titre de la catégorie</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for category in categories %}
 					<tr>
 						<td>{{ category.title }}</td>
+
+						<td>
+							<a class="btn btn-sm btn-outline-primary" href="{{ path('admin_category_edit', {'id': category.id}) }}">
+								{% include 'icons/pencil.svg'%}
+								Modifier</a>
+						</td>
 					</tr>
 				{% else %}
 					<tr>
 						<td colspan="3">Aucune catégorie trouvée</td>
 					</tr>
+
 				{% endfor %}
 			</tbody>
 		</table>
