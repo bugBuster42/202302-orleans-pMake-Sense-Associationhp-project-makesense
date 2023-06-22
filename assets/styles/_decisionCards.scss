@@ -7,6 +7,15 @@
     .card-body {
         padding: 0;
 
+        .card-main {
+            background-image: url('../images/card.png');
+            background-position: center;
+
+            .img {
+                width: 90px;
+            }
+        }
+
         .img1 {
             background-image: url('../images/environement.jpg');
             background-size: cover;
@@ -17,15 +26,20 @@
         }
 
         .img {
-            top: -65px;
+            top: -45px;
         }
 
         .card-title {
-            height: 8rem;
+            height: 6rem;
         }
     }
 }
 
 .form-class {
     width: 80%;
+}
+
+.nav-decision {
+    position: sticky;
+    top: 20px;
 }
