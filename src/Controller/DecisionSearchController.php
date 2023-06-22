@@ -16,13 +16,10 @@ class DecisionSearchController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(
         DecisionRepository $decisionRepository,
-        StatusRepository $statusRepository,
-        CategoryRepository $categoryRepository
     ): Response {
         return $this->render('status/index.html.twig', [
             'decisions' => $decisionRepository->findBy([], ['startDate' =>  'DESC']),
-            'statuses' => $statusRepository->findAll(),
-            'categories' => $categoryRepository->findAll(),
+
         ]);
     }
     #[Route('/{id}', name: 'decision')]
