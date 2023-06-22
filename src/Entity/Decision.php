@@ -40,6 +40,9 @@ class Decision
     #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Comment::class)]
     private Collection $comments;
 
+    #[ORM\ManyToOne(inversedBy: 'decisions')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -136,6 +139,18 @@ class Decision
                 $comment->setDecision(null);
             }
         }
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
         return $this;
     }
 }
