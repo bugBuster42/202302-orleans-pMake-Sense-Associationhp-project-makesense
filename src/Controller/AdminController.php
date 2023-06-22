@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin', name: 'admin_')]
+
 class AdminController extends AbstractController
 {
     #[Route('/', name: 'home')]
@@ -24,7 +25,7 @@ class AdminController extends AbstractController
     public function userIndex(UserRepository $userRepository): Response
     {
         return $this->render('admin/admin_user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $userRepository->findBy([], ['lastname' => 'ASC']),
         ]);
     }
 
@@ -70,6 +71,19 @@ class AdminController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
+        }
+
+        return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/user/{id}/update_status', name: 'user_update_status', methods: ['POST'])]
+    public function userUpdateStatus(Request $request, User $user, UserRepository $userRepository): Response
+    {
+        $newStatus = $request->request->get('status');
+
+        if ($newStatus === 'ROLE_ADMIN' || $newStatus === 'ROLE_EMPLOYEE' || $newStatus === 'ROLE_USER') {
+            $user->setRoles([$newStatus]);
+            $userRepository->save($user, true);
         }
 
         return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);

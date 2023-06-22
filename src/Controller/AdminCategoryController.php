@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-#[Route('/admin/user', name: 'admin_')]
+#[Route('/admin/categorie', name: 'admin_')]
 #[IsGranted('ROLE_ADMIN')]
 class AdminCategoryController extends AbstractController
 {

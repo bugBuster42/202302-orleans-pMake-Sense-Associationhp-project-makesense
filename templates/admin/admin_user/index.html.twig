@@ -18,8 +18,6 @@
 					<th>Nom</th>
 					<th>Prénom</th>
 					<th>Status</th>
-					<th></th>
-
 				</tr>
 			</thead>
 			<tbody>
@@ -28,20 +26,41 @@
 						<td>{{ user.lastname }}</td>
 						<td>{{ user.firstname }}</td>
 						<td>
-							{% if 'ROLE_ADMIN' in user.roles %}
-								Administrateur
-							{% elseif 'ROLE_EMPLOYEE' in user.roles %}
-								Salarié
-							{% else %}
-								Bénévole
-							{% endif %}
+							<div class="btn-group">
+								<button type="button" class="btn btn-outline-primary dropdown-toggle custom-button-width" data-bs-toggle="dropdown">
+									{% if 'ROLE_ADMIN' in user.roles %}
+										Administrateur
+									{% elseif 'ROLE_EMPLOYEE' in user.roles %}
+										Salarié
+									{% else %}
+										Bénévole
+									{% endif %}
+								</button>
+								<ul class="dropdown-menu">
+									<li>
+										<form action="{{ path('admin_user_update_status', {'id': user.id}) }}" method="post">
+											<input type="hidden" name="_method" value="POST">
+											<input type="hidden" name="_csrf_token" value="{{ csrf_token('update_status' ~ user.id) }}">
+											<button class="dropdown-item" type="submit" name="status" value="ROLE_ADMIN">Administrateur</button>
+										</form>
+									</li>
+									<li>
+										<form action="{{ path('admin_user_update_status', {'id': user.id}) }}" method="post">
+											<input type="hidden" name="_method" value="POST">
+											<input type="hidden" name="_csrf_token" value="{{ csrf_token('update_status' ~ user.id) }}">
+											<button class="dropdown-item" type="submit" name="status" value="ROLE_EMPLOYEE">Salarié</button>
+										</form>
+									</li>
+									<li>
+										<form action="{{ path('admin_user_update_status', {'id': user.id}) }}" method="post">
+											<input type="hidden" name="_method" value="POST">
+											<input type="hidden" name="_csrf_token" value="{{ csrf_token('update_status' ~ user.id) }}">
+											<button class="dropdown-item" type="submit" name="status" value="ROLE_USER">Bénévole</button>
+										</form>
+									</li>
+								</ul>
+							</div>
 						</td>
-						<td>
-							<a class="btn btn-sm btn-outline-primary" href="{{ path('admin_user_edit', {'id': user.id}) }}">
-								{% include 'icons/pencil.svg'%}
-								Modifier</a>
-						</td>
-
 					</tr>
 				{% else %}
 					<tr>
