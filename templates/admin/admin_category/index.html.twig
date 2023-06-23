@@ -18,6 +18,7 @@
 				<tr>
 					<th>Titre de la catégorie</th>
 					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,6 +31,12 @@
 								{% include 'icons/pencil.svg'%}
 								Modifier</a>
 						</td>
+						<td>
+							<a class="btn btn-sm btn-outline-danger" href="{{ path('admin_category_delete', {'id': category.id}) }}">
+								{% include 'icons/cross.svg'%}
+								Supprimer</a>
+						</td>
+
 					</tr>
 				{% else %}
 					<tr>
@@ -39,7 +46,7 @@
 				{% endfor %}
 			</tbody>
 		</table>
-		<a class="btn btn-primary rounded-pill mb-5 mt-3" href="{{ path('admin_category_new') }}">Ajouter une catégorie</a>
+		<a class="btn btn-primary rounded mb-5 mt-3" href="{{ path('admin_category_new') }}">Ajouter une catégorie</a>
 
 
 	</main>

@@ -60,4 +60,15 @@ class AdminCategoryController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
+    #[Route('/{id}', name: 'category_delete', methods: ['POST'])]
+    public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
+            $categoryRepository->remove($category, true);
+        }
+
+        return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);
+    }
 }
