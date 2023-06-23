@@ -1,7 +1,21 @@
-.container {
+.decision {
+
+    .container {
+        width: 80%;
+    }
 
     .card-body {
         padding: 0;
+
+        .card-main {
+            background-image: url('../images/card.png');
+            background-position: center;
+
+            .img-profile {
+                width: 90px;
+                top: -45px;
+            }
+        }
 
         .img1 {
             background-image: url('../images/environement.jpg');
@@ -12,17 +26,13 @@
             border-top-right-radius: 0.2rem;
         }
 
-        .img {
-            top: -65px;
+
+        .card-title {
+            height: 6rem;
         }
     }
 }
 
-.navbar-button {
-
-    .btn {
-        border: none;
-        box-shadow: 0 0.5rem 1rem rgba(0.15, 0, 0, 0.15);
-        font-size: 0.9rem;
-    }
+.form-class {
+    width: 80%;
 }

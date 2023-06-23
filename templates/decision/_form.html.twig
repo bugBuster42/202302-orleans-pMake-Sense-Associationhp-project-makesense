@@ -1,5 +1,4 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-
-    <button  class="btn btn-light text-primary my-2 border border-secondary rounded-pill">{{ button_label|default('Soumettre la décision') }}</button>
+{{ form_widget(form) }}
+    <button  class="btn btn-light rounded-pill px-3 my-4 text-primary fw-bold">{{ button_label|default('Soumettre') }}</button>
 {{ form_end(form) }}

@@ -9,6 +9,8 @@ $danger: #C10B63;
 $font-title: "Raleway";
 $font-text: "Lato";
 $font-weight-bold: 800;
+$pills: #FFF30D;
+$fourthly: #196C84;
 
 body {
     background-color: $tertiary;
@@ -17,4 +19,35 @@ body {
         color: $primary;
         font-family: $font-title;
     }
+}
+
+.title {
+    .pastille {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        text-align: center;
+    }
+
+    .pastille::after {
+        content: "";
+        position: absolute;
+        background-color: #FFF30D;
+        width: 20px;
+        height: 10px;
+        border-radius: 40%;
+        top: 0;
+        left: -10px;
+
+    }
+}
+
+.vertical-line {
+    border-left: 2px solid $primary;
+    display: inline-block;
+    height: 3rem;
+}
+
+.form-decision {
+    width: 70%;
 }

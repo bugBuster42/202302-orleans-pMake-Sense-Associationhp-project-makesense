@@ -1,11 +1,11 @@
-{% extends 'adminLayout.html.twig' %}
+{% extends 'admin/adminLayout.html.twig' %}
 
 {% block title %}Gestion des utilisateurs
 {% endblock %}
 
 {% block stylesheets %}
 	{{ parent() }}
-	{{ encore_entry_link_tags('admin') }}
+	{{ encore_entry_link_tags('admin_user') }}
 {% endblock %}
 
 {% block body %}
@@ -15,35 +15,33 @@
 		<table class="table table-success table-striped table-header-fixed">
 			<thead>
 				<tr>
-					<th>Email</th>
+					<th>Nom</th>
+					<th>Prénom</th>
 					<th>Status</th>
 					<th></th>
-					<th>Compte</th>
+
 				</tr>
 			</thead>
 			<tbody>
 				{% for user in users %}
 					<tr>
-						<td>{{ user.email }}</td>
+						<td>{{ user.lastname }}</td>
+						<td>{{ user.firstname }}</td>
 						<td>
-							{% if 'ROLE_USER' in user.roles %}
-								{% if 'ROLE_ADMIN' in user.roles %}
-									Administrateur
-								{% elseif 'ROLE_EMPLOYEE' in user.roles %}
-									Salarié
-								{% else %}
-									Bénévole
-								{% endif %}
+							{% if 'ROLE_ADMIN' in user.roles %}
+								Administrateur
+							{% elseif 'ROLE_EMPLOYEE' in user.roles %}
+								Salarié
+							{% else %}
+								Bénévole
 							{% endif %}
 						</td>
 						<td>
-							<a class="btn btn-sm btn-outline-primary" href="{{ path('app_admin_user_edit', {'id': user.id}) }}">
+							<a class="btn btn-sm btn-outline-primary" href="{{ path('admin_user_edit', {'id': user.id}) }}">
 								{% include 'icons/pencil.svg'%}
 								Modifier</a>
 						</td>
-						<td>
-							<button class="btn btn-sm btn-success">Activé</button>
-						</td>
+
 					</tr>
 				{% else %}
 					<tr>
@@ -52,5 +50,6 @@
 				{% endfor %}
 			</tbody>
 		</table>
+
 	</main>
 {% endblock %}
