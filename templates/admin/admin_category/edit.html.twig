@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une catégorie
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-primary fw-bold fs-1 mx-2 my-5">Modifier une catégorie</h1>
+
+
+		{{ include('admin/admin_category/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+		<a class="my-5 btn btn-primary rounded mb-5 mt-3" href="{{ path('admin_category_index') }}">Retour</a>
+
+	</div>
+{% endblock %}

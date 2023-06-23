@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/status', name: 'status_')]
-class StatusController extends AbstractController
+class DecisionSearchController extends AbstractController
 {
     #[Route('/', name: 'home')]
     public function index(
@@ -48,6 +48,7 @@ class StatusController extends AbstractController
         return $this->render('status/index.html.twig', [
             'decisions' => $decisionRepository->findBy(['status' => $status], ['startDate' =>  'DESC']),
             'statuses' => $statusRepository->findAll(),
+
         ]);
     }
 }

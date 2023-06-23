@@ -11,8 +11,9 @@
             background-image: url('../images/card.png');
             background-position: center;
 
-            .img {
+            .img-profile {
                 width: 90px;
+                top: -45px;
             }
         }
 
@@ -25,9 +26,6 @@
             border-top-right-radius: 0.2rem;
         }
 
-        .img {
-            top: -45px;
-        }
 
         .card-title {
             height: 6rem;
@@ -37,9 +35,4 @@
 
 .form-class {
     width: 80%;
-}
-
-.nav-decision {
-    position: sticky;
-    top: 20px;
 }
