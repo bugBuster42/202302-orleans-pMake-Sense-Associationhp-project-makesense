@@ -14,10 +14,10 @@
 
 
 		<table class="table table-success table-striped table-header-fixed">
-
 			<thead>
 				<tr>
 					<th>Titre de la catégorie</th>
+					<th></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -25,18 +25,29 @@
 				{% for category in categories %}
 					<tr>
 						<td>{{ category.title }}</td>
+
 						<td>
-							<a href="{{ path('admin_category_delete', {'id': category.id}) }}">
+							<a class="btn btn-sm btn-outline-primary" href="{{ path('admin_category_edit', {'id': category.id}) }}">
+								{% include 'icons/pencil.svg'%}
+								Modifier</a>
+						</td>
+						<td>
+							<a class="btn btn-sm btn-outline-danger" href="{{ path('admin_category_delete', {'id': category.id}) }}">
 								{% include 'icons/cross.svg'%}
 								Supprimer</a>
 						</td>
+
 					</tr>
-				</td>
+				{% else %}
+					<tr>
+						<td colspan="3">Aucune catégorie trouvée</td>
+					</tr>
+
+				{% endfor %}
 			</tbody>
-		</tr>
-	{% else %}
-		<tr>
-			<td colspan="3">Aucune catégorie trouvée</td>
-		</tr>
-	{% endfor %}
-</tbody></table></main>{% endblock %}
+		</table>
+		<a class="btn btn-primary rounded mb-5 mt-3" href="{{ path('admin_category_new') }}">Ajouter une catégorie</a>
+
+
+	</main>
+{% endblock %}
