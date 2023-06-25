@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Status;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -23,6 +24,15 @@ class SearchDecisionType extends AbstractType
                     'class' => Status::class,
                     'choice_label' => 'name',
                     'placeholder' => 'Avancée de la décision',
+                ]
+            )
+            ->add(
+                'category',
+                EntityType::class,
+                [
+                    'class' => Category::class,
+                    'choice_label' => 'title',
+                    'placeholder' => 'Catégorie',
                 ]
             );
     }
