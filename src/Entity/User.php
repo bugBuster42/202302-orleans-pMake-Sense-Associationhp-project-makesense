@@ -49,6 +49,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Decision::class)]
     private Collection $decisions;
 
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?UserSituation $userSituation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -198,6 +201,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $decision->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserSituation(): ?UserSituation
+    {
+        return $this->userSituation;
+    }
+
+    public function setUserSituation(?UserSituation $userSituation): static
+    {
+        $this->userSituation = $userSituation;
 
         return $this;
     }
