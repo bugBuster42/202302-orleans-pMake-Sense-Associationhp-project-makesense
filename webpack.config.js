@@ -40,6 +40,7 @@ Encore
     .addStyleEntry('admin_user', './assets/styles/admin_user.scss')
     .addStyleEntry('signup', './assets/styles/signup.scss')
     .addStyleEntry('addDecision', './assets/styles/addDecision.scss')
+    .addStyleEntry('reset-password', './assets/styles/reset-password.scss')
 
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
@@ -74,7 +75,7 @@ Encore
         config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
-    
+
     .enableSassLoader();
 const fullConfig = Encore.getWebpackConfig();
 fullConfig.devServer = {
