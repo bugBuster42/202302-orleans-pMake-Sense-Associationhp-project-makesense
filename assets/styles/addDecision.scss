@@ -44,3 +44,22 @@ a {
     border: 1px solid $secondary;
     background-color: transparentize($secondary, 0.90);
 }
+
+.col-form-label {
+    font-weight: 600;
+    color: $primary;
+    font-family: $font-text;
+}
+
+#decision_expertUsers {
+
+    .ts-wrapper {
+        width: 20%;
+
+    }
+}
+
+.form-select {
+    height: 3.3rem;
+    margin: 0;
+}

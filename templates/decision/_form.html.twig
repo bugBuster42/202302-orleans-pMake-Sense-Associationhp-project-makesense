@@ -1,4 +1,29 @@
 {{ form_start(form) }}
-{{ form_widget(form) }}
-    <button  class="btn btn-light rounded-pill px-3 my-4 text-primary fw-bold">{{ button_label|default('Soumettre') }}</button>
+
+{# {{ form_widget(form) }} #}
+<div class="col">
+	{{ form_row(form.title, {'attr': {'class': 'form-class text text-primary fw-bold'}}) }}
+</div>
+<div class="col">
+	{{ form_row(form.startDate, {'attr': {'class': 'form-class text text-primary fw-bold'}}) }}
+</div>
+<div class="selection-decision d-flex justify-content-center gap-4">
+	<div class="col">
+		{{ form_row(form.category, {'attr': {'class': 'form-class text text-primary fw-bold'}}) }}
+	</div>
+
+	<div class="col">
+		{{ form_row(form.expertUsers, {'attr': {'class': 'form-class text text-primary fw-bold border border-light form-control bg-tertiary', 'placeholder': 'Personne experte'}}) }}
+
+	</div>
+	<div class="col">
+		{{ form_row(form.impactedUsers, {'attr': {'class': 'form-class text text-primary fw-bold border border-light form-control bg-tertiary'}}) }}
+	</div>
+</div>
+<div class="col">
+	{{ form_row(form.description, {'attr': {'class': 'form-class text text-primary fw-bold border border-light form-control bg-tertiary'}}) }}
+</div>
+
+
+<button class="btn btn-light rounded-pill px-3 my-4 text-primary fw-bold">{{ button_label|default('Soumettre') }}</button>
 {{ form_end(form) }}
