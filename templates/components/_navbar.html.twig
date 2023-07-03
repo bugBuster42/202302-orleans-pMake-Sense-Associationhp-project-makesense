@@ -31,9 +31,8 @@
 									<img src="{{ asset('build/images/profile.svg') }}" alt="profil" width="60px">
 								</a>
 								<ul class="dropdown-menu dropdown-menu-end bg-primary border border-secondary">
-									<li>
-										<a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_logout') }}">Deconnexion</a>
-									</li>
+									<li><a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_profile') }}">Profil</a></li>
+									<li><a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_logout') }}">Deconnexion</a></li>
 								</ul>
 							</li>
 						{% else %}

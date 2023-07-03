@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('profile') }}
+{% endblock %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<h1 class="text-center fw-bold mt-5">Profil</h1>
+ {{ form_start(form) }}
+ <div class="container bg-primary">
+    <div class="d-flex justify-content-center">
+        <div class="text-center">
+            <img class="avatar" src="{{ vich_uploader_asset(app.user) }}">
+            {{ form_row(form.avatarFile) }}
+        </div>
+        <div>
+            <h2 class="fw-bold mt-2 text-light">{{ app.user.firstname }} {{ app.user.lastname }}</h2>
+            {{ form_row(form.email) }}
+        </div>
+    </div>
+    <div>
+        {{ form_row(form.biography) }}
+    </div>
+    <button class="btn btn-light rounded-pill px-3 my-4 text-primary fw-bold" type="submit">Sauvegarder</button>
+ </div>
+{{ form_end(form) }}
+
+{% endblock %}
