@@ -35,7 +35,7 @@ class DecisionType extends AbstractType
             )
             ->add(
                 'impactedUsers',
-                ImpactedUsersAtocompleteField::class,
+                ImpactedUsersAutocompleteField::class,
             )
             ->add('description', CKEditorType::class);
     }
