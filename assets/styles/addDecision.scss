@@ -13,6 +13,7 @@ a {
     border: 2px solid $secondary;
     background-color: transparentize($secondary, 0.90);
     box-shadow: 0 0 5px 0 transparentize($dark, 0.5);
+    color: $primary;
 }
 
 .btn {
@@ -43,4 +44,9 @@ a {
 .dropdown-menu {
     border: 1px solid $secondary;
     background-color: transparentize($secondary, 0.90);
+}
+
+.col-form-label {
+    color: $primary;
+    font-weight: 600;
 }

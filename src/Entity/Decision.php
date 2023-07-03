@@ -46,11 +46,11 @@ class Decision
     #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?User $user = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private ?string $poster = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $image = null;
 
-    #[Vich\UploadableField(mapping: 'poster_file', fileNameProperty: 'poster')]
-    private ?File $posterFile = null;
+    #[Vich\UploadableField(mapping: 'decision_file', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
 
     public function __construct()
     {
@@ -163,26 +163,26 @@ class Decision
         return $this;
     }
 
-    public function getPoster(): ?string
+    public function getImage(): ?string
     {
-        return $this->poster;
+        return $this->image;
     }
 
-    public function setPoster(?string $poster): static
+    public function setImage(?string $image): static
     {
-        $this->poster = $poster;
+        $this->image = $image;
 
         return $this;
     }
 
-    public function setPosterFile(File $image = null): Decision
+    public function setImageFile(File $image = null): Decision
     {
-        $this->posterFile = $image;
+        $this->imageFile = $image;
         return $this;
     }
 
-    public function getPosterFile(): ?File
+    public function getImageFile(): ?File
     {
-        return $this->posterFile;
+        return $this->imageFile;
     }
 }

@@ -5,12 +5,12 @@ vich_uploader:
         type: attribute
 
     mappings:
-        poster_file:
-            uri_prefix: /uploads/images/posters
+        category_file:
+            uri_prefix: /uploads/images/category
             upload_destination: '%upload_directory%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
-
-    #    products:
-    #        uri_prefix: /images/products
-    #        upload_destination: '%kernel.project_dir%/public/images/products'
-    #        namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            
+        decision_file:
+            uri_prefix: /uploads/images/decision
+            upload_destination: '%upload_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

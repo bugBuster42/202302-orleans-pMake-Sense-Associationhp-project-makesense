@@ -6,8 +6,11 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[Vich\Uploadable]
 class Category
 {
     #[ORM\Id]
@@ -22,7 +25,10 @@ class Category
     private Collection $decisions;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $poster = null;
+    private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'category_file', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
 
     public function __construct()
     {
@@ -76,15 +82,26 @@ class Category
         return $this;
     }
 
-    public function getPoster(): ?string
+    public function getImage(): ?string
     {
-        return $this->poster;
+        return $this->image;
     }
 
-    public function setPoster(?string $poster): static
+    public function setImage(?string $image): static
     {
-        $this->poster = $poster;
+        $this->image = $image;
 
         return $this;
+    }
+
+    public function setImageFile(File $image = null): Category
+    {
+        $this->imageFile = $image;
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 }

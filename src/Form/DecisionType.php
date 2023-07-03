@@ -31,7 +31,8 @@ class DecisionType extends AbstractType
                 'placeholder' => 'Choisir une catégorie',
             ])
             ->add('description', CKEditorType::class)
-            ->add('posterFile', VichFileType::class, [
+            ->add('imageFile', VichFileType::class, [
+                'label' => 'Image',
                 'required'      => false,
                 'allow_delete'  => true,
                 'download_uri' => true,
