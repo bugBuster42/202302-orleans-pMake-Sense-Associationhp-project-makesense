@@ -21,6 +21,9 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Decision::class)]
     private Collection $decisions;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $poster = null;
+
     public function __construct()
     {
         $this->decisions = new ArrayCollection();
@@ -69,6 +72,18 @@ class Category
                 $decision->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPoster(): ?string
+    {
+        return $this->poster;
+    }
+
+    public function setPoster(?string $poster): static
+    {
+        $this->poster = $poster;
 
         return $this;
     }

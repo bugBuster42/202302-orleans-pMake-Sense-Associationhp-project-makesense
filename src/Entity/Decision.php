@@ -8,8 +8,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: DecisionRepository::class)]
+#[Vich\Uploadable]
 class Decision
 {
     #[ORM\Id]
@@ -42,6 +45,12 @@ class Decision
 
     #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?User $user = null;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $poster = null;
+
+    #[Vich\UploadableField(mapping: 'poster_file', fileNameProperty: 'poster')]
+    private ?File $posterFile = null;
 
     public function __construct()
     {
@@ -152,5 +161,28 @@ class Decision
         $this->user = $user;
 
         return $this;
+    }
+
+    public function getPoster(): ?string
+    {
+        return $this->poster;
+    }
+
+    public function setPoster(?string $poster): static
+    {
+        $this->poster = $poster;
+
+        return $this;
+    }
+
+    public function setPosterFile(File $image = null): Decision
+    {
+        $this->posterFile = $image;
+        return $this;
+    }
+
+    public function getPosterFile(): ?File
+    {
+        return $this->posterFile;
     }
 }

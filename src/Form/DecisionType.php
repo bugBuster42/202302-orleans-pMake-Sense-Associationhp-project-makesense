@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class DecisionType extends AbstractType
 {
@@ -30,6 +31,11 @@ class DecisionType extends AbstractType
                 'placeholder' => 'Choisir une catégorie',
             ])
             ->add('description', CKEditorType::class)
+            ->add('posterFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true,
+                'download_uri' => true,
+            ])
             ->add('user', EntityType::class, [
                 'label' => 'Personnes expertes & Personnes impactées',
                 'class' => User::class,
