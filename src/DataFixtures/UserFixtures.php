@@ -5,12 +5,11 @@ namespace App\DataFixtures;
 use Faker\Factory;
 use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
-use App\DataFixtures\UserSituationFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class UserFixtures extends Fixture implements DependentFixtureInterface
+class UserFixtures extends Fixture
 {
     public const USER_ROLES = [
         'ROLE_USER',
@@ -35,9 +34,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->setLastname('Satoru');
         $user->setEmail('user@makesense.com');
         $user->setRoles(['ROLE_USER']);
-        $user->setUserSituation($this->getReference(
-            'user_situation_' . $faker->numberBetween(0, count(UserSituationFixtures::USER_SITUATION) - 1)
-        ));
 
         $this->addReference('user_0', $user);
 
@@ -50,9 +46,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $employee->setLastname('Zoldik');
         $employee->setEmail('employee@makesense.com');
         $employee->setRoles(['ROLE_EMPLOYEE']);
-        $employee->setUserSituation($this->getReference(
-            'user_situation_' . $faker->numberBetween(0, count(UserSituationFixtures::USER_SITUATION) - 1)
-        ));
 
         $this->addReference('user_1', $user);
 
@@ -65,9 +58,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $admin->setLastname('Freecss');
         $admin->setEmail('admin@makesense.com');
         $admin->setRoles(['ROLE_ADMIN']);
-        $admin->setUserSituation($this->getReference(
-            'user_situation_' . $faker->numberBetween(0, count(UserSituationFixtures::USER_SITUATION) - 1)
-        ));
 
         $this->addReference('user_2', $user);
 
@@ -85,11 +75,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $roles = [$this->getReference('user_' . $faker->numberBetween(0, count(self::USER_ROLES) - 1))];
             $user->setRoles($roles);
 
-            $userSituation = $this->getReference(
-                'user_situation_' . $faker->numberBetween(0, count(UserSituationFixtures::USER_SITUATION) - 1)
-            );
-            $user->setUserSituation($userSituation);
-
             $this->addReference('user_' . ($i + 3), $user);
 
             $hashedPassword = $this->passwordHasher->hashPassword($user, $faker->password());
@@ -99,12 +84,5 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         }
 
         $manager->flush();
-    }
-
-    public function getDependencies(): array
-    {
-        return [
-            UserSituationFixtures::class,
-        ];
     }
 }
