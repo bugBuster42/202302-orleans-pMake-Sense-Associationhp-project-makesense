@@ -54,6 +54,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->comments = new ArrayCollection();
         $this->decisions = new ArrayCollection();
+        $this->expertUsers = new ArrayCollection();
+        $this->impactedUsers = new ArrayCollection();
     }
 
     #[ORM\Column(length: 255)]
@@ -81,6 +83,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $updatedAt = null;
+
+    #[ORM\ManyToMany(targetEntity: Decision::class, mappedBy: 'expertUsers')]
+    private Collection $expertUsers;
+
+    #[ORM\ManyToMany(targetEntity: Decision::class, mappedBy: 'impactedUsers')]
+    private Collection $impactedUsers;
 
     public function getId(): ?int
     {
@@ -282,6 +290,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(?DateTimeInterface $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Decision>
+     */
+    public function getExpertUsers(): Collection
+    {
+        return $this->expertUsers;
+    }
+
+    public function addExpertUser(Decision $expertUser): static
+    {
+        if (!$this->expertUsers->contains($expertUser)) {
+            $this->expertUsers->add($expertUser);
+            $expertUser->addExpertUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExpertUser(Decision $expertUser): static
+    {
+        if ($this->expertUsers->removeElement($expertUser)) {
+            $expertUser->removeExpertUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Decision>
+     */
+    public function getImpactedUsers(): Collection
+    {
+        return $this->impactedUsers;
+    }
+
+    public function addImpactedUser(Decision $impactedUser): static
+    {
+        if (!$this->impactedUsers->contains($impactedUser)) {
+            $this->impactedUsers->add($impactedUser);
+            $impactedUser->addImpactedUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImpactedUser(Decision $impactedUser): static
+    {
+        if ($this->impactedUsers->removeElement($impactedUser)) {
+            $impactedUser->removeImpactedUser($this);
+        }
 
         return $this;
     }
