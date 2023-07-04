@@ -7,10 +7,10 @@ vich_uploader:
     mappings:
         category_file:
             uri_prefix: /uploads/images/category
-            upload_destination: '%upload_directory%'
+            upload_destination: '%upload_directory%/images/category'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
             
         decision_file:
             uri_prefix: /uploads/images/decision
-            upload_destination: '%upload_directory%'
+            upload_destination: '%upload_directory%/images/decision'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

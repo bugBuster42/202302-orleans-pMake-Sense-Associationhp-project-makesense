@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin', name: 'admin_')]
+#[IsGranted('ROLE_ADMIN')]
 class AdminController extends AbstractController
 {
     #[Route('/', name: 'home')]
@@ -41,7 +42,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_user/new.html.twig', [
+        return $this->render('admin/admin_user/new.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
@@ -59,7 +60,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_user/edit.html.twig', [
+        return $this->render('admin/admin_user/edit.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);

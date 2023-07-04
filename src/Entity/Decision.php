@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use DateTime;
+use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: DecisionRepository::class)]
 #[Vich\Uploadable]
@@ -50,7 +52,14 @@ class Decision
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'decision_file', fileNameProperty: 'image')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
     private ?File $imageFile = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DatetimeInterface $updatedAt = null;
 
     public function __construct()
     {
@@ -175,14 +184,30 @@ class Decision
         return $this;
     }
 
-    public function setImageFile(File $image = null): Decision
-    {
-        $this->imageFile = $image;
-        return $this;
-    }
-
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function setImageFile(File $image = null): Decision
+    {
+        $this->imageFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+
+        return $this;
     }
 }
