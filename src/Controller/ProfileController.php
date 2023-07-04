@@ -28,20 +28,4 @@ class ProfileController extends AbstractController
             'form' => $form,
         ]);
     }
-
-    // #[Route('/profile', name: 'profile_edit')]
-    // public function edit(Request $request, UserRepository $userRepository): Response
-    // {
-    //     $user = $this->getUser();
-    //     $form = $this->createForm(UserType::class, $user);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $userRepository->save($user, true);
-
-    //         return $this->redirectToRoute('app_profile');
-    //     }
-
-    //     return $this->render('profile/index.html.twig', ['form' => $form]);
-    // }
 }
