@@ -47,7 +47,7 @@ class DecisionController extends AbstractController
         ]);
     }
 
-    #[Route('/change/{id}/{to_status}', name: 'app_change')]
+    #[Route('/change/{id}/{toStatus}', name: 'app_change')]
     public function change(
         Decision $decision,
         string $toStatus,
