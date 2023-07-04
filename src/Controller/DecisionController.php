@@ -4,15 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Decision;
-use App\Entity\User;
-use App\Form\DecisionType;
 use App\Form\CommentType;
+use App\Form\DecisionType;
 use App\Repository\CommentRepository;
 use App\Repository\DecisionRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Workflow\WorkflowInterface;
+use Symfony\Component\ExpressionLanguage\Expression;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/decision')]
 class DecisionController extends AbstractController
@@ -20,6 +22,7 @@ class DecisionController extends AbstractController
     #[Route('/', name: 'app_decision_index', methods: ['GET', 'POST'])]
     public function index(DecisionRepository $decisionRepository): Response
     {
+
         return $this->render('decision/index.html.twig', [
             'decisions' => $decisionRepository->findAll(),
         ]);
@@ -44,6 +47,19 @@ class DecisionController extends AbstractController
         ]);
     }
 
+    #[Route('/change/{id}/{to_status}', name: 'app_change')]
+    public function change(
+        Decision $decision,
+        string $toStatus,
+        DecisionRepository $decisionRepository,
+        WorkflowInterface $decisionStateMachine
+    ): Response {
+        $decisionStateMachine->apply($decision, $toStatus);
+        $decisionRepository->save($decision, true);
+
+        return $this->redirectToRoute('app_decision_show', ['id' => $decision->getId()], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/{id}', name: 'app_decision_show', methods: ['GET', 'POST'])]
     public function show(Request $request, Decision $decision, CommentRepository $commentRepository): Response
     {
@@ -61,17 +77,23 @@ class DecisionController extends AbstractController
         return $this->render('decision/show.html.twig', [
             'decision' => $decision,
             'form' => $form
-
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_decision_edit', methods: ['GET', 'POST'])]
+    #[IsGranted(
+        attribute: new Expression('user === subject'),
+        subject: new Expression('args["decision"].getUser()'),
+    )]
     public function edit(Request $request, Decision $decision, DecisionRepository $decisionRepository): Response
     {
+        $decision->setUser($this->getUser());
         $form = $this->createForm(DecisionType::class, $decision);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $decision = $form->getData();
+
             $decisionRepository->save($decision, true);
 
             return $this->redirectToRoute('app_decision_index', [], Response::HTTP_SEE_OTHER);

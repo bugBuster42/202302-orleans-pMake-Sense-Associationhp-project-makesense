@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Status;
 use App\Form\SearchDecisionType;
-use App\Repository\StatusRepository;
 use App\Repository\DecisionRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +16,6 @@ class DecisionSearchController extends AbstractController
     public function index(
         Request $request,
         DecisionRepository $decisionRepository,
-        ?Status $status
     ): Response {
 
         $form = $this->createForm(SearchDecisionType::class);
@@ -27,7 +24,7 @@ class DecisionSearchController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData()['search'];
 
-            $decisions = $decisionRepository->findDecision($search, $status);
+            $decisions = $decisionRepository->findDecision($search, $form->getData()['status']);
         } else {
             $decisions = $decisionRepository->findAll();
         }
@@ -35,19 +32,6 @@ class DecisionSearchController extends AbstractController
         return $this->render('status/index.html.twig', [
             'decisions' => $decisions, $decisionRepository->findBy([], ['startDate' =>  'DESC']),
             'form' => $form->createView(),
-
-        ]);
-    }
-
-    #[Route('/{id}', name: 'decision')]
-    public function show(
-        DecisionRepository $decisionRepository,
-        StatusRepository $statusRepository,
-        ?Status $status = null
-    ): Response {
-        return $this->render('status/index.html.twig', [
-            'decisions' => $decisionRepository->findBy(['status' => $status], ['startDate' =>  'DESC']),
-            'statuses' => $statusRepository->findAll(),
 
         ]);
     }
