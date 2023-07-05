@@ -11,9 +11,6 @@
 		</h1>
 	</div>
 	{% include 'components/_buttonTop.html.twig' %}
-	{% if app.user == decision.user %}
 
-		{% include 'components/_decisionCards.html.twig' %}
-	{% endif %}
-
+	{% include 'components/_decisionCards.html.twig' %}
 {% endblock %}

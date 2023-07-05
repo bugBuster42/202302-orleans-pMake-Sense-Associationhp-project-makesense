@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use App\Entity\Status;
+use App\Entity\Category;
 use App\Entity\Decision;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -42,67 +43,29 @@ class DecisionRepository extends ServiceEntityRepository
         }
     }
 
-    public function findDecision(?string $title, ?Status $status): array
+    public function findDecision(?string $title, ?Status $status, ?Category $category, ?User $user = null): array
     {
-        $queryBuilder = $this->createQueryBuilder('p');
+        $queryBuilder = $this->createQueryBuilder('d');
 
         if ($title) {
-            $queryBuilder->where('p.title LIKE :title');
+            $queryBuilder->where('d.title LIKE :title');
             $queryBuilder->setParameter('title', '%' . $title . '%');
         }
 
         if ($status) {
-            $queryBuilder->andWhere('p.status = :status');
+            $queryBuilder->andWhere('d.status = :status');
             $queryBuilder->setParameter('status', $status);
         }
-        $queryBuilder->orderBy('p.title', 'ASC');
+        if ($category) {
+            $queryBuilder->andWhere('d.category = :category');
+            $queryBuilder->setParameter('category', $category);
+        }
+        if ($user) {
+            $queryBuilder->andWhere('d.user = :user');
+            $queryBuilder->setParameter('user', $user);
+        }
+        $queryBuilder->orderBy('d.title', 'ASC');
 
         return $queryBuilder->getQuery()->getResult();
     }
-
-
-    public function findMyDecision(?string $title, ?Status $status, User $user): array
-    {
-        $queryBuilder = $this->createQueryBuilder('p')
-            ->andWhere('p.user = :user')
-            ->setParameter('user', $user);
-
-        if ($title) {
-            $queryBuilder->where('p.title LIKE :title');
-            $queryBuilder->setParameter('title', '%' . $title . '%');
-        }
-
-        if ($status) {
-            $queryBuilder->andWhere('p.status = :status');
-            $queryBuilder->setParameter('status', $status);
-        }
-        $queryBuilder->orderBy('p.title', 'ASC');
-
-        return $queryBuilder->getQuery()->getResult();
-    }
-
-    //    /**
-    //     * @return Decision[] Returns an array of Decision objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('d')
-    //            ->andWhere('d.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('d.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Decision
-    //    {
-    //        return $this->createQueryBuilder('d')
-    //            ->andWhere('d.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }
