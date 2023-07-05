@@ -1,0 +1,24 @@
+<div{{attributes}}>
+	<div class="btn-group">
+		<button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+			{% set roleLabels = {
+        		'ROLE_ADMIN': 'Administrateur',
+       			'ROLE_EMPLOYEE': 'Salarié',
+        		'ROLE_USER': 'Bénévole'
+    		} %}
+			{{ roleLabels[user.roles.0] }}
+		</button>
+
+		<ul class="dropdown-menu">
+			<li>
+				<a class="dropdown-item" href="#" data-action="live#action" data-action-name="updateRole(newRole=ROLE_ADMIN)">Administrateur</a>
+			</li>
+			<li>
+				<a class="dropdown-item" href="#" data-action="live#action" data-action-name="updateRole(newRole=ROLE_EMPLOYEE)">Salarié</a>
+			</li>
+			<li>
+				<a class="dropdown-item" href="#" data-action="live#action" data-action-name="updateRole(newRole=ROLE_USER)">Bénévole</a>
+			</li>
+		</ul>
+	</div>
+</div>
