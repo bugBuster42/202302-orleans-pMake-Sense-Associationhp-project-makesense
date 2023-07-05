@@ -18,6 +18,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[Vich\Uploadable]
 class Decision
 {
+    public const STATUS = [
+        'opened' => 'Prise de décision commencée',
+        'accepted' => 'Décision aboutie',
+        'conflict' => 'Conflit sur la décision',
+        'modified' => 'Décision définitive',
+        'refused' => 'Décision non aboutie',
+        'ended' => 'Décision terminée'
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -38,9 +47,6 @@ class Decision
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'decisions')]
-    private ?Status $status = null;
-
-    #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?Category $category = null;
 
     #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Comment::class)]
@@ -48,6 +54,8 @@ class Decision
 
     #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?User $user = null;
+    #[ORM\Column(type: 'string')]
+    private ?string $currentPlace = 'opened';
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $image = null;
@@ -117,17 +125,11 @@ class Decision
         return $this;
     }
 
-    public function getStatus(): ?Status
+    public function getStatus(): ?string
     {
-        return $this->status;
+        return  self::STATUS[$this->getCurrentPlace()];
     }
 
-    public function setStatus(?Status $status): static
-    {
-        $this->status = $status;
-
-        return $this;
-    }
 
     public function getCategory(): ?Category
     {
@@ -219,6 +221,16 @@ class Decision
         }
         return $this;
     }
+    public function getCurrentPlace(): ?string
+    {
+        return $this->currentPlace;
+    }
+
+    public function setCurrentPlace(?string $currentPlace, ?array $context = []): void
+    {
+        $this->currentPlace = $currentPlace;
+    }
+
     /**
      * @return Collection<int, User>
      */
