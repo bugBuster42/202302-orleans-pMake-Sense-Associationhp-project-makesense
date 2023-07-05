@@ -1,0 +1,26 @@
+@import "variables";
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.form-control {
+    background-color: transparent;
+    color: $light;
+    border-color: $secondary;
+    
+}
+
+.form-control[type="file"] {
+    margin-top: 1rem; 
+}
+
+.btn {
+    font-family: $font-title;
+    outline-offset: 6px;
+    outline: 1px solid $secondary;
+    box-shadow: 0 0 8px 0 transparentize($dark, 0.5);
+}

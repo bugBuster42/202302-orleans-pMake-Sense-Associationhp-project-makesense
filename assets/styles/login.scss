@@ -20,13 +20,17 @@ h2 {
     font-family: $font-title;
 }
 
-p, label, a {
+p,
+label,
+a {
     font-family: $font-text;
 }
 
 .form-control {
     background-color: transparentize($light, 0.88);
     border: 1px solid $secondary;
+    font-weight: 600;
+    color: $light;
 }
 
 .form-label {

@@ -14,6 +14,7 @@ $fourthly: #196C84;
 
 body {
     background-color: $tertiary;
+    min-height: 100vh;
 
     h1 {
         color: $primary;
@@ -50,4 +51,20 @@ body {
 
 .form-decision {
     width: 70%;
+}
+
+.nav-decision {
+    z-index: 2;
+    position: relative;
+}
+
+.footer {
+    z-index: 2;
+    position: relative;
+    background-color: $tertiary;
+
+    img {
+        width: 80%;
+    }
+
 }
