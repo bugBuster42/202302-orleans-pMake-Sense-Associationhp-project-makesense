@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Entity\Status;
 use App\Entity\Decision;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -41,7 +40,7 @@ class DecisionRepository extends ServiceEntityRepository
         }
     }
 
-    public function findDecision(?string $title, ?Status $status): array
+    public function findDecision(?string $title, ?string $status): array
     {
         $queryBuilder = $this->createQueryBuilder('p');
 
@@ -51,7 +50,7 @@ class DecisionRepository extends ServiceEntityRepository
         }
 
         if ($status) {
-            $queryBuilder->andWhere('p.status = :status');
+            $queryBuilder->andWhere('p.currentPlace = :status');
             $queryBuilder->setParameter('status', $status);
         }
         $queryBuilder->orderBy('p.title', 'ASC');

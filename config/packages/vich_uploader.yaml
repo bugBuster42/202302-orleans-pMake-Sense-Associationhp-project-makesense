@@ -1,0 +1,11 @@
+vich_uploader:
+    db_driver: orm
+
+    metadata:
+        type: attribute
+
+    mappings:
+        user_avatar:
+            uri_prefix: /uploads/avatar
+            upload_destination: "%upload_directory%"
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
