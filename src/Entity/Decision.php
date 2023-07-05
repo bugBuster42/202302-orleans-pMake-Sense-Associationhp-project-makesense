@@ -15,7 +15,7 @@ class Decision
 {
     public const STATUS = [
         'opened' => 'Prise de décision commencée',
-        'accepted' => 'Première décision prise',
+        'accepted' => 'Décision aboutie',
         'conflict' => 'Conflit sur la décision',
         'modified' => 'Décision définitive',
         'refused' => 'Décision non aboutie',
