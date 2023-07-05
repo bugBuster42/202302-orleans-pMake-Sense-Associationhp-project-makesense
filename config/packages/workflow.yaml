@@ -1,0 +1,28 @@
+framework:
+    workflows:
+        decision:
+            type: "state_machine"
+            audit_trail:
+                enabled: true
+            marking_store:
+                type: "method"
+                property: "currentPlace"
+            supports:
+                - App\Entity\Decision
+            initial_marking: opened
+            places:
+                - opened
+                - accepted
+                - conflict
+                - refused
+            transitions:
+                to_decision_opened_accepted:
+                    from: opened
+                    to: accepted
+                to_decision_opened_conflict:
+                    from: opened
+                    to: conflict
+                to_decision_opened_refused:
+                    from: opened
+                    to: refused
+                              

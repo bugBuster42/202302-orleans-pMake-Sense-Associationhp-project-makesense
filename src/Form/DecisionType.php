@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\User;
 use App\Entity\Decision;
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
@@ -28,7 +27,6 @@ class DecisionType extends AbstractType
                 'choice_label' => 'title',
                 'placeholder' => 'Catégorie',
             ])
-
             ->add(
                 'expertUsers',
                 ExpertUsersAutocompleteField::class,

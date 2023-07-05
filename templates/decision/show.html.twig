@@ -21,6 +21,7 @@
 	</div>
 	<div class="container">
 		<h2>Titre</h2>
+		<p>{{ decision.status }}</p>
 		<p>{{ decision.title }}</p>
 		<h2>Date de début de la décision</h2>
 		<p>{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
