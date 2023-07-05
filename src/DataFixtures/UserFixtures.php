@@ -13,8 +13,8 @@ class UserFixtures extends Fixture
 {
     public const USER_ROLES = [
         'ROLE_USER',
-        'USER_ADMIN',
-        'USER_EMPLOYEE',
+        'ROLE_ADMIN',
+        'ROLE_EMPLOYEE',
     ];
 
     public const  USER_NUMBER = 24;
@@ -72,8 +72,7 @@ class UserFixtures extends Fixture
             $user->setFirstname($faker->firstName());
             $user->setLastname($faker->lastName());
             $user->setEmail($faker->email());
-            $roles = [$this->getReference('user_' . $faker->numberBetween(0, count(self::USER_ROLES) - 1))];
-            $user->setRoles($roles);
+            $user->setRoles([$faker->randomElement(self::USER_ROLES)]);
 
             $this->addReference('user_' . ($i + 3), $user);
 
