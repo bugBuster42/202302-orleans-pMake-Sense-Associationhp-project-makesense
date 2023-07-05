@@ -1,5 +1,6 @@
 {% extends 'admin/adminLayout.html.twig' %}
 
+
 {% block title %}Gestion des utilisateurs
 {% endblock %}
 
@@ -26,40 +27,7 @@
 						<td>{{ user.lastname }}</td>
 						<td>{{ user.firstname }}</td>
 						<td>
-							<div class="btn-group">
-								<button type="button" class="btn btn-outline-primary dropdown-toggle custom-button-width" data-bs-toggle="dropdown">
-									{% if 'ROLE_ADMIN' in user.roles %}
-										Administrateur
-									{% elseif 'ROLE_EMPLOYEE' in user.roles %}
-										Salarié
-									{% else %}
-										Bénévole
-									{% endif %}
-								</button>
-								<ul class="dropdown-menu">
-									<li>
-										<form action="{{ path('admin_user_update_status', {'id': user.id}) }}" method="post">
-											<input type="hidden" name="_method" value="POST">
-											<input type="hidden" name="_csrf_token" value="{{ csrf_token('update_status' ~ user.id) }}">
-											<button class="dropdown-item" type="submit" name="status" value="ROLE_ADMIN">Administrateur</button>
-										</form>
-									</li>
-									<li>
-										<form action="{{ path('admin_user_update_status', {'id': user.id}) }}" method="post">
-											<input type="hidden" name="_method" value="POST">
-											<input type="hidden" name="_csrf_token" value="{{ csrf_token('update_status' ~ user.id) }}">
-											<button class="dropdown-item" type="submit" name="status" value="ROLE_EMPLOYEE">Salarié</button>
-										</form>
-									</li>
-									<li>
-										<form action="{{ path('admin_user_update_status', {'id': user.id}) }}" method="post">
-											<input type="hidden" name="_method" value="POST">
-											<input type="hidden" name="_csrf_token" value="{{ csrf_token('update_status' ~ user.id) }}">
-											<button class="dropdown-item" type="submit" name="status" value="ROLE_USER">Bénévole</button>
-										</form>
-									</li>
-								</ul>
-							</div>
+							{{ component('role', { user: user })  }}
 						</td>
 					</tr>
 				{% else %}
@@ -69,6 +37,5 @@
 				{% endfor %}
 			</tbody>
 		</table>
-
 	</main>
 {% endblock %}

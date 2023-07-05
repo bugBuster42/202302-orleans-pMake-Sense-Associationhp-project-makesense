@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\UserStatusType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -21,71 +22,13 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig');
     }
 
-    #[Route('/user', name: 'user_index', methods: ['GET'])]
-    public function userIndex(UserRepository $userRepository): Response
+    #[Route('/user', name: 'user_index', methods: ['GET', 'POST'])]
+    public function userIndex(UserRepository $userRepository, Request $request): Response
     {
+        $users = $userRepository->findBy([], ['lastname' => 'ASC']);
+
         return $this->render('admin/admin_user/index.html.twig', [
-            'users' => $userRepository->findBy([], ['lastname' => 'ASC']),
+            'users' => $users,
         ]);
-    }
-
-    #[Route('/user/new', name: 'user_new', methods: ['GET', 'POST'])]
-    public function userNew(Request $request, UserRepository $userRepository): Response
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->save($user, true);
-
-            return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('admin_user/new.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/user/{id}/edit', name: 'user_edit', methods: ['GET', 'POST'])]
-    public function userEdit(Request $request, User $user, UserRepository $userRepository): Response
-    {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->save($user, true);
-
-            return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('admin_user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/user/{id}', name: 'user_delete', methods: ['POST'])]
-    public function userDelete(Request $request, User $user, UserRepository $userRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-            $userRepository->remove($user, true);
-        }
-
-        return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
-    }
-
-    #[Route('/user/{id}/update_status', name: 'user_update_status', methods: ['POST'])]
-    public function userUpdateStatus(Request $request, User $user, UserRepository $userRepository): Response
-    {
-        $newStatus = $request->request->get('status');
-
-        if ($newStatus === 'ROLE_ADMIN' || $newStatus === 'ROLE_EMPLOYEE' || $newStatus === 'ROLE_USER') {
-            $user->setRoles([$newStatus]);
-            $userRepository->save($user, true);
-        }
-
-        return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
     }
 }
