@@ -1,3 +1,7 @@
+<div class="background">
+	<div class="wave"></div>
+</div>
+
 {{ include('components/_search_form.html.twig') }}
 <div class="decision">
 	<div class="container">
@@ -17,7 +21,7 @@
 									<h4 class="card-title text-tertiary fw-bolder p-3 fs-4 mb-0">{{ decision.title }}</h4>
 									<p class="card-text text-tertiary fw-bolder mb-1 p-3">{{ decision.category.title }}</p>
 									<div class="text-end p-3 text-l primary btn-rounded">
-										<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn btn-outline-primary bg-light border-secondary shadow fw-bolder fs-6 btn-rounded rounded-pill">En savoir plus</a>
+										<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn btn primary bg-light border-secondary shadow fw-bolder fs-6 btn-rounded rounded-pill">En savoir plus</a>
 									</div>
 								</div>
 							</div>

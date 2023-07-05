@@ -23,10 +23,18 @@ class DecisionType extends AbstractType
             ->add('startDate', DateType::class, ['widget' => 'single_text', 'label' => 'Date début'])
             ->add('category', Entitytype::class, [
                 'class' => Category::class,
-                'label' => 'Catégorie',
+                'label' => 'Choisir une catégorie',
                 'choice_label' => 'title',
-                'placeholder' => 'Choisir une catégorie',
+                'placeholder' => 'Catégorie',
             ])
+            ->add(
+                'expertUsers',
+                ExpertUsersAutocompleteField::class,
+            )
+            ->add(
+                'impactedUsers',
+                ImpactedUsersAutocompleteField::class,
+            )
             ->add('description', CKEditorType::class);
     }
 

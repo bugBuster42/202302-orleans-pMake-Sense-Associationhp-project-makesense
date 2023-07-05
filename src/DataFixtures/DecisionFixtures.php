@@ -3,8 +3,8 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
-use App\Entity\Category;
 use App\Entity\Decision;
+use App\DataFixtures\UserFixtures;
 use App\DataFixtures\CategoryFixtures;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -21,7 +21,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < self::DECISION_NUMBER; $i++) {
             $decision = new Decision();
 
-            $decision->setTitle($faker->sentence());
+            $decision->setTitle($faker->realText(50));
             $decision->setStartDate($faker->dateTime());
             $decision->setDescription($faker->paragraph());
             $decision->setCurrentPlace('opened');
@@ -38,6 +38,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             CategoryFixtures::class,
+            UserFixtures::class,
         ];
     }
 }
