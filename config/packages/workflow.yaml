@@ -15,6 +15,7 @@ framework:
                 - accepted
                 - conflict
                 - refused
+                - ended
             transitions:
                 to_decision_opened_accepted:
                     from: opened
@@ -25,4 +26,9 @@ framework:
                 to_decision_opened_refused:
                     from: opened
                     to: refused
-                              
+                to_accepted_ ended:
+                    from: accepted
+                    to: ended
+                to_refused_ended:
+                    from: refused
+                    to: ended                  
