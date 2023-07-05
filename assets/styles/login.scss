@@ -29,6 +29,8 @@ a {
 .form-control {
     background-color: transparentize($light, 0.88);
     border: 1px solid $secondary;
+    font-weight: 600;
+    color: $light;
 }
 
 .form-label {
