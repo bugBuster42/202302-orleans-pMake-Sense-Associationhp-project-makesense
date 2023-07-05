@@ -1,0 +1,65 @@
+@import "variables";
+
+p,
+label,
+a {
+    font-family: $font-text;
+    color: $primary;
+    font-weight: 600;
+}
+
+.form-control,
+.form-select {
+    border: 2px solid $secondary;
+    background-color: transparentize($secondary, 0.90);
+    box-shadow: 0 0 5px 0 transparentize($dark, 0.5);
+}
+
+.btn {
+    font-family: $font-title;
+    outline-offset: 6px;
+    outline: 1px solid $secondary;
+    box-shadow: 0 0 8px 0 transparentize($dark, 0.5);
+}
+
+.btn:hover {
+    background-color: transparentize($primary, 0.95);
+}
+
+.expert,
+.impact {
+    outline: none;
+    border: 3px solid $secondary;
+    border-radius: 0.5rem;
+    background-color: transparentize($secondary, 0.90);
+    box-shadow: 0 0 5px 0 transparentize($dark, 0.5);
+}
+
+.expert:hover,
+.impact:hover {
+    background-color: transparentize($secondary, 0.65);
+}
+
+.dropdown-menu {
+    border: 1px solid $secondary;
+    background-color: transparentize($secondary, 0.90);
+}
+
+.col-form-label {
+    font-weight: 600;
+    color: $primary;
+    font-family: $font-text;
+}
+
+#decision_expertUsers {
+
+    .ts-wrapper {
+        width: 20%;
+
+    }
+}
+
+.form-select {
+    min-height: 3.3rem;
+    margin: 0;
+}
