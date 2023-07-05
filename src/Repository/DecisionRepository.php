@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Status;
 use App\Entity\Decision;
 use Doctrine\Persistence\ManagerRegistry;
@@ -60,6 +61,25 @@ class DecisionRepository extends ServiceEntityRepository
     }
 
 
+    public function findMyDecision(?string $title, ?Status $status, User $user): array
+    {
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->andWhere('p.user = :user')
+            ->setParameter('user', $user);
+
+        if ($title) {
+            $queryBuilder->where('p.title LIKE :title');
+            $queryBuilder->setParameter('title', '%' . $title . '%');
+        }
+
+        if ($status) {
+            $queryBuilder->andWhere('p.status = :status');
+            $queryBuilder->setParameter('status', $status);
+        }
+        $queryBuilder->orderBy('p.title', 'ASC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 
     //    /**
     //     * @return Decision[] Returns an array of Decision objects
