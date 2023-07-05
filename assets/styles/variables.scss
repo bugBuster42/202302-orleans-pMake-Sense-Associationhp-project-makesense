@@ -51,3 +51,15 @@ body {
 .form-decision {
     width: 70%;
 }
+
+.nav-decision {
+    z-index: 2;
+    position: relative;
+}
+
+.footer {
+    z-index: 2;
+    position: relative;
+    background-color: $tertiary;
+
+}

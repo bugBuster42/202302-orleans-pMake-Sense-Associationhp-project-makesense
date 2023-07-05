@@ -2,16 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\DecisionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use DateTime;
 use DateTimeInterface;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
+use App\Repository\DecisionRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DecisionRepository::class)]
 #[Vich\Uploadable]
@@ -60,10 +61,19 @@ class Decision
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'expertUsers')]
+    #[JoinTable('expert_user')]
+    private Collection $expertUsers;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'impactedUsers')]
+    #[JoinTable('impacted_user')]
+    private Collection $impactedUsers;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->expertUsers = new ArrayCollection();
+        $this->impactedUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -207,6 +217,52 @@ class Decision
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
+        return $this;
+    }
+    /**
+     * @return Collection<int, User>
+     */
+    public function getExpertUsers(): Collection
+    {
+        return $this->expertUsers;
+    }
+
+    public function addExpertUser(User $expertUser): static
+    {
+        if (!$this->expertUsers->contains($expertUser)) {
+            $this->expertUsers->add($expertUser);
+        }
+
+        return $this;
+    }
+
+    public function removeExpertUser(User $expertUser): static
+    {
+        $this->expertUsers->removeElement($expertUser);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getImpactedUsers(): Collection
+    {
+        return $this->impactedUsers;
+    }
+
+    public function addImpactedUser(User $impactedUser): static
+    {
+        if (!$this->impactedUsers->contains($impactedUser)) {
+            $this->impactedUsers->add($impactedUser);
+        }
+
+        return $this;
+    }
+
+    public function removeImpactedUser(User $impactedUser): static
+    {
+        $this->impactedUsers->removeElement($impactedUser);
 
         return $this;
     }

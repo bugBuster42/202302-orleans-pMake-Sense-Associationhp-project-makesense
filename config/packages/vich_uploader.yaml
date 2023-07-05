@@ -14,3 +14,7 @@ vich_uploader:
             uri_prefix: /uploads/images/decision
             upload_destination: '%upload_directory%/images/decision'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        user_avatar:
+            uri_prefix: /uploads/avatar
+            upload_destination: "%upload_directory%"
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

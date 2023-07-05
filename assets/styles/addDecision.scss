@@ -47,6 +47,20 @@ a {
 }
 
 .col-form-label {
-    color: $primary;
     font-weight: 600;
+    color: $primary;
+    font-family: $font-text;
+}
+
+#decision_expertUsers {
+
+    .ts-wrapper {
+        width: 20%;
+
+    }
+}
+
+.form-select {
+    min-height: 3.3rem;
+    margin: 0;
 }
