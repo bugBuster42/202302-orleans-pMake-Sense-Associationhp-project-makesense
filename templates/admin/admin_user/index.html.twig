@@ -11,7 +11,7 @@
 
 {% block body %}
 	<main class="container">
-		<h1 class="text_primary">Gestion des utilisateurs</h1>
+		<h1 class="text-primary fw-bold fs-1 my-5">Gestion des utilisateurs</h1>
 
 		<table class="table table-success table-striped table-header-fixed">
 			<thead>
@@ -41,5 +41,6 @@
 				{% endfor %}
 			</tbody>
 		</table>
+		<a class="btn btn-primary rounded mb-5 mt-3" href="{{ path('admin_user_new') }}">Ajouter un utilisateur</a>
 	</main>
 {% endblock %}

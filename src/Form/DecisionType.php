@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class DecisionType extends AbstractType
 {
@@ -26,6 +27,13 @@ class DecisionType extends AbstractType
                 'label' => 'Choisir une catégorie',
                 'choice_label' => 'title',
                 'placeholder' => 'Catégorie',
+            ])
+            ->add('description', CKEditorType::class)
+            ->add('imageFile', VichFileType::class, [
+                'label' => 'Image',
+                'required'      => false,
+                'allow_delete'  => true,
+                'download_uri' => true,
             ])
             ->add(
                 'expertUsers',
