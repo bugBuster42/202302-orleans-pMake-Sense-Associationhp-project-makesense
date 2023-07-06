@@ -19,6 +19,7 @@
 					<th>Nom</th>
 					<th>Prénom</th>
 					<th>Status</th>
+					<th>Accès Compte</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,6 +29,9 @@
 						<td>{{ user.firstname }}</td>
 						<td>
 							{{ component('role', { user: user })  }}
+						</td>
+						<td>
+							{{ component('activationSwitch', { user: user }) }}
 						</td>
 					</tr>
 				{% else %}
