@@ -90,6 +90,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Decision::class, mappedBy: 'impactedUsers')]
     private Collection $impactedUsers;
 
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $isActivated = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -345,6 +348,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->impactedUsers->removeElement($impactedUser)) {
             $impactedUser->removeImpactedUser($this);
         }
+
+        return $this;
+    }
+
+    public function isIsActivated(): ?bool
+    {
+        return $this->isActivated;
+    }
+
+    public function setIsActivated(bool $isActivated): static
+    {
+        $this->isActivated = $isActivated;
 
         return $this;
     }

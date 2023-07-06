@@ -34,6 +34,7 @@ class UserFixtures extends Fixture
         $user->setLastname('Satoru');
         $user->setEmail('user@makesense.com');
         $user->setRoles(['ROLE_USER']);
+        $user->setIsActivated(true);
 
         $this->addReference('user_0', $user);
 
@@ -46,6 +47,7 @@ class UserFixtures extends Fixture
         $employee->setLastname('Zoldik');
         $employee->setEmail('employee@makesense.com');
         $employee->setRoles(['ROLE_EMPLOYEE']);
+        $employee->setIsActivated(true);
 
         $this->addReference('user_1', $user);
 
@@ -58,6 +60,7 @@ class UserFixtures extends Fixture
         $admin->setLastname('Freecss');
         $admin->setEmail('admin@makesense.com');
         $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setIsActivated(true);
 
         $this->addReference('user_2', $user);
 
@@ -78,6 +81,8 @@ class UserFixtures extends Fixture
 
             $hashedPassword = $this->passwordHasher->hashPassword($user, $faker->password());
             $user->setPassword($hashedPassword);
+
+            $user->setIsActivated($faker->boolean);
 
             $manager->persist($user);
         }
