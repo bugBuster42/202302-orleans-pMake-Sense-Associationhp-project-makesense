@@ -1,6 +1,6 @@
-<p>Vous êtes un expert de cette nouvelle décision, avec une compréhension approfondie de ses implications et de son impact.</p>
-<h3>{{decision.title}}</h3>
-<p>
-    <a href="http://localhost:8000{{ path('app_decision_show', {'id': decision.id}) }}">Clique ici pour accéder a la décision!</a>
-</p>
+{% extends 'baseEmail.html.twig' %}
 
+{% block body %}
+<h1>Vous êtes expert de cette nouvelle décision.</h1>
+{{ parent() }}
+{% endblock %}
