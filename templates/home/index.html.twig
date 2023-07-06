@@ -7,10 +7,11 @@
 	<header>
 		<div class="home">
 			<div class="position-absolute top-50 start-50 translate-middle fs-1">
-				<div class="logo"></div>
-				<img src="{{ asset('build/images/logo-dark.png')}}" class="img-fluid">
-				<h1 class="fw-bold center">#balancetonidée</h1>
-				<h2 class="fw-bold center text-primary">en interne</h2>
+				<h1 class="title donne-sense">donne<span class="pastille"></span>
+					sense
+				</h1>
+				<h2 class="fw-bold center">à tes idées</h2>
+				<h3 class="fw-bold center text-primary">en interne</h3>
 			</header>
 			<main>
 				<div class="home">
@@ -48,9 +49,10 @@
 								{% endfor %}
 							</div>
 						</div>
-					</main>
-				{% endif %}
-			</div>
+
+					{% endif %}
+				</div>
+			</main>
 		</div>
 	</header>
 {% endblock %}
