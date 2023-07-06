@@ -35,6 +35,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('_404', './assets/_404.js')
     .addStyleEntry('login', './assets/styles/login.scss')
     .addStyleEntry('adminLayout', './assets/styles/adminLayout.scss')
     .addStyleEntry('admin_user', './assets/styles/admin_user.scss')
