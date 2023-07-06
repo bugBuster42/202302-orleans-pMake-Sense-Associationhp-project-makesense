@@ -4,29 +4,43 @@
   margin: 20px 0;
 }
 
+.admin {
+  img {
+    width: 40px;
+  }
+}
+
 .table> :not(caption)>*>th {
-  background-color: $danger;
+  background-color: $fourthly;
+  font-family: $font-title;
+  color: white;
 }
 
-  .table > :not(caption) > * > th {
-    background-color: $fourthly; 
-    font-family: $font-title;
-    color: white;
-  }
 .table-header-fixed {
-    border-collapse: separate;
-    border-spacing: 0 1px;
-  }
-
-  .table-header-fixed thead tr {
-    position: sticky;
-    vertical-align: middle;
-    top: 0;
-    height: 60px; 
-    font-family: $font-text;
-  }
-
-  .table-header-fixed tbody td {
-    vertical-align: middle;
-    font-family: $font-text;
+  border-collapse: separate;
+  border-spacing: 0 1px;
 }
+
+.table-header-fixed thead tr {
+  position: sticky;
+  vertical-align: middle;
+  top: 0;
+  height: 60px;
+  font-family: $font-text;
+}
+
+.table-header-fixed tbody td {
+  vertical-align: middle;
+  font-family: $font-text;
+}
+
+.btn.btn-outline-primary.dropdown-toggle {
+  width: 180px; 
+}
+
+.form-switch .form-check-input {
+  width: 4rem;
+  height: 2rem;
+  margin: 0 auto;
+}
+

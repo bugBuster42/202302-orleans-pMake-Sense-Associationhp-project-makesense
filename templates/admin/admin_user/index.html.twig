@@ -1,5 +1,6 @@
 {% extends 'admin/adminLayout.html.twig' %}
 
+
 {% block title %}Gestion des utilisateurs
 {% endblock %}
 
@@ -9,8 +10,25 @@
 {% endblock %}
 
 {% block body %}
-	<main class="container">
-		<h1 class="text_primary">Gestion des utilisateurs</h1>
+<main class="container">
+	<div class="d-flex align-items-center">
+		<div class="me-4">
+			<h1 class="text-primary fw-bold fs-1 my-5">Gestion des utilisateurs</h1>
+		</div>
+
+		<div class="flex-grow-1 ms-4">
+			{{ form_start(form) }}
+			<div class="d-flex align-items-center">
+				<div class="flex-grow-1">
+					{{ form_widget(form.search, {'attr': {'placeholder': 'Rechercher par Nom d\'utilisateur'}}) }}
+                </div>
+                <button class="btn border-none rounded-pill" type="submit">
+                    <img src="{{ asset('build/images/search.svg') }}" style="width: 25px" alt="Rechercher">
+                </button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
 
 		<table class="table table-success table-striped table-header-fixed">
 			<thead>
@@ -18,8 +36,7 @@
 					<th>Nom</th>
 					<th>Prénom</th>
 					<th>Status</th>
-					<th></th>
-
+					<th>Accès Compte</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,20 +45,11 @@
 						<td>{{ user.lastname }}</td>
 						<td>{{ user.firstname }}</td>
 						<td>
-							{% if 'ROLE_ADMIN' in user.roles %}
-								Administrateur
-							{% elseif 'ROLE_EMPLOYEE' in user.roles %}
-								Salarié
-							{% else %}
-								Bénévole
-							{% endif %}
+							{{ component('role', { user: user })  }}
 						</td>
 						<td>
-							<a class="btn btn-sm btn-outline-primary" href="{{ path('admin_user_edit', {'id': user.id}) }}">
-								{% include 'icons/pencil.svg'%}
-								Modifier</a>
+							{{ component('activationSwitch', { user: user }) }}
 						</td>
-
 					</tr>
 				{% else %}
 					<tr>

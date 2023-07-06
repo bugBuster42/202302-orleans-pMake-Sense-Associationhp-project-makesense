@@ -1,13 +1,10 @@
 {% extends 'base.html.twig' %}
-
 {% block stylesheets %}
 	{{ parent() }}
 	{{ encore_entry_link_tags('login') }}
 {% endblock %}
-
 {% block title %}Connexion
 {% endblock %}
-
 {% block body %}
 	<div class="container-fluid my-5">
 		<div class="bg-image shadow text-center text-light">
@@ -17,7 +14,6 @@
 			<h2 class="fw-bold">Connexion</h2>
 			<p class="h6 mb-0 fw-semibold">Vous n'avez pas encore de compte ?</p>
 			<a class="text-light fw-medium" href="{{ path('app_register') }}">S'inscrire</a>
-
 			<form class="mt-4" action="{{ path('app_login') }}" method="post">
 				<div class="mb-3 text-start">
 					<label class="form-label fw-semibold" for="username">Adresse email :</label>
@@ -26,7 +22,7 @@
 				<div class="text-start">
 					<label class="form-label fw-semibold" for="password">Mot de passe :</label>
 					<input class="form-control" type="password" id="password" name="_password">
-					<a class="text-light fw-medium" href="#">Mot de passe oublié ?</a>
+					<a class="text-light fw-medium" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
 				</div>
 				<button class="mt-5 btn btn-light rounded-pill px-3 text-primary fw-bold" type="submit">CONNEXION</button>
 			</form>

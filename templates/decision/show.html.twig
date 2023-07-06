@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-primary text-center fw-bold fs-1 my-5">Décision</h1>
+	<h1 class="text-primary text-center fw-bold fs-1 my-5">Détail de la décision</h1>
 	<div class="d-flex justify-content-end">
 		<div class="dropdown  mx-2">
 			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -21,14 +21,16 @@
 	</div>
 	<div class="container">
 		<h2>Titre</h2>
+		<p>{{ decision.status }}</p>
 		<p>{{ decision.title }}</p>
 		<h2>Date de début de la décision</h2>
 		<p>{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
+		<h2>Catégorie</h2>
+		<p>{{ decision.category.title }}</p>
 		<h2>Description de la décision</h2>
 		<p>{{ decision.description | raw }}</p>
 	</div>
 	<div class="container">
-		<a class="btn btn-primary mt-3" href="{{ path("app_decision_index") }}">Retour à la liste</a>
 		<div class="accordion" id="accordionExample">
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="headingOne">

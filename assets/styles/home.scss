@@ -14,7 +14,6 @@
     .card-body {
 
         .card-main {
-            background-image: url('../images/card.png');
             background-position: center;
 
             .img {
@@ -34,5 +33,29 @@
         .img {
             top: -45px;
         }
+    }
+
+    h2 {
+        font-size: 5rem;
+        font-weight: 900;
+        color: $primary;
+    }
+
+    h3 {
+        font-size: 3rem;
+        font-weight: 900;
+    }
+}
+
+
+.donne-sense {
+    font-size: 6.7rem;
+    font-weight: 900;
+
+    .pastille::after {
+        width: 42px;
+        height: 20px;
+        left: -30px;
+        border-radius: 33%;
     }
 }

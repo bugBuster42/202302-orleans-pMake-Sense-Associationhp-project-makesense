@@ -21,7 +21,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
             $comment = new Comment();
             $comment->setText($faker->sentence());
             $comment->setDecision(
-                $this->getReference('decision_' . $faker->numberBetween(0, DecisionFixtures::DECISION_NUMBER))
+                $this->getReference('decision_' . $faker->numberBetween(0, DecisionFixtures::DECISION_NUMBER - 1))
             );
             $comment->setUser($this->getReference('user_' . $faker->numberBetween(0, 2)));
             $manager->persist($comment);

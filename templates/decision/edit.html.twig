@@ -1,17 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier décision
-{% endblock %}
+{% block title %}Modifier décision{% endblock %}
+
 
 {% block body %}
 	<h1 class="text-primary text-center fw-bold fs-1 mt-5">Modifier ma décision</h1>
+	{{ decision.status }} 	{{ decision.currentPlace }}
 
 	<div class="container bg-light rounded  p-4">
+		{% include 'components/_workflowStatus.html.twig' %}
 		{{ include('decision/_form.html.twig', {'button_label': 'Mise à jour'}) }}
 		{{ include('decision/_delete_form.html.twig') }}
 	</div>
 	<div class="form-decision container mb-3">
 		<a href="{{ path('app_decision_index') }}" class="btn btn-primary rounded-pill mb-5 mx-5 mt-3">Retour à la liste</a>
-	</div>
 
+
+	</div>
 {% endblock %}

@@ -1,6 +1,10 @@
 <div class="container">
 	{{ form_start(form) }}
-	{{ form_widget(form) }}
+
+	{{ form_row(form.title)}}
+
+
+	{{ form_row(form.imageFile)}}
 	<button class="my-5 btn btn-primary rounded mb-5 mt-3">{{ button_label|default('Ajouter') }}</button>
 	{{ form_end(form) }}
 </div>
