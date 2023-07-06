@@ -3,6 +3,11 @@
 {% block title %}Page non trouvée
 {% endblock %}
 
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('_404') }}
+{% endblock %}
+
 {% block body %}
 	<div class="error2">
 		<div class="Moon">
