@@ -59,6 +59,18 @@
             "config/packages/fos_ckeditor.yaml"
         ]
     },
+    "phpstan/phpstan": {
+        "version": "1.10",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "d74d4d719d5f53856c9c13544aa22d44144b1819"
+        },
+        "files": [
+            "phpstan.neon"
+        ]
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
@@ -357,6 +369,24 @@
         "files": [
             "config/packages/workflow.yaml"
         ]
+    },
+    "symfony/yaml": {
+        "version": "v6.0.3"
+    },
+    "symfonycasts/reset-password-bundle": {
+        "version": "1.17",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "97c1627c0384534997ae1047b93be517ca16de43"
+        },
+        "files": [
+            "config/packages/reset_password.yaml"
+        ]
+    },
+    "theseer/tokenizer": {
+        "version": "1.2.1"
     },
     "twig/extra-bundle": {
         "version": "v3.6.1"

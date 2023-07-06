@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "262383a5c3743fe385dd390a61b66bf6",
+    "content-hash": "cd128668489bb71e89a38272bcee8a34",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6846,20 +6846,20 @@
         },
         {
             "name": "symfony/ux-autocomplete",
-            "version": "v2.9.1",
+            "version": "v2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-autocomplete.git",
-                "reference": "49f9a1912bf40f6ec579f6371f14845ddec13986"
+                "reference": "d562b800de8a69dde4b4fbb372b3e7a1d21fcdd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-autocomplete/zipball/49f9a1912bf40f6ec579f6371f14845ddec13986",
-                "reference": "49f9a1912bf40f6ec579f6371f14845ddec13986",
+                "url": "https://api.github.com/repos/symfony/ux-autocomplete/zipball/d562b800de8a69dde4b4fbb372b3e7a1d21fcdd8",
+                "reference": "d562b800de8a69dde4b4fbb372b3e7a1d21fcdd8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0",
+                "php": ">=8.1",
                 "symfony/dependency-injection": "^5.4|^6.0",
                 "symfony/http-foundation": "^5.4|^6.0",
                 "symfony/http-kernel": "^5.4|^6.0",
@@ -6870,21 +6870,24 @@
                 "doctrine/orm": "2.9.0 || 2.9.1"
             },
             "require-dev": {
-                "doctrine/doctrine-bundle": "^2.4",
-                "doctrine/orm": "^2.9",
+                "doctrine/collections": "^1.6.8|^2.0",
+                "doctrine/doctrine-bundle": "^2.4.3",
+                "doctrine/orm": "^2.9.4",
                 "fakerphp/faker": "^1.22",
                 "mtdowling/jmespath.php": "^2.6",
                 "symfony/form": "^5.4|^6.0",
                 "symfony/framework-bundle": "^5.4|^6.0",
                 "symfony/maker-bundle": "^1.40",
+                "symfony/options-resolver": "^5.4|^6.0",
                 "symfony/phpunit-bridge": "^5.4|^6.0",
                 "symfony/process": "^5.4|^6.0",
                 "symfony/security-bundle": "^5.4|^6.0",
                 "symfony/security-csrf": "^5.4|^6.0",
                 "symfony/twig-bundle": "^5.4|^6.0",
                 "symfony/uid": "^5.4|^6.0",
+                "twig/twig": "^2.14.7|^3.0.4",
                 "zenstruck/browser": "^1.1",
-                "zenstruck/foundry": "^1.32"
+                "zenstruck/foundry": "^1.33"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -6914,7 +6917,7 @@
                 "symfony-ux"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-autocomplete/tree/v2.9.1"
+                "source": "https://github.com/symfony/ux-autocomplete/tree/v2.10.0"
             },
             "funding": [
                 {
@@ -6930,47 +6933,50 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-30T14:40:50+00:00"
+            "time": "2023-06-19T13:59:38+00:00"
         },
         {
             "name": "symfony/ux-live-component",
-            "version": "v2.9.1",
+            "version": "v2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-live-component.git",
-                "reference": "5362f8c5510cadd674113c19b020bf8a22f93dd5"
+                "reference": "73f6b7c0c17711370869d17626ba4d8d29dd8c13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-live-component/zipball/5362f8c5510cadd674113c19b020bf8a22f93dd5",
-                "reference": "5362f8c5510cadd674113c19b020bf8a22f93dd5",
+                "url": "https://api.github.com/repos/symfony/ux-live-component/zipball/73f6b7c0c17711370869d17626ba4d8d29dd8c13",
+                "reference": "73f6b7c0c17711370869d17626ba4d8d29dd8c13",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0",
+                "php": ">=8.1",
                 "symfony/property-access": "^5.4.5|^6.0",
                 "symfony/serializer": "^5.4|^6.0",
-                "symfony/ux-twig-component": "^2.8"
+                "symfony/ux-twig-component": "^2.8",
+                "twig/twig": "^2.14.7|^3.0.4"
             },
             "conflict": {
                 "symfony/config": "<5.4.0"
             },
             "require-dev": {
                 "doctrine/annotations": "^1.0",
-                "doctrine/doctrine-bundle": "^2.0",
-                "doctrine/orm": "^2.7",
+                "doctrine/collections": "^1.6.8|^2.0",
+                "doctrine/doctrine-bundle": "^2.4.3",
+                "doctrine/orm": "^2.9.4",
                 "doctrine/persistence": "^2.5.2|^3.0",
                 "phpdocumentor/reflection-docblock": "5.x-dev",
                 "symfony/dependency-injection": "^5.4|^6.0",
                 "symfony/form": "^5.4|^6.0",
                 "symfony/framework-bundle": "^5.4|^6.0",
+                "symfony/options-resolver": "^5.4|^6.0",
                 "symfony/phpunit-bridge": "^6.0",
                 "symfony/property-info": "^5.4|^6.0",
                 "symfony/security-csrf": "^5.4|^6.0",
                 "symfony/twig-bundle": "^5.4|^6.0",
                 "symfony/validator": "^5.4|^6.0",
                 "zenstruck/browser": "^1.2.0",
-                "zenstruck/foundry": "^1.10"
+                "zenstruck/foundry": "^1.33"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -7002,7 +7008,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-live-component/tree/v2.9.1"
+                "source": "https://github.com/symfony/ux-live-component/tree/v2.10.0"
             },
             "funding": [
                 {
@@ -7018,29 +7024,29 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-30T14:41:19+00:00"
+            "time": "2023-06-25T13:28:22+00:00"
         },
         {
             "name": "symfony/ux-twig-component",
-            "version": "v2.9.1",
+            "version": "v2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-twig-component.git",
-                "reference": "4d664e8dd058b4ebc6ae329d89a1aa8348ef06d0"
+                "reference": "0c222ddce77fa7deda8541d8973db528e1451379"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-twig-component/zipball/4d664e8dd058b4ebc6ae329d89a1aa8348ef06d0",
-                "reference": "4d664e8dd058b4ebc6ae329d89a1aa8348ef06d0",
+                "url": "https://api.github.com/repos/symfony/ux-twig-component/zipball/0c222ddce77fa7deda8541d8973db528e1451379",
+                "reference": "0c222ddce77fa7deda8541d8973db528e1451379",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0",
+                "php": ">=8.1",
                 "symfony/dependency-injection": "^5.4|^6.0",
                 "symfony/deprecation-contracts": "^2.2|^3.0",
                 "symfony/event-dispatcher": "^5.4|^6.0",
                 "symfony/property-access": "^5.4|^6.0",
-                "twig/twig": "^2.0|^3.0"
+                "twig/twig": "^2.14.7|^3.0.4"
             },
             "conflict": {
                 "symfony/config": "<5.4.0"
@@ -7082,7 +7088,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-twig-component/tree/v2.9.1"
+                "source": "https://github.com/symfony/ux-twig-component/tree/v2.10.0"
             },
             "funding": [
                 {
@@ -7098,7 +7104,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-30T16:00:59+00:00"
+            "time": "2023-06-28T20:17:17+00:00"
         },
         {
             "name": "symfony/validator",
@@ -7724,6 +7730,56 @@
                 }
             ],
             "time": "2023-04-28T13:25:36+00:00"
+        },
+        {
+            "name": "symfonycasts/reset-password-bundle",
+            "version": "v1.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SymfonyCasts/reset-password-bundle.git",
+                "reference": "6601f15fce7a4934bc9570f76feaf1b93536b1a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SymfonyCasts/reset-password-bundle/zipball/6601f15fce7a4934bc9570f76feaf1b93536b1a7",
+                "reference": "6601f15fce7a4934bc9570f76feaf1b93536b1a7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.2.5",
+                "symfony/config": "^5.4 | ^6.0",
+                "symfony/dependency-injection": "^5.4 | ^6.0",
+                "symfony/deprecation-contracts": "^2.2 | ^3.0",
+                "symfony/http-kernel": "^5.4 | ^6.0"
+            },
+            "conflict": {
+                "doctrine/orm": "<2.7",
+                "php": ">=8.1 <8.1.10"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.0",
+                "doctrine/doctrine-bundle": "^2.0.3",
+                "doctrine/orm": "^2.7",
+                "symfony/framework-bundle": "^5.4 | ^6.0",
+                "symfony/phpunit-bridge": "^5.4 | ^6.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "SymfonyCasts\\Bundle\\ResetPassword\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Symfony bundle that adds password reset functionality.",
+            "support": {
+                "issues": "https://github.com/SymfonyCasts/reset-password-bundle/issues",
+                "source": "https://github.com/SymfonyCasts/reset-password-bundle/tree/v1.17.0"
+            },
+            "time": "2023-02-02T15:11:33+00:00"
         },
         {
             "name": "twig/extra-bundle",

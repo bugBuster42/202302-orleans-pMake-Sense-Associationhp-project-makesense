@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('reset-password') }}
+{% endblock %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <h1 class="text-center fw-bold mb-5">Réinitialiser mon mot de passe</h1>
+    <div class="d-flex justify-content-center">
+    {{ form_start(resetForm) }}
+        {{ form_row(resetForm.plainPassword) }}
+        <div class="text-center">
+            <button class="btn btn-light mt-4 px-3 rounded-pill text-primary fw-bold">Réinitialiser</button>
+        </div>
+    </div>
+    {{ form_end(resetForm) }}
+</div>
+{% endblock %}
