@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('addDecision') }}
+	{{ parent() }}
+	{{ encore_entry_link_tags('addDecision') }}
 {% endblock %}
 
 {% block title %}
-Ajout décision
+	Ajouter une décision
 {% endblock %}
 
 {% block body %}
@@ -16,5 +16,5 @@ Ajout décision
 		<div class="container px-0">
 			<a class="btn btn-light mt-3 px-3 rounded-pill text-primary fw-bold" href="{{ path('app_decision_index') }}">Retour</a>
 		</div>
-	</div> 
+	</div>
 {% endblock %}

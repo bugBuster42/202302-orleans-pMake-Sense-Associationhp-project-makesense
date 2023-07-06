@@ -13,10 +13,11 @@
 		<h1 class="text-primary fw-bold fs-1 my-5">Gestion des catégories</h1>
 
 
-		<table class="table table-success table-striped table-header-fixed">
+		<table class="admin table table-success table-striped table-header-fixed">
 			<thead>
 				<tr>
 					<th>Titre de la catégorie</th>
+					<th>Image</th>
 					<th></th>
 					<th></th>
 				</tr>
@@ -25,6 +26,7 @@
 				{% for category in categories %}
 					<tr>
 						<td>{{ category.title }}</td>
+						<td><img src="{{ vich_uploader_asset(category) }}"></td>
 
 						<td>
 							<a class="btn btn-sm btn-outline-primary" href="{{ path('admin_category_edit', {'id': category.id}) }}">
@@ -32,9 +34,7 @@
 								Modifier</a>
 						</td>
 						<td>
-							<a class="btn btn-sm btn-outline-danger" href="{{ path('admin_category_delete', {'id': category.id}) }}">
-								{% include 'icons/cross.svg'%}
-								Supprimer</a>
+							{% include 'admin/admin_category/_delete_form.html.twig' %}
 						</td>
 
 					</tr>
