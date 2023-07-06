@@ -1,5 +1,6 @@
 {% extends 'admin/adminLayout.html.twig' %}
 
+
 {% block title %}Gestion des utilisateurs
 {% endblock %}
 
@@ -18,8 +19,6 @@
 					<th>Nom</th>
 					<th>Prénom</th>
 					<th>Status</th>
-					<th></th>
-
 				</tr>
 			</thead>
 			<tbody>
@@ -28,20 +27,8 @@
 						<td>{{ user.lastname }}</td>
 						<td>{{ user.firstname }}</td>
 						<td>
-							{% if 'ROLE_ADMIN' in user.roles %}
-								Administrateur
-							{% elseif 'ROLE_EMPLOYEE' in user.roles %}
-								Salarié
-							{% else %}
-								Bénévole
-							{% endif %}
+							{{ component('role', { user: user })  }}
 						</td>
-						<td>
-							<a class="btn btn-sm btn-outline-primary" href="{{ path('admin_user_edit', {'id': user.id}) }}">
-								{% include 'icons/pencil.svg'%}
-								Modifier</a>
-						</td>
-
 					</tr>
 				{% else %}
 					<tr>
@@ -50,6 +37,5 @@
 				{% endfor %}
 			</tbody>
 		</table>
-
 	</main>
 {% endblock %}

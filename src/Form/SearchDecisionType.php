@@ -2,12 +2,13 @@
 
 namespace App\Form;
 
-use App\Entity\Status;
 use App\Entity\Category;
+use App\Entity\Decision;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 
 class SearchDecisionType extends AbstractType
@@ -22,10 +23,9 @@ class SearchDecisionType extends AbstractType
             ])
             ->add(
                 'status',
-                EntityType::class,
+                ChoiceType::class,
                 [
-                    'class' => Status::class,
-                    'choice_label' => 'name',
+                    'choices' => array_flip(Decision::STATUS),
                     'placeholder' => 'Avancée de la décision',
                     'required' => false,
                 ]

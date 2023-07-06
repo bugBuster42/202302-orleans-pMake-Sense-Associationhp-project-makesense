@@ -21,7 +21,8 @@ h2 {
     font-family: $font-title;
 }
 
-p, label {
+p,
+label {
     font-family: $font-text;
 }
 
@@ -33,6 +34,8 @@ input {
 .form-control {
     background-color: transparentize($light, 0.85);
     border: 1px solid $secondary;
+    font-weight: 600;
+    color: $light;
 }
 
 .form-label {

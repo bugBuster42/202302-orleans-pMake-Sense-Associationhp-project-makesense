@@ -14,6 +14,7 @@ $fourthly: #196C84;
 
 body {
     background-color: $tertiary;
+    min-height: 100vh;
 
     h1 {
         color: $primary;
@@ -61,5 +62,9 @@ body {
     z-index: 2;
     position: relative;
     background-color: $tertiary;
+
+    img {
+        width: 80%;
+    }
 
 }

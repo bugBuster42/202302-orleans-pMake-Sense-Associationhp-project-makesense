@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Status;
 use App\Entity\Decision;
 use App\Form\SearchDecisionType;
-use App\Repository\StatusRepository;
 use App\Repository\DecisionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,10 +26,9 @@ class DecisionSearchController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData()['search'];
-            $status = $form->getData()['status'];
             $category = $form->getData()['category'];
 
-            $decisions = $decisionRepository->findDecision($search, $status, $category);
+            $decisions = $decisionRepository->findDecision($search, $form->getData()['status'], $category);
         } else {
             $decisions = $decisionRepository->findAll();
         }
@@ -47,7 +44,6 @@ class DecisionSearchController extends AbstractController
     public function decision(
         Request $request,
         DecisionRepository $decisionRepository,
-        ?Status $status
     ): Response {
         $user = $this->getUser();
         $form = $this->createForm(SearchDecisionType::class);
@@ -55,8 +51,10 @@ class DecisionSearchController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData()['search'];
+            $status = $form->getData()['status'];
+            $category = $form->getData()['category'];
 
-            $decisions = $decisionRepository->findDecision($search, $status, $user);
+            $decisions = $decisionRepository->findDecision($search, $status, $category, $user);
         } else {
             $decisions = $decisionRepository->findBy(['user' => $user], ['startDate' => 'DESC']);
         }
@@ -64,19 +62,6 @@ class DecisionSearchController extends AbstractController
         return $this->render('status/myDecision.html.twig', [
             'decisions' => $decisions,
             'form' => $form,
-
-        ]);
-    }
-
-    #[Route('/{id}', name: 'decision')]
-    public function show(
-        DecisionRepository $decisionRepository,
-        StatusRepository $statusRepository,
-        ?Status $status = null
-    ): Response {
-        return $this->render('status/index.html.twig', [
-            'decisions' => $decisionRepository->findBy(['status' => $status], ['startDate' =>  'DESC']),
-            'statuses' => $statusRepository->findAll(),
 
         ]);
     }

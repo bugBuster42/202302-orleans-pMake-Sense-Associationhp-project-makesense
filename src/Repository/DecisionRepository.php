@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\User;
-use App\Entity\Status;
 use App\Entity\Category;
 use App\Entity\Decision;
 use Doctrine\Persistence\ManagerRegistry;
@@ -43,7 +42,7 @@ class DecisionRepository extends ServiceEntityRepository
         }
     }
 
-    public function findDecision(?string $title, ?Status $status, ?Category $category, ?User $user = null): array
+    public function findDecision(?string $title, ?string $status, ?Category $category, ?User $user = null): array
     {
         $queryBuilder = $this->createQueryBuilder('d');
 
@@ -53,7 +52,7 @@ class DecisionRepository extends ServiceEntityRepository
         }
 
         if ($status) {
-            $queryBuilder->andWhere('d.status = :status');
+            $queryBuilder->andWhere('d.currentPlace = :status');
             $queryBuilder->setParameter('status', $status);
         }
         if ($category) {
