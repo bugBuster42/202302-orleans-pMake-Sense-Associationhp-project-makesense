@@ -13,10 +13,15 @@
 }
 
 .background {
-    position: absolute;
     left: 50%;
     bottom: 25%;
     transform: translateX(-50%);
+
+    position: fixed;
+    background: #2c3e50;
+    height: 50vh;
+    width: 100%;
+    z-index: 0;
 
     &::before {
         display: block;
