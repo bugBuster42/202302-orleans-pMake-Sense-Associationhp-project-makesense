@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>DONNE SENSE : Nouvel utilisateur</title>
+	</head>
+	<body>
+		<h1>{{ user.firstname }}
+			{{ user.lastname }}
+			vient de créer son compte</h1>
+		<p>Bonjour,
+			{{ user.firstname }}
+			{{ user.lastname }}
+			attend votre validation pour l'activation de son compte, pensez également à valider son status !!</p>
+		<p>Cet utilisateur sera automatiquement informé par mail dès que vous aurez activé son compte</p>
+		<p>Pour vous connecter à votre compte, veuillez cliquer sur le lien ci-dessous :</p>
+		<p>
+			<a href={{ url('app_login') }}>lien vers la page de connexion</a>
+		</p>
+
+		<p>Cordialement,</p>
+		<p>L'équipe de MakeSense</p>
+	</body>
+</html>
