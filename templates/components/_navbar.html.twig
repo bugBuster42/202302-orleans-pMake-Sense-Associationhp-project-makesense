@@ -9,6 +9,11 @@
 			</button>
 			<div class="collapse navbar-collapse  justify-content-end fw-semibold" id="navbarNav">
 				<ul class="navbar-nav align-items-center gap-3">
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item">
+							<a class="link nav-link text-primary fw-bold px-3" href="{{ path('admin_home') }}">Admin</a>
+						</li>
+					{% endif %}
 					<li class="nav-item">
 						<a class="link nav-link text-primary fw-bold px-3" href="{{ path('status_home') }}">Les décisions</a>
 					</li>
