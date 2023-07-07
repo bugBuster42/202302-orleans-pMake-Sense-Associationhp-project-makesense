@@ -50,13 +50,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: Comment::class)]
     private Collection $comments;
 
-    public function __construct()
-    {
-        $this->comments = new ArrayCollection();
-        $this->decisions = new ArrayCollection();
-        $this->expertUsers = new ArrayCollection();
-        $this->impactedUsers = new ArrayCollection();
-    }
 
     #[ORM\Column(length: 255)]
     private ?string $firstname = null;
@@ -90,8 +83,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Decision::class, mappedBy: 'impactedUsers')]
     private Collection $impactedUsers;
 
-    #[ORM\Column(options: ['default' => false])]
-    private ?bool $isActivated = null;
+    #[ORM\Column(nullable: true)]
+    private ?bool $isActivated = false;
 
     public function getId(): ?int
     {
@@ -362,5 +355,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isActivated = $isActivated;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->decisions = new ArrayCollection();
+        $this->expertUsers = new ArrayCollection();
+        $this->impactedUsers = new ArrayCollection();
     }
 }
