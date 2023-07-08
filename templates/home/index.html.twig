@@ -7,14 +7,13 @@
 	<header>
 		<div class="home">
 			<div class="position-absolute top-50 start-50 translate-middle fs-1">
-				<h1 class="title donne-sense">donne
+				<h1 class="title donne-sense text-center">donne
 					<span class="pastille"></span>sense
 				</h1>
-				<h2 class="fw-bold center">à tes idées</h2>
-				<h3 class="fw-bold center text-primary">en interne</h3>
+				<h2 class="fw-bold center text-center">à tes idées</h2>
 			</header>
 			<main>
-				<div class="home">
+				<div class="home pb-5">
 					{% if app.user %}
 						<div class="title title-vedette d-flex justify-content-center">
 							<h1 class="text-center fw-bold fs-1 my-5">En
@@ -23,6 +22,7 @@
 							</h1>
 						</div>
 						<div class="container">
+
 							<div class="row">
 								{% for decision in decisions %}
 									<div class="col-lg-4 col-md-6">

@@ -5,6 +5,7 @@
 .link {
     font-family: $font-title;
     border: 1px solid $tertiary;
+    border-radius: 2rem;
 
 }
 
@@ -24,4 +25,5 @@
 
 .navbar {
     border-bottom: 4px solid $primary;
+    border-radius: 2rem;
 }
