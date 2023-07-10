@@ -11,48 +11,54 @@
 					<span class="pastille"></span>sense
 				</h1>
 				<h2 class="fw-bold center">à tes idées</h2>
-				<h3 class="fw-bold center text-primary">en interne</h3>
+				<div class="citation">
+					<p>
+						<em class="fw-bold fs-5 max-width-citation">{{ citation.quote }}</em>
+					</p>
+					<p class="author fs-6">_
+						{{ citation.author }}
+						_</p>
+				</div>
 			</div>
-		</header>
-		<main>
-			<div class="home">
-				{% if app.user %}
-					<div class="title title-vedette d-flex justify-content-center">
-						<h1 class="text-center fw-bold fs-1 my-5">En
-							<span class="pastille"></span>
-							vedette
-						</h1>
-					</div>
-					<div class="container">
-						<div class="row">
-							{% for decision in decisions %}
-								<div class="col-lg-4 col-md-6">
-									<div class="card shadow mb-5 border border-0 rounded bg-tertiary">
-										<div class="card-body p-0">
-											<div class="img1"></div>
-											<div class="position-relative">
-												<div class="card-main">
-													<img class="img rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
-													<div class="statut pt-3 mx-3 text-end">
-														<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded rounded-pill mx-2 shadow text-tertiary">Statut</div>
-													</div>
-													<p class="text-primary border-primary fw-bolder fs-6 mx-3 mb-2 border-2 p-2 border-bottom">{{ decision.status }}</p>
-													<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0" style="height: 8rem">{{ decision.title }}</h4>
-													<p class="card-text text-primary fw-bolder mb-1 p-3">{{ decision.category.title }}</p>
-													<div class="text-end p-3 text-l tertiary btn-rounded">
-														<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn primary bg-secondary border-tertiary shadow fw-bolder text-primary my-2 mx-2 fs-6 btn-rounded rounded-pill">En savoir plus</a>
-													</div>
+		</div>
+	</header>
+	<main>
+		<div class="home">
+			{% if app.user %}
+				<div class="title title-vedette d-flex justify-content-center">
+					<h1 class="text-center fw-bold fs-1 my-5">En
+						<span class="pastille"></span>
+						vedette
+					</h1>
+				</div>
+				<div class="container">
+					<div class="row">
+						{% for decision in decisions %}
+							<div class="col-lg-4 col-md-6">
+								<div class="card shadow mb-5 border border-0 rounded bg-tertiary">
+									<div class="card-body p-0">
+										<div class="img1"></div>
+										<div class="position-relative">
+											<div class="card-main">
+												<img class="img rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
+												<div class="statut pt-3 mx-3 text-end">
+													<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded rounded-pill mx-2 shadow text-tertiary">Statut</div>
+												</div>
+												<p class="text-primary border-primary fw-bolder fs-6 mx-3 mb-2 border-2 p-2 border-bottom">{{ decision.status }}</p>
+												<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0" style="height: 8rem">{{ decision.title }}</h4>
+												<p class="card-text text-primary fw-bolder mb-1 p-3">{{ decision.category.title }}</p>
+												<div class="text-end p-3 text-l tertiary btn-rounded">
+													<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn primary bg-secondary border-tertiary shadow fw-bolder text-primary my-2 mx-2 fs-6 btn-rounded rounded-pill">En savoir plus</a>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							{% endfor %}
-						</div>
+							</div>
+						{% endfor %}
 					</div>
-
-				{% endif %}
-			</div>
-		</main>
-	</div>
+				</div>
+			{% endif %}
+		</div>
+	</main>
 {% endblock %}
