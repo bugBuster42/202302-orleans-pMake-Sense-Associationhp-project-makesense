@@ -27,7 +27,7 @@
 
 										<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn bg-secondary border-tertiary shadow fw-bolder text-primary my-2 mx-2 fs-6 btn-rounded rounded-pill">En savoir plus</a>
 										{% if app.user == decision.user %}
-											<a href="{{ path('app_decision_edit', {'id': decision.id}) }}" class="btn btn-edit border-tertiary shadow fw-bolder text-tertiary my-2 mx-2 fs-6 btn-rounded rounded-pill">Modifier</a>
+											<a href="{{ path('app_decision_edit', {'id': decision.id}) }}" class="btn btn-primary border-tertiary shadow fw-bolder text-tertiary my-2 mx-2 fs-6 btn-rounded rounded-pill">Modifier</a>
 										{% endif %}
 
 									</div>
