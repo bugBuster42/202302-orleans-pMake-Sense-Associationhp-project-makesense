@@ -15,7 +15,11 @@
 							<div class="img1"></div>
 							<div class="position-relative">
 								<div class="card-main">
-									<img class="img-profile rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
+									{% if decision.user.avatar %}
+										<img class="img-profile rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ decision.user.avatar }}">
+									{% else %}
+										<img class="img-profile rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
+									{% endif %}
 									<div class="statut pt-3 mx-3 text-end">
 										<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded rounded-pill shadow mx-2 text-tertiary">Statut</div>
 									</div>

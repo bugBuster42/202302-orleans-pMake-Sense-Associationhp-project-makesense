@@ -35,6 +35,7 @@
 				<tr>
 					<th>Nom</th>
 					<th>Prénom</th>
+					<th></th>
 					<th>Status</th>
 					<th>Accès Compte</th>
 				</tr>
@@ -44,6 +45,13 @@
 					<tr>
 						<td>{{ user.lastname }}</td>
 						<td>{{ user.firstname }}</td>
+						<td>
+                   			{% if user.avatar %}
+                        		<img src="{{ asset(user.avatar) }}" alt="Photo" style="width: 60px; height: 60px; border-radius: 10%;">
+                    		{% else %}
+                        		<span>Aucune photo</span>
+                    		{% endif %}
+                		</td>
 						<td>
 							{{ component('role', { user: user })  }}
 						</td>

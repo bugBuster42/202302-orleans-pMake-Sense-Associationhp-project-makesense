@@ -17,7 +17,7 @@ class UserFixtures extends Fixture
         'ROLE_EMPLOYEE',
     ];
 
-    public const  USER_NUMBER = 24;
+    public const  USER_NUMBER = 51;
 
     private UserPasswordHasherInterface $passwordHasher;
 
@@ -35,6 +35,7 @@ class UserFixtures extends Fixture
         $user->setEmail('user@makesense.com');
         $user->setRoles(['ROLE_USER']);
         $user->setIsActivated(true);
+        $user->setAvatar("https://randomuser.me/api/portraits/men/1.jpg");
 
         $this->addReference('user_0', $user);
 
@@ -48,6 +49,7 @@ class UserFixtures extends Fixture
         $employee->setEmail('employee@makesense.com');
         $employee->setRoles(['ROLE_EMPLOYEE']);
         $employee->setIsActivated(true);
+        $employee->setAvatar("https://randomuser.me/api/portraits/men/11.jpg");
 
         $this->addReference('user_1', $user);
 
@@ -61,6 +63,7 @@ class UserFixtures extends Fixture
         $admin->setEmail('admin@makesense.com');
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setIsActivated(true);
+        $admin->setAvatar("https://randomuser.me/api/portraits/men/7.jpg");
 
         $this->addReference('user_2', $user);
 
@@ -76,6 +79,9 @@ class UserFixtures extends Fixture
             $user->setLastname($faker->lastName());
             $user->setEmail($faker->email());
             $user->setRoles([$faker->randomElement(self::USER_ROLES)]);
+
+            $gender = $faker->randomElement(['men', 'women']);
+            $user->setAvatar("https://randomuser.me/api/portraits/$gender/{$faker->numberBetween(1, 80)}.jpg");
 
             $this->addReference('user_' . ($i + 3), $user);
 
