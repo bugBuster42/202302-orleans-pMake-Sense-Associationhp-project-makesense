@@ -1,7 +1,7 @@
 <form method="post" action="{{ path('app_decision_delete', {'id': decision.id}) }}" onsubmit="return confirm('Êtes-vous certain de vouloir supprimer?');">
 	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ decision.id) }}">
 	<div class="text-end">
-		<button class="btn btn-light text-primary my-2 border border-secondary bg-white rounded-pill mt-5 mx-5">Supprimer</button>
+		<button class="btn btn-light text-primary my-2 border border-secondary bg-white fw-bold rounded-pill mt-5">Supprimer</button>
 
 	</div>
 </form>

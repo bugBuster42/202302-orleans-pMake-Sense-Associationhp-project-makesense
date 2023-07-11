@@ -45,12 +45,12 @@
 									</li>
 								</ul>
 							</li>
-						{% else %}
-							<a class="link nav-link fw-bold text-primary px-3" href="{{ path('app_login') }}">Connexion</a>
 						{% endif %}
-					</li>
+					{% else %}
+						<a class="link nav-link fw-bold text-primary px-3" href="{{ path('app_login') }}">Connexion</a>
+					{% endif %}
 				</li>
-			</ul>
-		</div>
-	</nav>
-</div>
+			</li>
+		</ul>
+	</div>
+</nav></div>

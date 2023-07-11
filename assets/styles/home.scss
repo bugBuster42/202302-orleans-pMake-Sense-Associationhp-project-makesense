@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    min-height: 100vh;
+    min-height: 70vh;
     overflow: auto;
 
     .container {
@@ -36,20 +36,16 @@
     }
 
     h2 {
-        font-size: 5rem;
+        font-size: 4rem;
         font-weight: 900;
         color: $primary;
     }
 
-    h3 {
-        font-size: 3rem;
-        font-weight: 900;
-    }
 }
 
 
 .donne-sense {
-    font-size: 6.7rem;
+    font-size: 6.5rem;
     font-weight: 900;
 
     .pastille::after {
