@@ -1,0 +1,18 @@
+<div{{attributes}}>
+	{% if hasVoted %}
+		<div class="alert alert-success">
+			Thanks for voting!
+		</div>
+	{% else %}
+		<button type="button" class="btn btn-secondary" data-action="live#action" data-action-name="voted(direction=up)">
+			Vote pour
+		</button>
+		<button type="button" class="btn btn-secondary" data-action="live#action" data-action-name="voted(direction=down)">
+			Vote contre
+		</button>
+	{% endif %}
+	<p>vote pour
+		{{ this.decision.votes|filter(vote => vote.voting == 1)|length }}</p>
+	<p>Vote contre
+		{{ this.decision.votes|filter(vote => vote.voting == -1)|length }}</p>
+</div>

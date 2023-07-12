@@ -8,6 +8,7 @@ use App\Form\CommentType;
 use App\Form\DecisionType;
 use App\Repository\CommentRepository;
 use App\Repository\DecisionRepository;
+use App\Repository\VoteRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -74,9 +75,10 @@ class DecisionController extends AbstractController
 
             return $this->redirectToRoute('app_decision_show', ['id' => $decision->getId()], Response::HTTP_SEE_OTHER);
         }
+
         return $this->render('decision/show.html.twig', [
             'decision' => $decision,
-            'form' => $form
+            'form' => $form,
         ]);
     }
 

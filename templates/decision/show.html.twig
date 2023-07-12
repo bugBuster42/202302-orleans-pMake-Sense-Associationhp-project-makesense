@@ -29,6 +29,7 @@
 		<p>{{ decision.category.title }}</p>
 		<h2>Description de la décision</h2>
 		<p>{{ decision.description | raw }}</p>
+		{{ component('decisionVote', { decision: decision }) }}
 	</div>
 	<div class="container">
 		<div class="accordion" id="accordionExample">
@@ -51,6 +52,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="container">
 		<div class="my-3 ">
 			{% if app.user %}
