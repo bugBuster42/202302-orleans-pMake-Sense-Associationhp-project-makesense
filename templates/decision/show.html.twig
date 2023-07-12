@@ -5,15 +5,15 @@
 
 {% block body %}
 	<h1 class="text-primary text-center fw-bold fs-1 my-5">Détail de la décision</h1>
-	<div class="d-flex justify-content-end">
+	<div class="container decision-show d-flex justify-content-end">
 		<div class="dropdown  mx-2">
-			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			<button class="btn btn-secondary text-primary fw-bold py-2 px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 				Personnes impactées
 			</button>
 			<ul class="dropdown-menu"></ul>
 		</div>
 		<div class="dropdown  mx-2">
-			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			<button class="btn btn-secondary text-primary fw-bold p-2 px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 				Personnes expertes
 			</button>
 			<ul class="dropdown-menu"></ul>
@@ -35,16 +35,17 @@
 		<div class="accordion" id="accordionExample">
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="headingOne">
-					<button class="accordion-button bg-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					<button class="accordion-button border border-2 border-secondary shadow bg-white text-primary fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 						Avis
 					</button>
 				</h2>
-				<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				<div id="collapseOne" class="accordion-collapse collapse show border border-top-0 border-2 border-secondary shadow text-primary" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+
 					{% for comment in decision.comments %}
 						<div class="accordion-body">
-							<div class="border-bottom border-dark ">
-								<p>{{ comment.user.email }}</p>
-								<p>{{ comment.text}}</p>
+							<div class="border-bottom border-primary">
+								<p class="text-primary">{{ comment.user.email }}</p>
+								<p class="text-primary">{{ comment.text}}</p>
 							</div>
 						</div>
 					{% endfor %}
@@ -57,11 +58,12 @@
 		<div class="my-3 ">
 			{% if app.user %}
 				{{ form_start(form) }}
-				{{ form_widget(form) }}
-				<button class="btn btn-light text-primary my-2 border border-secondary rounded-pill">{{ button_label|default('Laissez un commentaire') }}</button>
+				{{ form_widget(form, { 'attr': {'class': 'text-primary fw-bold'}}) }}
+
+				<button class="btn btn-light text-primary my-3 border border-secondary rounded-pill">{{ button_label|default('Laissez un commentaire') }}</button>
 				{{ form_end(form) }}
 			{% endif %}
-			<a class="btn btn-primary mt-3" href="{{ path('status_home') }}">Retour à la liste</a>
+			<a class="btn btn-primary my-5" href="{{ path('status_home') }}">Retour à la liste</a>
 		</div>
 	</div>
 {% endblock %}
