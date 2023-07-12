@@ -22,7 +22,9 @@
 			{% block navbar %}
 				{% include 'components/_navbar.html.twig' %}
 			{% endblock %}
-			{% block body %}{% endblock %}
+			<main>
+				{% block body %}{% endblock %}
+			</main>
 			{% block footer %}
 				{% include 'components/_footer.html.twig' %}
 			{% endblock %}

@@ -1,22 +1,31 @@
 <div class="nav-decision">
-	<nav class="navbar navbar-expand-lg bg-tertiary shadow border border-2 border-primary mb-5 rounded-pill container" style="width:80%;">
-		<div class="container nav-item bg-none">
-			<p class="my-auto text-primary mx-3 fw-bold">Filtres</p>
-			<span class="vertical-line"></span>
-			{{ form_start(form, {'attr': {'class': 'form-class bg-tertiary'}}) }}
+	<nav class="navbar navbar-expand-lg bg-tertiary shadow border border-3 border-primary mb-5 container">
+		<div class="container nav-item d-flex justify-content-center bg-none">
+
+			<p class="my-auto text-primary mx-3 d-none d-lg-block fw-bold">Filtres</p>
+			<span class="vertical-line d-none mx-5 d-md-block"></span>
+
+			{{ form_start(form, {'attr': {'class': 'form-class bg-none'}}) }}
+
 			<div class="row">
-				<div class="col-4">
-					{{ form_widget(form.status, {'attr': {'class': 'form-class text text-primary fw-bold border border-light form-control bg-tertiary'}}) }}
+
+				<div class="col-lg-4 col-md-12 my-3">
+
+					{{ form_widget(form.status, {'attr': {'onchange':'this.form.submit()', 'class': 'form-class text text-primary fw-bold border border-light rounded-pill form-control bg-tertiary'}}) }}
 				</div>
-				<div class="col-4">
-					{{ form_widget(form.category, {'attr': {'class': 'form-class text text-primary fw-bold border border-light form-control bg-tertiary'}}) }}
+				<div class="col-lg-4 col-md-12 my-3">
+
+					{{ form_widget(form.category, {'attr': {'onchange':'this.form.submit()', 'class': 'form-class text text-primary fw-bold border border-light rounded-pill form-control bg-tertiary'}}) }}
+
 				</div>
 
-				<div class="col-3">
-					{{ form_widget(form.search, {'attr': {'class': 'form-class form-control border-light bg-tertiary fw-bolder', 'placeholder': 'Rechercher'}}) }}
-				</div>
-				<div class="col">
-					<button class="btn border-none rounded-pill" type="submit"><img src="{{ asset('build/images/search.svg')}}" style="width:25px" alt="Rechercher"></button>
+				<div class="search-bar col-lg-4 col-md-12 my-3 d-flex justify-content-between">
+
+					{{ form_widget(form.search, {'attr': {'oninput':'this.form.submit()', 'class': 'form-class form-control rounded-pill fw-bold border-light bg-tertiary', 'placeholder': 'Rechercher'}}) }}
+
+
+					<button class="btn border-none me-4" type="submit"><img src="{{ asset('build/images/search.svg')}}" style="width:25px" alt="Rechercher"></button>
+
 				</div>
 				{{ form_end(form) }}
 			</div>
