@@ -10,11 +10,11 @@ use Symfony\Component\HttpFoundation\File\File;
 class CategoryFixtures extends Fixture
 {
     public const CATEGORIES = [
-        ['name' => 'Environnement', 'image' => 'environnement.jpg'],
-        ['name' => 'Économie', 'image' => 'economie.jpg'],
-        ['name' => 'Droit', 'image' => 'droit1.jpg'],
-        ['name' => 'Professionnel', 'image' => 'professionnel.jpg'],
-        ['name' => 'Personnel', 'image' => 'personnel.jpg'],
+        ['name' => 'Environnement', 'image' => 'environnement.webp'],
+        ['name' => 'Économie', 'image' => 'economie.webp'],
+        ['name' => 'Droit', 'image' => 'droit.webp'],
+        ['name' => 'Professionnel', 'image' => 'professionnel.webp'],
+        ['name' => 'Personnel', 'image' => 'personnel.webp'],
     ];
 
     public function load(ObjectManager $manager): void
