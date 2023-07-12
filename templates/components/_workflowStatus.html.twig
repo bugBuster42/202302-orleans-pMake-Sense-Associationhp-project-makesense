@@ -1,20 +1,30 @@
-{% if workflow_can(decision, 'to_decision_opened_accepted') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_decision_opened_accepted'}) }}" class="btn btn-primary fw-bold rounded-pill mb-5 mx-5 mt-3">Passer au statut accepté</a>
+{% if decision.votes|filter(vote => vote.voting == -1)|length < decision.votes|length * 70 / 100 and decision.votes|length > 20 %}
+	{% if workflow_can(decision, 'to_decision_opened_accepted') %}
+		<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_decision_opened_accepted'}) }}" class="btn btn-primary fw-bold rounded-pill mb-5 mx-5 mt-3">Passer au statut accepté</a>
+	{% endif %}
 {% endif %}
-{% if workflow_can(decision, 'to_decision_opened_conflict') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_decision_opened_conflict'}) }}" class="btn btn-primary fw-bold rounded-pill mb-5 mx-5 mt-3">Passer au statut en conflit</a>
+{% if decision.votes|filter(vote => vote.voting == 1)|length <= decision.votes|length * 70 / 100 and decision.votes|filter(vote => vote.voting == -1)|length <= decision.votes|length * 70 / 100 and decision.votes|length > 20 %}
+	{% if workflow_can(decision, 'to_decision_opened_conflict') %}
+		<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_decision_opened_conflict'}) }}" class="btn btn-primary fw-bold rounded-pill mb-5 mx-5 mt-3">Passer au statut en conflit</a>
+	{% endif %}
 {% endif %}
-{% if workflow_can(decision, 'to_decision_opened_refused') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_decision_opened_refused'}) }}" class="btn btn-primary fw-bold rounded-pill mb-5 mx-5 mt-3">Passer au statut refusé</a>
+{% if decision.votes|filter(vote => vote.voting == 1)|length < decision.votes|length * 70 / 100 and decision.votes|length > 20 %}
+	{% if workflow_can(decision, 'to_decision_opened_refused') %}
+		<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_decision_opened_refused'}) }}" class="btn btn-primary fw-bold rounded-pill mb-5 mx-5 mt-3">Passer au statut refusé</a>
+	{% endif %}
 {% endif %}
 {% if workflow_can(decision, 'to_conflict_modified') %}
 	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_conflict_modified'}) }}" class="btn btn-primary rounded-pill fw-bold mb-5 mx-5 mt-3">Passer au statut deuxième décision</a>
 {% endif %}
-{% if workflow_can(decision, 'to_modified_accepted') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_modified_accepted'}) }}" class="btn btn-primary rounded-pill fw-bold mb-5 mx-5 mt-3">Passer au statut accepté</a>
+{% if decision.votes|filter(vote => vote.voting == -1)|length < decision.votes|length * 50 / 100 and decision.votes|length > 20 %}
+	{% if workflow_can(decision, 'to_modified_accepted') %}
+		<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_modified_accepted'}) }}" class="btn btn-primary rounded-pill fw-bold mb-5 mx-5 mt-3">Passer au statut accepté</a>
+	{% endif %}
 {% endif %}
-{% if workflow_can(decision, 'to_modified_refused') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_modified_refused'}) }}" class="btn btn-primary rounded-pill fw-bold mb-5 mx-5 mt-3">Passer au statut refusé</a>
+{% if decision.votes|filter(vote => vote.voting == 1)|length < decision.votes|length * 50 / 100 and decision.votes|length > 20 %}
+	{% if workflow_can(decision, 'to_modified_refused') %}
+		<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_modified_refused'}) }}" class="btn btn-primary rounded-pill fw-bold mb-5 mx-5 mt-3">Passer au statut refusé</a>
+	{% endif %}
 {% endif %}
 {% if workflow_can(decision, 'to_accepted_ ended') %}
 	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_accepted_ ended'}) }}" class="btn btn-primary rounded-pill fw-bold mb-5 mx-5 mt-3">Passer au statut terminé</a>
