@@ -1,5 +1,6 @@
 <div class="container">
-	<nav class="navbar navbar-expand-lg border-bottom border-primary border-4 navbar-transparent bg-transparent">
+
+	<nav class="navbar navbar-expand-lg border-bottom border-primary rounded-pill border-4 navbar-transparent bg-transparent">
 		<div class="container-fluid mx-3">
 			<a class="navbar-brand fs-2 fw-bold text-light mx-0" href="{{ path('home_page') }}"><img src="{{ asset('build/images/logo-dark.png') }}" alt="makesense" width="160px"></a>
 
@@ -9,6 +10,11 @@
 			</button>
 			<div class="collapse navbar-collapse  justify-content-end fw-semibold" id="navbarNav">
 				<ul class="navbar-nav align-items-center gap-3">
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item">
+							<a class="link nav-link text-primary fw-bold px-3" href="{{ path('admin_home') }}">Admin</a>
+						</li>
+					{% endif %}
 					<li class="nav-item">
 						<a class="link nav-link text-primary fw-bold px-3" href="{{ path('status_home') }}">Les décisions</a>
 					</li>
@@ -16,7 +22,8 @@
 						<a class="link nav-link fw-bold text-primary px-3" href="{{ path('app_decision_new') }}">Ajouter une décision</a>
 					</li>
 					<li class="nav-item">
-						<a class="link nav-link text-primary fw-bold px-3" href="#">Mes décisions</a>
+						<a class="link nav-link text-primary fw-bold px-3" href="{{ path('status_my_decision') }}">Mes décisions</a>
+
 					</li>
 					<li class="nav-item">
 						{{ component('notification') }}
@@ -28,8 +35,12 @@
 									<img src="{{ asset('build/images/profile.svg') }}" alt="profil" width="60px">
 								</a>
 								<ul class="dropdown-menu dropdown-menu-end bg-primary border border-secondary">
-									<li><a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_profile') }}">Profil</a></li>
-									<li><a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_logout') }}">Déconnexion</a></li>
+									<li>
+										<a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_profile') }}">Profil</a>
+									</li>
+									<li>
+										<a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_logout') }}">Déconnexion</a>
+									</li>
 								</ul>
 							</li>
 						{% else %}
@@ -40,4 +51,5 @@
 			</ul>
 		</div>
 	</nav>
+
 </div>

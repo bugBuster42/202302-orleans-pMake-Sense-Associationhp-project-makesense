@@ -17,13 +17,17 @@ class SearchDecisionType extends AbstractType
     {
         $builder
             ->setMethod('GET')
-            ->add('search', SearchType::class)
+            ->add('search', SearchType::class, [
+                'required' => false,
+
+            ])
             ->add(
                 'status',
                 ChoiceType::class,
                 [
                     'choices' => array_flip(Decision::STATUS),
                     'placeholder' => 'Avancée de la décision',
+                    'required' => false,
                 ]
             )
             ->add(
@@ -33,6 +37,8 @@ class SearchDecisionType extends AbstractType
                     'class' => Category::class,
                     'choice_label' => 'title',
                     'placeholder' => 'Catégorie',
+                    'required' => false,
+
                 ]
             );
     }

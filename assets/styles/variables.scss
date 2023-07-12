@@ -9,7 +9,7 @@ $danger: #C10B63;
 $font-title: "Raleway";
 $font-text: "Lato";
 $font-weight-bold: 800;
-$pills: #FFF30D;
+$pills: #fcf239;
 $fourthly: #196C84;
 
 body {
@@ -20,6 +20,10 @@ body {
         color: $primary;
         font-family: $font-title;
     }
+}
+
+main {
+    min-height: 80vh;
 }
 
 .title {

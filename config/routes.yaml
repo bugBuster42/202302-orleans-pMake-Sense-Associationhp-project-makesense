@@ -9,3 +9,6 @@ kernel:
 app_logout:
     path: /logout
     methods: GET
+
+live_component:
+    resource: '@LiveComponentBundle/config/routes.php'

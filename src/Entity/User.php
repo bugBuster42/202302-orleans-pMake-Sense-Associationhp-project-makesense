@@ -51,15 +51,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: Comment::class)]
     private Collection $comments;
 
-    public function __construct()
-    {
-        $this->comments = new ArrayCollection();
-        $this->decisions = new ArrayCollection();
-        $this->expertUsers = new ArrayCollection();
-        $this->impactedUsers = new ArrayCollection();
-        $this->notifications = new ArrayCollection();
-    }
-
     #[ORM\Column(length: 255)]
     private ?string $firstname = null;
 
@@ -94,6 +85,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Notification::class, orphanRemoval: true)]
     private Collection $notifications;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $isActivated = false;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->decisions = new ArrayCollection();
+        $this->expertUsers = new ArrayCollection();
+        $this->impactedUsers = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -368,7 +371,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->notifications->add($notification);
             $notification->setUser($this);
         }
-
         return $this;
     }
 
@@ -380,6 +382,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $notification->setUser(null);
             }
         }
+        return $this;
+    }
+
+    public function isIsActivated(): ?bool
+    {
+        return $this->isActivated;
+    }
+
+    public function setIsActivated(bool $isActivated): static
+    {
+        $this->isActivated = $isActivated;
 
         return $this;
     }

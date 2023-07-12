@@ -1,0 +1,6 @@
+<div{{attributes}}>
+	<div class="form-check form-switch">
+		<input class="form-check-input" type="checkbox" role="switch" id="user{{ user.id }}" {{ user.isActivated ? 'checked'}} data-action="live#action" data-action-name="toggleActivation">
+		<label class="form-check-label" for="user{{ user.id }}"></label>
+	</div>
+</div>
