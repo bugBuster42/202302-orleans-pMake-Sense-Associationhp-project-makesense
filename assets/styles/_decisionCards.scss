@@ -43,31 +43,6 @@
     }
 }
 
-.navbar {
-    border-radius: 6rem solid $primary;
-}
-
-@media screen and (max-width: 992px) {
-    .row {
-        width: 80%;
-    }
-}
-
-@media screen and (max-width: 992px) {
-
-    p,
-    .vertical-line {
-        display: none;
-    }
-
-    form {
-        display: flex;
-        justify-content: center;
-        margin: auto;
-    }
-
-    .row {
-        width: 100%;
-    }
-
+.nav-decision .navbar {
+    border-radius: 50px;
 }
