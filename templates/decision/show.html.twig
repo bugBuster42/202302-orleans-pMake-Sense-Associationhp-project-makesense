@@ -20,17 +20,16 @@
 		</div>
 	</div>
 	<div class="container">
-		<h3 class="text-primary fw-bold">Titre</h3>
-		<p class="text-primary">{{ decision.status }}</p>
-		<p class="text-primary">{{ decision.title }}</p>
-		<h3 class="text-primary fw-bold">Date de début de la décision</h3>
-		<p class="text-primary">{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
-		<h3 class="text-primary fw-bold">Catégorie</h3>
-
-		<p class="text-primary">{{ decision.category.title }}</p>
-		<h3 class="text-primary fw-bold">Description de la décision</h2>
-
-		<p class="text-primary">{{ decision.description | raw }}</p>
+		<h2>Titre</h2>
+		<p>{{ decision.status }}</p>
+		<p>{{ decision.title }}</p>
+		<h2>Date de début de la décision</h2>
+		<p>{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
+		<h2>Catégorie</h2>
+		<p>{{ decision.category.title }}</p>
+		<h2>Description de la décision</h2>
+		<p>{{ decision.description | raw }}</p>
+		{{ component('decisionVote', { decision: decision }) }}
 	</div>
 	<div class="container">
 		<div class="accordion" id="accordionExample">
@@ -54,6 +53,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="container">
 		<div class="my-3 ">
 			{% if app.user %}

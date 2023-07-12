@@ -10,6 +10,7 @@ use App\Form\DecisionType;
 use Symfony\Component\Mime\Email;
 use App\Repository\CommentRepository;
 use App\Repository\DecisionRepository;
+use App\Repository\VoteRepository;
 use App\Repository\NotificationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -115,9 +116,10 @@ class DecisionController extends AbstractController
 
             return $this->redirectToRoute('app_decision_show', ['id' => $decision->getId()], Response::HTTP_SEE_OTHER);
         }
+
         return $this->render('decision/show.html.twig', [
             'decision' => $decision,
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
