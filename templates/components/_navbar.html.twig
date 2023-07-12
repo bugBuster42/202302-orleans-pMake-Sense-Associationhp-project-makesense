@@ -26,10 +26,7 @@
 
 					</li>
 					<li class="nav-item">
-						<a class="bell nav-link position-relative" href="#">
-							<span class="position-absolute top-1 start-50 badge rounded-pill bg-danger"></span>
-							<img src="{{ asset('build/images/bell.svg') }}" alt="cloche" width="35px">
-						</a>
+						{{ component('notification') }}
 					</li>
 					<li class="nav-item text-primary">
 						{% if app.user %}
@@ -54,5 +51,4 @@
 			</ul>
 		</div>
 	</nav>
-
 </div>

@@ -79,6 +79,8 @@ class Decision
 
     #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Vote::class)]
     private Collection $votes;
+    #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Notification::class, orphanRemoval: true)]
+    private Collection $notifications;
 
     public function __construct()
     {
@@ -86,6 +88,7 @@ class Decision
         $this->expertUsers = new ArrayCollection();
         $this->impactedUsers = new ArrayCollection();
         $this->votes = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -282,7 +285,6 @@ class Decision
 
         return $this;
     }
-
     /**
      * @return Collection<int, Vote>
      */
@@ -310,6 +312,35 @@ class Decision
             }
         }
 
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Notification>
+     */
+
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notification $notification): static
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            $notification->setDecision($this);
+        }
+        return $this;
+    }
+
+    public function removeNotification(Notification $notification): static
+    {
+        if ($this->notifications->removeElement($notification)) {
+            // set the owning side to null (unless already changed)
+            if ($notification->getDecision() === $this) {
+                $notification->setDecision(null);
+            }
+        }
         return $this;
     }
 }
