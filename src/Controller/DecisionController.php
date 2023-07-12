@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Decision;
+use App\Entity\Notification;
 use App\Form\CommentType;
 use App\Form\DecisionType;
 use Symfony\Component\Mime\Email;
 use App\Repository\CommentRepository;
 use App\Repository\DecisionRepository;
+use App\Repository\NotificationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,8 +33,13 @@ class DecisionController extends AbstractController
     }
 
     #[Route('/ajouter', name: 'app_decision_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, DecisionRepository $decisionRepository, MailerInterface $mailer): Response
-    {
+    public function new(
+        Request $request,
+        DecisionRepository $decisionRepository,
+        NotificationRepository $notifRepository,
+        MailerInterface $mailer
+    ): Response {
+
         $decision = new Decision();
         $form = $this->createForm(DecisionType::class, $decision);
         $form->handleRequest($request);
@@ -46,11 +53,14 @@ class DecisionController extends AbstractController
                     ->from($this->getParameter('mailer_from'))
                     ->to($user->getEmail())
                     ->subject('(Makesense) nouvelle décision')
-                    ->html($this->renderView('decision/newEmailExpert.html.twig', [
-                        'decision' => $decision,
-
-                    ]));
+                    ->html($this->renderView('decision/newEmailExpert.html.twig', ['decision' => $decision,]));
                 $mailer->send($email);
+                $notif = new Notification();
+                $notif->setDecision($decision);
+                $notif->setUser($user);
+                $notif->setMessage($decision->getTitle());
+                $notif->setIsRead(false);
+                $notifRepository->save($notif, true);
             }
             $impactedUsers = $decision->getImpactedUsers();
             foreach ($impactedUsers as $user) {
@@ -60,6 +70,12 @@ class DecisionController extends AbstractController
                     ->subject('(Makesense) nouvelle décision')
                     ->html($this->renderView('decision/newEmailImpacted.html.twig', ['decision' => $decision]));
                 $mailer->send($email);
+                $notif = new Notification();
+                $notif->setDecision($decision);
+                $notif->setUser($user);
+                $notif->setMessage($decision->getTitle());
+                $notif->setIsRead(false);
+                $notifRepository->save($notif, true);
             }
 
             return $this->redirectToRoute('app_decision_index', [], Response::HTTP_SEE_OTHER);
