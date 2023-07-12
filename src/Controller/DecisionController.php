@@ -36,6 +36,7 @@ class DecisionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $decision->setUser($this->getUser());
             $decisionRepository->save($decision, true);
 
             return $this->redirectToRoute('app_decision_index', [], Response::HTTP_SEE_OTHER);
