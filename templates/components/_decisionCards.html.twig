@@ -16,7 +16,7 @@
 							<div class="position-relative">
 								<div class="card-main">
 									{% if decision.user.avatar %}
-										<img class="img-profile rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ decision.user.avatar }}">
+										<img class="img-profile rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}">
 									{% else %}
 										<img class="img-profile rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
 									{% endif %}

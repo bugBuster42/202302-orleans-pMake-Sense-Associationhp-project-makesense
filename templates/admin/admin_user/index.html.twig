@@ -47,7 +47,7 @@
 						<td>{{ user.firstname }}</td>
 						<td>
                    			{% if user.avatar %}
-                        		<img src="{{ asset(user.avatar) }}" alt="Photo" style="width: 60px; height: 60px; border-radius: 10%;">
+                        		<img src="{{ asset('uploads/avatar/' ~ user.avatar) }}" alt="Portrait" style="width: 60px; height: 60px; border-radius: 10%;">
                     		{% else %}
                         		<span>Aucune photo</span>
                     		{% endif %}
