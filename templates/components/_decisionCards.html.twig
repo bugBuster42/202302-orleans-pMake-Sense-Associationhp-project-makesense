@@ -12,22 +12,34 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="card shadow mb-5 border border-0 rounded bg-tertiary">
 						<div class="card-body">
-							<div class="img1"></div>
+							{% if decision.category.image %}
+								<div class='img-container'>
+									<img class="img" src="{{ vich_uploader_asset(decision.category, 'imageFile') }}" alt="Image">
+								</div>
+
+							{% else %}
+								<div class='img-container'>
+									<img class="img" src="{{ decision.category.image}}">
+								</div>
+							{% endif %}
+
 							<div class="position-relative">
 								<div class="card-main">
-									<img class="img-profile rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
-									<div class="statut pt-3 mx-3 text-end">
-										<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded rounded-pill shadow mx-2 text-tertiary">{{ decision.category.title }}</div>
+									<img class="img-profile rounded-circle border border-2 border-tertiary position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
+									<div class="color-card">
+										<div class="statut pt-3 mx-3 text-end">
+											<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded border-2 rounded-pill shadow mx-2 text-tertiary">{{ decision.category.title }}</div>
+
+										</div>
+										<p class="text-tertiary border-primary fw-bolder fs-5 mx-3 mb-2  border-5 p-2 border-bottom">{{ decision.user.fullname }}</p>
 
 									</div>
-									<p class="text-primary border-primary fw-bolder fs-6 mx-3 mb-2  border-primary border-2 p-2 border-bottom">{{ decision.user.fullname }}</p>
 									<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0">{{ decision.title }}</h4>
-									<p class="card-text text-primary fw-bolder mb-1 p-3">{{ decision.status }}</p>
-									<div class="text-end p-3 text-l d-flex justify-content-between primary btn-rounded">
-
-										<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn bg-secondary border-tertiary shadow fw-bolder text-primary my-2 mx-2 fs-6 btn-rounded rounded-pill">En savoir plus</a>
+									<p class="card-text btn text-primary fw-bolder fs-6 border border-2 border-primary px-3 btn-rounded rounded-pill m-3">{{ decision.status }}</p>
+									<div class="text-end p-3 text-l pt-0 primary mb-2 btn-rounded d-flex justify-content-between">
+										<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn bg-secondary border-primary border-2 fw-bolder text-primary my-2 me-2 fs-6 btn-rounded rounded-pill">En savoir plus</a>
 										{% if app.user == decision.user %}
-											<a href="{{ path('app_decision_edit', {'id': decision.id}) }}" class="btn btn-primary border-tertiary shadow fw-bolder text-tertiary my-2 mx-2 fs-6 btn-rounded rounded-pill">Modifier</a>
+											<a href="{{ path('app_decision_edit', {'id': decision.id}) }}" class="btn btn-primary border-tertiary border-2 fw-bolder text-tertiary m-2 fs-6 p-2 btn-rounded rounded-pill">Modifier</a>
 										{% endif %}
 
 									</div>
