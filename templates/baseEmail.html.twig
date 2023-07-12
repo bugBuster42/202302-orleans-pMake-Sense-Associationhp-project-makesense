@@ -16,7 +16,7 @@
 	{% block body %}
 	<h3>{{decision.title}}</h3>
 	<p>
-    	<a href="http://localhost:8000{{ path('app_decision_show', {'id': decision.id}) }}">Clique ici pour accéder a la décision!</a>
+    	<a href="{{ url('app_decision_show', {'id': decision.id}) }}">Clique ici pour accéder a la décision!</a>
 	</p>
 	{% endblock %}
 </div>
