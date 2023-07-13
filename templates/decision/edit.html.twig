@@ -1,19 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier décision{% endblock %}
+{% block title %}Modifier décision
+{% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('addDecision') }}
+{% endblock %}
 
 {% block body %}
-	<h1 class="text-primary text-center fw-bold fs-1 mt-5">Modifier ma décision</h1>
-	{{ decision.status }} 	{{ decision.currentPlace }}
-
+	<h1 class="text-primary text-center fw-bold fs-1 mt-5">Gérer ma décision</h1>
 	<div class="container bg-light rounded  p-4">
 		{% include 'components/_workflowStatus.html.twig' %}
+		<h4 class="fw-bold text-primary mt-2 mb-4">
+			{{ decision.status }}
+		</h4>
 		{{ include('decision/_form.html.twig', {'button_label': 'Mise à jour'}) }}
 		{{ include('decision/_delete_form.html.twig') }}
-	</div>
-	<div class="form-decision container mb-3">
-		<a href="{{ path('app_decision_index') }}" class="btn btn-primary rounded-pill mb-5 mx-5 mt-3">Retour à la liste</a>
+		<div class="form-decision">
+			<a href="{{ path('app_decision_index') }}" class="btn btn-primary fw-bold rounded-pill px-3 my-5">Retour</a>
+		</div>
 
 
 	</div>

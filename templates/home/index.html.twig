@@ -6,57 +6,81 @@
 {% block body %}
 	<header>
 		<div class="home">
-			<div class="position-absolute top-50 start-50 translate-middle fs-1">
+			<div class="position-relative fs-1">
+
 				<h1 class="title donne-sense">donne
-					<span class="pastille"></span>sense
+					<span class="pastille"></span>
+					sense
 				</h1>
 				<h2 class="fw-bold center">à tes idées</h2>
-				<h3 class="fw-bold center text-primary">en interne</h3>
-			</header>
-			<main>
-				<div class="home">
-					{% if app.user %}
-						<div class="title title-vedette d-flex justify-content-center">
-							<h1 class="text-center fw-bold fs-1 my-5">En
-								<span class="pastille"></span>
-								vedette
-							</h1>
-						</div>
-						<div class="container">
-							<div class="row">
-								{% for decision in decisions %}
-									<div class="col-lg-4 col-md-6">
-										<div class="card shadow mb-5 border border-0 rounded bg-tertiary">
-											<div class="card-body p-0">
-												<div class="img1"></div>
-												<div class="position-relative">
-													<div class="card-main">
-														{% if decision.user.avatar %}
-															<img class="img-profile rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}">
-														{% else %}
-															<img class="img-profile rounded-circle position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
-														{% endif %}
+				<div class="citation">
+					<p>
+						<em class="fw-bold fs-5 text-primary max-width-citation">{{ citation.quote }}</em>
+					</p>
+					<p class="author fs-6 text-primary">-
+						{{ citation.author }}
+						-</p>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main>
+		<div class="home">
+			{% if app.user %}
+				<div class="title title-vedette d-flex justify-content-center">
+					<h1 class="text-center fw-bold fs-1 my-5">En
+						<span class="pastille"></span>
+						vedette
+					</h1>
+				</div>
+				<div class="decision" id="cardsContainer">
+					<div class="container g-0">
+						<div class="row">
+							{% for decision in decisions %}
+								<div class="col-lg-4 col-md-6">
+									<div class="card shadow mb-5 border border-0 rounded bg-tertiary">
+										<div class="card-body">
+											<div class="img-container">
+												{% if decision.image %}
+
+													<img class="img" src="{{ asset('uploads/images/decision/' ~ decision.image)}}">
+
+												{% else %}
+													<img class="img" src="{{ asset('uploads/images/category/' ~ decision.category.image) }}" alt="Image">
+
+												{% endif %}
+											</div>
+											<div class="position-relative">
+												<div class="card-main">
+													<img class="img-profile rounded-circle border border-2 border-tertiary position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
+													<div class="color-card">
 														<div class="statut pt-3 mx-3 text-end">
-															<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded rounded-pill mx-2 shadow text-tertiary">Statut</div>
+															<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded border-2 rounded-pill shadow mx-2 text-tertiary">{{ decision.category.title }}</div>
+
 														</div>
-														<p class="text-primary border-primary fw-bolder fs-6 mx-3 mb-2 border-2 p-2 border-bottom">{{ decision.status }}</p>
-														<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0" style="height: 8rem">{{ decision.title }}</h4>
-														<p class="card-text text-primary fw-bolder mb-1 p-3">{{ decision.category.title }}</p>
-														<div class="text-end p-3 text-l tertiary btn-rounded">
-															<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn primary bg-secondary border-tertiary shadow fw-bolder text-primary my-2 mx-2 fs-6 btn-rounded rounded-pill">En savoir plus</a>
-														</div>
+														<p class="text-tertiary border-primary fw-bolder fs-5 mx-3 mb-2  border-5 p-2 border-bottom">{{ decision.user.fullname }}</p>
+
+													</div>
+													<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0">{{ decision.title|u.truncate(40, '...') }}</h4>
+
+													<p class="card-text btn text-primary fw-bolder fs-6 border border-2 border-primary px-3 btn-rounded rounded-pill m-3">{{ decision.status }}</p>
+													<div class="text-end p-3 text-l pt-0 primary mb-2 btn-rounded d-flex justify-content-between">
+														<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn bg-secondary border-primary border-2 fw-bolder text-primary my-3 me-2 px-2 fs-6 btn-rounded rounded-pill">En savoir plus</a>
+														{% if app.user == decision.user %}
+															<a href="{{ path('app_decision_edit', {'id': decision.id}) }}" class="btn btn-primary border-tertiary border-2 fw-bolder text-tertiary my-3 me-2 fs-6 px-2 btn-rounded rounded-pill">Modifier</a>
+														{% endif %}
+
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								{% endfor %}
-							</div>
+								</div>
+							{% endfor %}
 						</div>
-
-					{% endif %}
+					</div>
 				</div>
-			</main>
+			{% endif %}
 		</div>
-	</header>
+	</main>
 {% endblock %}

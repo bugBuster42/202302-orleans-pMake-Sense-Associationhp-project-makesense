@@ -20,6 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[Vich\Uploadable]
 #[UniqueEntity(fields: ['email'], message: 'Cette adresse email existe déjà.')]
+/** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     public function __serialize(): array
@@ -49,7 +50,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: Comment::class)]
     private Collection $comments;
-
 
     #[ORM\Column(length: 255)]
     private ?string $firstname = null;
@@ -83,8 +83,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Decision::class, mappedBy: 'impactedUsers')]
     private Collection $impactedUsers;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Notification::class, orphanRemoval: true)]
+    private Collection $notifications;
+
     #[ORM\Column(nullable: true)]
     private ?bool $isActivated = false;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vote::class)]
+    private Collection $votes;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->decisions = new ArrayCollection();
+        $this->expertUsers = new ArrayCollection();
+        $this->impactedUsers = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
+        $this->votes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -345,6 +361,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * @return Collection<int, Notification>
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notification $notification): static
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            $notification->setUser($this);
+        }
+        return $this;
+    }
+
+    public function removeNotification(Notification $notification): static
+    {
+        if ($this->notifications->removeElement($notification)) {
+            // set the owning side to null (unless already changed)
+            if ($notification->getUser() === $this) {
+                $notification->setUser(null);
+            }
+        }
+        return $this;
+    }
+
     public function isIsActivated(): ?bool
     {
         return $this->isActivated;
@@ -357,11 +401,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function __construct()
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
     {
-        $this->comments = new ArrayCollection();
-        $this->decisions = new ArrayCollection();
-        $this->expertUsers = new ArrayCollection();
-        $this->impactedUsers = new ArrayCollection();
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): static
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes->add($vote);
+            $vote->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): static
+    {
+        if ($this->votes->removeElement($vote)) {
+            // set the owning side to null (unless already changed)
+            if ($vote->getUser() === $this) {
+                $vote->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

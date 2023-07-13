@@ -5,6 +5,7 @@
 .link {
     font-family: $font-title;
     border: 1px solid $tertiary;
+    border-radius: 2rem;
 
 }
 
@@ -22,6 +23,6 @@
     transform: rotate(8deg);
 }
 
-.navbar {
-    border-bottom: 4px solid $primary;
+.notif {
+    width: 20rem;
 }
