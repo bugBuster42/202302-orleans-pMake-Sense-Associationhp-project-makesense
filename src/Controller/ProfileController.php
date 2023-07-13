@@ -11,21 +11,27 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile')]
-    public function index(Request $request, UserRepository $userRepository): Response
+    #[Route('/profile/{id}', name: 'app_profile')]
+    public function index(Request $request, UserRepository $userRepository, int $id): Response
     {
-        $user = $this->getUser();
+        $user = $userRepository->find($id);
+
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé.');
+        }
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
 
-            return $this->redirectToRoute('app_profile');
+            return $this->redirectToRoute('app_profile', ['id' => $id]);
         }
 
         return $this->render('profile/index.html.twig', [
-            'form' => $form,
+            'form' => $form->createView(),
+            'user' => $user,
         ]);
     }
 }

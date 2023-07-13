@@ -38,19 +38,19 @@
 								</a>
 								<ul class="dropdown-menu dropdown-menu-end bg-primary border border-secondary">
 									<li>
-										<a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_profile') }}">Profil</a>
+										<a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_profile', {'id': app.user.id}) }}">Profil</a>
 									</li>
 									<li>
 										<a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_logout') }}">Déconnexion</a>
 									</li>
 								</ul>
 							</li>
+						{% else %}
+							<a class="link nav-link fw-bold text-primary px-3" href="{{ path('app_login') }}">Connexion</a>
 						{% endif %}
-					{% else %}
-						<a class="link nav-link fw-bold text-primary px-3" href="{{ path('app_login') }}">Connexion</a>
-					{% endif %}
+					</li>
 				</li>
-			</li>
-		</ul>
-	</div>
-</nav></div>
+			</ul>
+		</div>
+	</nav>
+</div>
