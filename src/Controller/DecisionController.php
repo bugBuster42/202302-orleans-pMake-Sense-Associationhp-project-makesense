@@ -49,6 +49,8 @@ class DecisionController extends AbstractController
             $decision->setUser($this->getUser());
             $decisionRepository->save($decision, true);
 
+            $this->addFlash('success', 'La nouvelle décision a bien été créée.');
+
             $expertUsers = $decision->getExpertUsers();
             foreach ($expertUsers as $user) {
                 $email = (new Email())
@@ -114,6 +116,8 @@ class DecisionController extends AbstractController
             $comment->setDecision($decision);
             $commentRepository->save($comment, true);
 
+            $this->addFlash('success', 'Votre commentaire a bien été ajouté.');
+
             return $this->redirectToRoute('app_decision_show', ['id' => $decision->getId()], Response::HTTP_SEE_OTHER);
         }
 
@@ -138,6 +142,8 @@ class DecisionController extends AbstractController
             $decision = $form->getData();
 
             $decisionRepository->save($decision, true);
+
+            $this->addFlash('success', 'La décision a bien été modifiée.');
 
             return $this->redirectToRoute('app_decision_index', [], Response::HTTP_SEE_OTHER);
         }
