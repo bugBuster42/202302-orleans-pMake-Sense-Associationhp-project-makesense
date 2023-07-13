@@ -6,23 +6,22 @@
 
 
 <div class="decision" id="cardsContainer">
-	<div class="container">
+	<div class="container g-0">
 		<div class="row">
 			{% for decision in decisions %}
 				<div class="col-lg-4 col-md-6">
 					<div class="card shadow mb-5 border border-0 rounded bg-tertiary">
 						<div class="card-body">
-							{% if decision.category.image %}
-								<div class='img-container'>
-									<img class="img" src="{{ vich_uploader_asset(decision.category, 'imageFile') }}" alt="Image">
-								</div>
+							<div class="img-container">
+								{% if decision.image %}
 
-							{% else %}
-								<div class='img-container'>
-									<img class="img" src="{{ decision.category.image}}">
-								</div>
-							{% endif %}
+									<img class="img" src="{{ asset('uploads/images/decision/' ~ decision.image)}}">
 
+								{% else %}
+									<img class="img" src="{{ asset('uploads/images/category/' ~ decision.category.image) }}" alt="Image">
+
+								{% endif %}
+							</div>
 							<div class="position-relative">
 								<div class="card-main">
 									<img class="img-profile rounded-circle border border-2 border-tertiary position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
@@ -37,9 +36,9 @@
 									<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0">{{ decision.title }}</h4>
 									<p class="card-text btn text-primary fw-bolder fs-6 border border-2 border-primary px-3 btn-rounded rounded-pill m-3">{{ decision.status }}</p>
 									<div class="text-end p-3 text-l pt-0 primary mb-2 btn-rounded d-flex justify-content-between">
-										<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn bg-secondary border-primary border-2 fw-bolder text-primary my-2 me-2 fs-6 btn-rounded rounded-pill">En savoir plus</a>
+										<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn bg-secondary border-primary border-2 fw-bolder text-primary my-3 me-2 px-2 fs-6 btn-rounded rounded-pill">En savoir plus</a>
 										{% if app.user == decision.user %}
-											<a href="{{ path('app_decision_edit', {'id': decision.id}) }}" class="btn btn-primary border-tertiary border-2 fw-bolder text-tertiary m-2 fs-6 p-2 btn-rounded rounded-pill">Modifier</a>
+											<a href="{{ path('app_decision_edit', {'id': decision.id}) }}" class="btn btn-primary border-tertiary border-2 fw-bolder text-tertiary my-3 me-2 fs-6 px-2 btn-rounded rounded-pill">Modifier</a>
 										{% endif %}
 
 									</div>
