@@ -34,7 +34,8 @@
 										<p class="text-tertiary border-primary fw-bolder fs-5 mx-3 mb-2  border-5 p-2 border-bottom">{{ decision.user.fullname }}</p>
 
 									</div>
-									<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0">{{ decision.title }}</h4>
+									<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0">{{ decision.title|u.truncate(40, '...') }}</h4>
+
 									<p class="card-text btn text-primary fw-bolder fs-6 border border-2 border-primary px-3 btn-rounded rounded-pill m-3">{{ decision.status }}</p>
 									<div class="text-end p-3 text-l pt-0 primary mb-2 btn-rounded d-flex justify-content-between">
 										<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn bg-secondary border-primary border-2 fw-bolder text-primary my-2 me-2 fs-6 btn-rounded rounded-pill">En savoir plus</a>

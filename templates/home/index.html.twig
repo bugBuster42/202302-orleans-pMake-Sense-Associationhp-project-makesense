@@ -45,7 +45,8 @@
 													<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded rounded-pill mx-2 shadow text-tertiary">Statut</div>
 												</div>
 												<p class="text-primary border-primary fw-bolder fs-6 mx-3 mb-2 border-2 p-2 border-bottom">{{ decision.status }}</p>
-												<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0" style="height: 8rem">{{ decision.title }}</h4>
+												<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0" style="height: 8rem">{{ decision.title|u.truncate(40, '...') }}</h4>
+
 												<p class="card-text text-primary fw-bolder mb-1 p-3">{{ decision.category.title }}</p>
 												<div class="text-end p-3 text-l tertiary btn-rounded">
 													<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn primary bg-secondary border-tertiary shadow fw-bolder text-primary my-2 mx-2 fs-6 btn-rounded rounded-pill">En savoir plus</a>
