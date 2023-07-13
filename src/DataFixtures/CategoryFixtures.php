@@ -27,7 +27,7 @@ class CategoryFixtures extends Fixture
             $this->addReference('category_' . $key, $category);
             copy(
                 __DIR__ . '/images/' . $categoryData['image'],
-                'public/uploads/images/category/' . $categoryData['image']
+                'src/DataFixtures/images/' . $categoryData['image']
             );
             $manager->persist($category);
         }

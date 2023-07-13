@@ -49,14 +49,16 @@ class DecisionController extends AbstractController
             $decision->setUser($this->getUser());
             $decisionRepository->save($decision, true);
 
+            $this->addFlash('success', 'La nouvelle décision a bien été créée.');
+
             $expertUsers = $decision->getExpertUsers();
             foreach ($expertUsers as $user) {
-                $email = (new Email())
-                    ->from($this->getParameter('mailer_from'))
-                    ->to($user->getEmail())
-                    ->subject('(Makesense) nouvelle décision')
-                    ->html($this->renderView('decision/newEmailExpert.html.twig', ['decision' => $decision,]));
-                $mailer->send($email);
+                // $email = (new Email())
+                //     ->from($this->getParameter('mailer_from'))
+                //     ->to($user->getEmail())
+                //     ->subject('(Makesense) nouvelle décision')
+                //     ->html($this->renderView('decision/newEmailExpert.html.twig', ['decision' => $decision,]));
+                // $mailer->send($email);
                 $notif = new Notification();
                 $notif->setDecision($decision);
                 $notif->setUser($user);
@@ -66,12 +68,12 @@ class DecisionController extends AbstractController
             }
             $impactedUsers = $decision->getImpactedUsers();
             foreach ($impactedUsers as $user) {
-                $email = (new Email())
-                    ->from($this->getParameter('mailer_from'))
-                    ->to($user->getEmail())
-                    ->subject('(Makesense) nouvelle décision')
-                    ->html($this->renderView('decision/newEmailImpacted.html.twig', ['decision' => $decision]));
-                $mailer->send($email);
+                // $email = (new Email())
+                //     ->from($this->getParameter('mailer_from'))
+                //     ->to($user->getEmail())
+                //     ->subject('(Makesense) nouvelle décision')
+                //     ->html($this->renderView('decision/newEmailImpacted.html.twig', ['decision' => $decision]));
+                // $mailer->send($email);
                 $notif = new Notification();
                 $notif->setDecision($decision);
                 $notif->setUser($user);
@@ -114,6 +116,8 @@ class DecisionController extends AbstractController
             $comment->setDecision($decision);
             $commentRepository->save($comment, true);
 
+            $this->addFlash('success', 'Votre commentaire a bien été ajouté.');
+
             return $this->redirectToRoute('app_decision_show', ['id' => $decision->getId()], Response::HTTP_SEE_OTHER);
         }
 
@@ -138,6 +142,8 @@ class DecisionController extends AbstractController
             $decision = $form->getData();
 
             $decisionRepository->save($decision, true);
+
+            $this->addFlash('success', 'La décision a bien été modifié.');
 
             return $this->redirectToRoute('app_decision_index', [], Response::HTTP_SEE_OTHER);
         }
