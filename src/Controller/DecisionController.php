@@ -53,12 +53,12 @@ class DecisionController extends AbstractController
 
             $expertUsers = $decision->getExpertUsers();
             foreach ($expertUsers as $user) {
-                // $email = (new Email())
-                //     ->from($this->getParameter('mailer_from'))
-                //     ->to($user->getEmail())
-                //     ->subject('(Makesense) nouvelle décision')
-                //     ->html($this->renderView('decision/newEmailExpert.html.twig', ['decision' => $decision,]));
-                // $mailer->send($email);
+                $email = (new Email())
+                    ->from($this->getParameter('mailer_from'))
+                    ->to($user->getEmail())
+                    ->subject('(Makesense) nouvelle décision')
+                    ->html($this->renderView('decision/newEmailExpert.html.twig', ['decision' => $decision,]));
+                $mailer->send($email);
                 $notif = new Notification();
                 $notif->setDecision($decision);
                 $notif->setUser($user);
@@ -68,12 +68,12 @@ class DecisionController extends AbstractController
             }
             $impactedUsers = $decision->getImpactedUsers();
             foreach ($impactedUsers as $user) {
-                // $email = (new Email())
-                //     ->from($this->getParameter('mailer_from'))
-                //     ->to($user->getEmail())
-                //     ->subject('(Makesense) nouvelle décision')
-                //     ->html($this->renderView('decision/newEmailImpacted.html.twig', ['decision' => $decision]));
-                // $mailer->send($email);
+                $email = (new Email())
+                    ->from($this->getParameter('mailer_from'))
+                    ->to($user->getEmail())
+                    ->subject('(Makesense) nouvelle décision')
+                    ->html($this->renderView('decision/newEmailImpacted.html.twig', ['decision' => $decision]));
+                $mailer->send($email);
                 $notif = new Notification();
                 $notif->setDecision($decision);
                 $notif->setUser($user);
@@ -143,7 +143,7 @@ class DecisionController extends AbstractController
 
             $decisionRepository->save($decision, true);
 
-            $this->addFlash('success', 'La décision a bien été modifié.');
+            $this->addFlash('success', 'La décision a bien été modifiée.');
 
             return $this->redirectToRoute('app_decision_index', [], Response::HTTP_SEE_OTHER);
         }

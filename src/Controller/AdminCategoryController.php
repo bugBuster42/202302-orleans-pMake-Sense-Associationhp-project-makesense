@@ -54,7 +54,7 @@ class AdminCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->save($category, true);
 
-            $this->addFlash('success', 'La catégorie a bien été modifié.');
+            $this->addFlash('success', 'La catégorie a bien été modifiée.');
 
             return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
