@@ -77,11 +77,18 @@ class Decision
     #[JoinTable('impacted_user')]
     private Collection $impactedUsers;
 
+    #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Vote::class)]
+    private Collection $votes;
+    #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Notification::class, orphanRemoval: true)]
+    private Collection $notifications;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->expertUsers = new ArrayCollection();
         $this->impactedUsers = new ArrayCollection();
+        $this->votes = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -276,6 +283,64 @@ class Decision
     {
         $this->impactedUsers->removeElement($impactedUser);
 
+        return $this;
+    }
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): static
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes->add($vote);
+            $vote->setDecision($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): static
+    {
+        if ($this->votes->removeElement($vote)) {
+            // set the owning side to null (unless already changed)
+            if ($vote->getDecision() === $this) {
+                $vote->setDecision(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Notification>
+     */
+
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notification $notification): static
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            $notification->setDecision($this);
+        }
+        return $this;
+    }
+
+    public function removeNotification(Notification $notification): static
+    {
+        if ($this->notifications->removeElement($notification)) {
+            // set the owning side to null (unless already changed)
+            if ($notification->getDecision() === $this) {
+                $notification->setDecision(null);
+            }
+        }
         return $this;
     }
 }

@@ -1,0 +1,16 @@
+<div{{attributes}}>
+	{% if hasVoted == false %}
+		{% if decision.status == 'Prise de décision commencée' and app.user != decision.user or decision.status == 'Décision définitive' and app.user != decision.user %}
+			<button type="button" class="btn btn-secondary" data-action="live#action" data-action-name="voted(direction=up)">
+				Vote pour
+			</button>
+			<button type="button" class="btn btn-secondary" data-action="live#action" data-action-name="voted(direction=down)">
+				Vote contre
+			</button>
+		{% endif %}
+	{% endif %}
+	<p>vote pour
+		{{ this.decision.votes|filter(vote => vote.voting == 1)|length }}</p>
+	<p>Vote contre
+		{{ this.decision.votes|filter(vote => vote.voting == -1)|length }}</p>
+</div>

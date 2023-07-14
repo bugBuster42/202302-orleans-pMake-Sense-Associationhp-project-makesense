@@ -17,7 +17,7 @@ class UserFixtures extends Fixture
         'ROLE_EMPLOYEE',
     ];
 
-    public const  USER_NUMBER = 24;
+    public const  USER_NUMBER = 80;
 
     private UserPasswordHasherInterface $passwordHasher;
 
@@ -35,6 +35,7 @@ class UserFixtures extends Fixture
         $user->setEmail('user@makesense.com');
         $user->setRoles(['ROLE_USER']);
         $user->setIsActivated(true);
+        $user->setAvatar('avatar83.jpg');
 
         $this->addReference('user_0', $user);
 
@@ -48,6 +49,7 @@ class UserFixtures extends Fixture
         $employee->setEmail('employee@makesense.com');
         $employee->setRoles(['ROLE_EMPLOYEE']);
         $employee->setIsActivated(true);
+        $employee->setAvatar('avatar82.jpg');
 
         $this->addReference('user_1', $user);
 
@@ -61,6 +63,7 @@ class UserFixtures extends Fixture
         $admin->setEmail('admin@makesense.com');
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setIsActivated(true);
+        $admin->setAvatar('avatar81.jpg');
 
         $this->addReference('user_2', $user);
 
@@ -72,12 +75,21 @@ class UserFixtures extends Fixture
 
         for ($i = 0; $i < self::USER_NUMBER; $i++) {
             $user = new User();
+            $avatar = 'avatar' . ($i + 1) . '.jpg';
+
             $user->setFirstname($faker->firstName());
             $user->setLastname($faker->lastName());
             $user->setEmail($faker->email());
             $user->setRoles([$faker->randomElement(self::USER_ROLES)]);
 
+            $user->setAvatar($avatar);
+
             $this->addReference('user_' . ($i + 3), $user);
+
+            copy(
+                __DIR__ . '/avatar/' . $avatar,
+                'public/uploads/avatar/' . $avatar
+            );
 
             $hashedPassword = $this->passwordHasher->hashPassword($user, $faker->password());
             $user->setPassword($hashedPassword);

@@ -13,13 +13,16 @@ $pills: #fcf239;
 $fourthly: #196C84;
 
 body {
-    background-color: $tertiary;
     min-height: 100vh;
 
     h1 {
         color: $primary;
         font-family: $font-title;
     }
+}
+
+main {
+    min-height: 60vh;
 }
 
 .title {

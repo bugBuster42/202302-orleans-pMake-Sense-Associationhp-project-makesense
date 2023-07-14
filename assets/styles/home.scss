@@ -1,23 +1,25 @@
 .home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
     background-image: url('../images/map.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    min-height: 70vh;
+    min-height: 65vh;
     overflow: auto;
-
-    .container {
-        width: 80%;
-    }
 
     .card-body {
 
         .card-main {
             background-position: center;
 
-            .img {
-                width: 90px;
+            .img-profile {
+                width: 95px;
+                top: -45px;
             }
         }
 
@@ -40,9 +42,7 @@
         font-weight: 900;
         color: $primary;
     }
-
 }
-
 
 .donne-sense {
     font-size: 6.5rem;
@@ -51,7 +51,8 @@
     .pastille::after {
         width: 42px;
         height: 20px;
-        left: -30px;
+        left: -22px;
+        top: -2px;
         border-radius: 33%;
     }
 }
