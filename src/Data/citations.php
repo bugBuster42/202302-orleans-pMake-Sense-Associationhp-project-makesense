@@ -1,6 +1,5 @@
 <?php
 
-// Tableau des citations
 return [
     [
         'quote' => "L'idéation est la clé de l'innovation.",

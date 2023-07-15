@@ -20,7 +20,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[Vich\Uploadable]
 #[UniqueEntity(fields: ['email'], message: 'Cette adresse email existe déjà.')]
-/** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
+/**
+ *  @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ *  @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     public function __serialize(): array
@@ -60,7 +63,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Decision::class)]
     private Collection $decisions;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true, length: 250)]
+    #[Assert\Length(max: 250)]
     private ?string $biography = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -256,6 +260,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getCreatedDecisionsCount(): int
+    {
+        return $this->decisions->count();
+    }
+
     public function getBiography(): ?string
     {
         return $this->biography;
@@ -334,6 +343,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getExpertDecisionsCount(): int
+    {
+        return $this->expertUsers->count();
+    }
+
     /**
      * @return Collection<int, Decision>
      */
@@ -359,6 +373,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function getImpactedDecisionsCount(): int
+    {
+        return $this->impactedUsers->count();
     }
 
     /**
