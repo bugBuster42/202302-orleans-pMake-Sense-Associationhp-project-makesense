@@ -25,9 +25,9 @@
 							<div class="position-relative">
 								<div class="card-main">
 									{% if decision.user.avatar %}
-										<img class="img-profile rounded-circleborder border-2 border-tertiary position-absolute shadow mx-4 bg-tertiary" src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}">
+										<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}">
 									{% else %}
-										<img class="img-profile rounded-circle position-absolute border border-2 border-tertiary shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
+										<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('build/images/profil.png')}}">
 									{% endif %}
 									<div class="color-card">
 										<div class="statut pt-3 mx-3 text-end">
