@@ -83,7 +83,7 @@ class DecisionController extends AbstractController
                 $notifRepository->save($notif, true);
             }
 
-            return $this->redirectToRoute('app_decision_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('status_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('decision/new.html.twig', [
@@ -156,7 +156,7 @@ class DecisionController extends AbstractController
 
             $this->addFlash('success', 'La décision a bien été modifiée.');
 
-            return $this->redirectToRoute('app_decision_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('status_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('decision/edit.html.twig', [
@@ -171,8 +171,9 @@ class DecisionController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $decision->getId(), $request->request->get('_token'))) {
             $decisionRepository->remove($decision, true);
+            $this->addFlash('success', 'La décision a bien été supprimée.');
         }
 
-        return $this->redirectToRoute('app_decision_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('status_home', [], Response::HTTP_SEE_OTHER);
     }
 }
