@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Data;
+
 return [
     [
         'quote' => "L'idéation est la clé de l'innovation.",
