@@ -43,12 +43,18 @@
 			<tbody>
 				{% for user in users %}
 					<tr>
-						<td>{{ user.lastname }}</td>
-						<td>{{ user.firstname }}</td>
+						<td>
+						<a href="{{ path('app_profile', {'id': user.id}) }}">{{ user.lastname }}</a>
+						</td>
+						<td>
+						<a href="{{ path('app_profile', {'id': user.id}) }}">{{ user.firstname }}</a>
+						</td>
 						<td>
                    			{% if user.avatar %}
+							<a href="{{ path('app_profile', {'id': user.id}) }}">
                         		<img src="{{ asset('uploads/avatar/' ~ user.avatar) }}" alt="Portrait" style="width: 60px; height: 60px; border-radius: 10%;">
-                    		{% else %}
+                    		</a>
+							{% else %}
                         		<span>Aucune photo</span>
                     		{% endif %}
                 		</td>

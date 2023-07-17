@@ -53,17 +53,21 @@
 											<div class="position-relative">
 												<div class="card-main">
 													{% if decision.user.avatar %}
-														<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}">
+														<a href="{{ path('app_profile', {'id': decision.user.id}) }}">
+															<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}">
+														</a>
 													{% else %}
-														<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('build/images/profil.png')}}">
+														<a href="{{ path('app_profile', {'id': decision.user.id}) }}">
+															<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('build/images/profil.png')}}">
+														</a>
 													{% endif %}
 													<div class="color-card">
 														<div class="statut pt-3 mx-3 text-end">
 															<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded border-2 rounded-pill shadow mx-2 text-tertiary">{{ decision.category.title }}</div>
-
 														</div>
-														<p class="text-tertiary border-primary fw-bolder fs-5 mx-3 mb-2  border-5 p-2 border-bottom">{{ decision.user.fullname }}</p>
-
+														<a href="{{ path('app_profile', {'id': decision.user.id}) }}">
+															<p class="text-tertiary border-primary fw-bolder fs-5 mx-3 mb-2  border-5 p-2 border-bottom">{{ decision.user.fullname }}</p>
+														</a>
 													</div>
 													<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0">{{ decision.title|u.truncate(40, '...') }}</h4>
 
