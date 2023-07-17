@@ -12,7 +12,7 @@
 	<div class="container d-flex justify-content-center">
 		<div class="card p-3 py-4">
 			<div class="text-center">
-				<img src="{{ vich_uploader_asset(user) }}" alt="portrait" width="220" class="rounded-circle mb-3">
+				<img src="{{ vich_uploader_asset(user) }}" alt="portrait" width="220" height="220" class="rounded-circle mb-3">
 				{% if app.user == user %}
 					{{ form_start(form) }}
 					<div class="d-flex justify-content-center align-items-center upload-container">
