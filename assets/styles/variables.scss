@@ -15,7 +15,8 @@ $fourthly: #196C84;
 body {
     min-height: 100vh;
 
-    h1 {
+    h1,
+    h2 {
         color: $primary;
         font-family: $font-title;
     }

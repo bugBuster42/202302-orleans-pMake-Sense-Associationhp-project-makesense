@@ -68,5 +68,9 @@ a {
 .decision-show {
 
     background-color: transparentize($secondary, 0.90);
+}
 
+.ts-wrapper .multi .ts-control>div {
+    background: $primary;
+    border: 1px solid $primary;
 }

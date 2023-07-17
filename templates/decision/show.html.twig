@@ -4,66 +4,96 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-primary text-center fw-bold fs-1 my-5">Détail de la décision</h1>
-	<div class="container decision-show d-flex justify-content-end">
-		<div class="dropdown  mx-2">
-			<button class="btn btn-secondary text-primary fw-bold py-2 px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-				Personnes impactées
-			</button>
-			<ul class="dropdown-menu"></ul>
-		</div>
-		<div class="dropdown  mx-2">
-			<button class="btn btn-secondary text-primary fw-bold p-2 px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-				Personnes expertes
-			</button>
-			<ul class="dropdown-menu"></ul>
-		</div>
-	</div>
-	<div class="container">
-		<h2>Titre</h2>
-		<p>{{ decision.status }}</p>
-		<p>{{ decision.title }}</p>
-		<h2>Date de début de la décision</h2>
-		<p>{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
-		<h2>Catégorie</h2>
-		<p>{{ decision.category.title }}</p>
-		<h2>Description de la décision</h2>
-		<p>{{ decision.description | raw }}</p>
-		{{ component('decisionVote', { decision: decision }) }}
-	</div>
-	<div class="container">
-		<div class="accordion" id="accordionExample">
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="headingOne">
-					<button class="accordion-button border border-2 border-secondary shadow bg-white text-primary fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						Avis
-					</button>
-				</h2>
-				<div id="collapseOne" class="accordion-collapse collapse show border border-top-0 border-2 border-secondary shadow text-primary" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+	<div class="decision-show">
+		<h1 class="text-primary text-center fw-bold fs-1 my-5">Détail de la décision</h1>
+		<div class="container d-flex justify-content-end">
+			<div class="dropdown mx-2">
+				<button class="btn btn-primary text-light fw-bold p-2 px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Personnes impactées
+				</button>
+				<ul class="dropdown-menu text-primary bg-tertiary border border-tertiary" aria-labelledby="dropdownMenuButton">
 
-					{% for comment in decision.comments %}
-						<div class="accordion-body">
-							<div class="border-bottom border-primary">
-								<p class="text-primary">{{ comment.user.email }}</p>
-								<p class="text-primary">{{ comment.text}}</p>
-							</div>
-						</div>
+					{% for impactedUsers in decision.impactedUsers %}
+						<li>
+							<a class="dropdown-item text-primary fw-bold" href="{{ path('app_profile', {'id': impactedUsers.id}) }}">
+								{{ impactedUsers.firstname }}
+								{{ impactedUsers.lastname }}
+								{{ impactedUsers.avatar }}
+
+							</a>
+						</li>
 					{% endfor %}
+				</ul>
+			</div>
+
+
+			<div class="dropdown mx-2">
+				<button class="btn btn-primary text-light fw-bold p-2 px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Personnes impactées
+				</button>
+				<ul class="dropdown-menu text-primary bg-tertiary border border-tertiary" aria-labelledby="dropdownMenuButton">
+					{% for expertUsers in decision.expertUsers %}
+						<li>
+							<a class="dropdown-item text-primary fw-bold" href="{{ path('app_profile', {'id': expertUsers.id}) }}">
+								{{ expertUsers.firstname }}
+								{{ expertUsers.lastname }}
+								{{ expertUsers.avatar }}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+
+		</div>
+		<div class="container text-primary fw-bold">
+			<h2>Titre</h2>
+			<p>{{ decision.status }}</p>
+			<p>{{ decision.title }}</p>
+			<h2>Date de début de la décision</h2>
+			<p>{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
+			<h2>Catégorie</h2>
+			<p>{{ decision.category.title }}</p>
+			<h2>Description de la décision</h2>
+			<p>{{ decision.description | raw }}</p>
+			{{ component('decisionVote', { decision: decision }) }}
+		</div>
+		<div class="container">
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button border border-2 border-secondary shadow bg-white text-primary fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Avis
+						</button>
+					</h2>
+					<div id="collapseOne" class="accordion-collapse collapse show border border-top-0 border-2 border-secondary shadow text-primary" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+
+						{% for comment in decision.comments %}
+							<div class="accordion-body">
+								<div class="border-bottom border-primary">
+									<p class="text-primary">{{ comment.user.email }}</p>
+									<p class="text-primary">{{ comment.text}}</p>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="container">
-		<div class="my-3 ">
-			{% if app.user %}
-				{{ form_start(form) }}
-				{{ form_widget(form, { 'attr': {'class': 'text-primary fw-bold'}}) }}
+		<div class="container">
+			<div class="my-3 ">
+				{% if app.user %}
+					{{ form_start(form) }}
+					{{ form_widget(form, { 'attr': {'class': 'text-primary fw-bold'}}) }}
 
-				<button class="btn btn-light text-primary my-3 border border-secondary rounded-pill">{{ button_label|default('Laissez un commentaire') }}</button>
-				{{ form_end(form) }}
-			{% endif %}
-			<a class="btn btn-primary my-5" href="{{ path('status_home') }}">Retour à la liste</a>
+					<button class="btn btn-light border border-2 border-secondary shadow rounded-pill px-3 my-4 text-primary fw-bold">{{ button_label|default('Laissez un commentaire') }}</button>
+
+					{{ form_end(form) }}
+				{% endif %}
+				<a class="btn btn-primary fw-bold rounded-pill shadow px-3 my-5" href="{{ path('status_home') }}">Retour à la liste</a>
+
+			</div>
 		</div>
 	</div>
 {% endblock %}

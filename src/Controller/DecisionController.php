@@ -107,6 +107,7 @@ class DecisionController extends AbstractController
     #[Route('/{id}', name: 'app_decision_show', methods: ['GET', 'POST'])]
     public function show(Request $request, Decision $decision, CommentRepository $commentRepository): Response
     {
+
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
