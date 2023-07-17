@@ -90,7 +90,7 @@ class DecisionController extends AbstractController
         ]);
     }
 
-    #[Route('/change/{id}/{toStatus}', name: 'app_change')]
+    #[Route('/change/{id}/{toStatus}', name: 'app_change', methods: ['POST'])]
     public function change(
         Decision $decision,
         string $toStatus,
@@ -98,7 +98,7 @@ class DecisionController extends AbstractController
         WorkflowInterface $decisionStateMachine,
     ): Response {
 
-        if ($decisionStateMachine->can($decision, $toStatus)) {
+        if ($toStatus && $decisionStateMachine->can($decision, $toStatus)) {
             $decisionStateMachine->apply($decision, $toStatus);
             $decisionRepository->save($decision, true);
         }
@@ -139,9 +139,7 @@ class DecisionController extends AbstractController
         DecisionRepository $decisionRepository,
         WorkflowAdvancement $workflowAdvancement
     ): Response {
-        $workflowName = $workflowAdvancement->firstStepStatus($decision);
-        $workflowStatus = $workflowAdvancement->secondStepStatus($decision);
-        $workflowConflict = $workflowAdvancement->conflictStepStatus($decision);
+        $workflowName = $workflowAdvancement->stepStatus($decision);
 
         $decision->setUser($this->getUser());
         $form = $this->createForm(DecisionType::class, $decision);
@@ -159,8 +157,6 @@ class DecisionController extends AbstractController
             'decision' => $decision,
             'form' => $form,
             'workflowName' => $workflowName,
-            'workflowConflict' => $workflowConflict,
-            'workflowStatus' => $workflowStatus
         ]);
     }
 

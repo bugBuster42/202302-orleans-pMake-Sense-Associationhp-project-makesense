@@ -35,8 +35,8 @@ class Decision
         'to_conflict_modified' => 'Passer au statut deuxième décision',
         'to_modified_accepted' => 'Passer au statut accepté',
         'to_modified_refused' => 'Passer au statut refusé',
-        'to_accepted_ ended' => 'Passer au statut terminé',
-        'to_refused_ ended' => 'Passer au statut terminé',
+        'to_accepted_ended' => 'Passer au statut terminé',
+        'to_refused_ended' => 'Passer au statut terminé',
     ];
 
     #[ORM\Id]

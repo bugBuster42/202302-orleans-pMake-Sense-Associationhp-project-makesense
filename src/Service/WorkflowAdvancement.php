@@ -10,55 +10,48 @@ class WorkflowAdvancement
 
     public const CONFLICT_PERCENTAGE = 50 / 100;
 
-    public function firstStepStatus(Decision $decision): ?string
+    public const MIN_VOTE = 20;
+
+    /** @SuppressWarnings(PHPMD.CyclomaticComplexity) */
+    public function stepStatus(Decision $decision): ?string
     {
         $workflowName = null;
-        switch ($workflowName) {
-            case $decision->getPositiveVote() <= count($decision->getVotes()) * self::FIRST_PERCENTAGE
-                or count($decision->getVotes()) < 20:
-                $workflowName = 'to_decision_opened_accepted';
-                break;
-            case $decision->getNegativeVote() <= count($decision->getVotes()) * self::FIRST_PERCENTAGE
-                or count($decision->getVotes()) < 20:
-                $workflowName = 'to_decision_opened_refused';
-                break;
-            case $decision->getPositiveVote() >= count($decision->getVotes()) * self::FIRST_PERCENTAGE
-                and $decision->getNegativeVote() >= count($decision->getVotes()) * self::FIRST_PERCENTAGE
-                or count($decision->getVotes()) < 20:
-                $workflowName = 'to_decision_opened_conflict';
-                break;
+        if (
+            $decision->getCurrentPlace() === 'opened' && $decision->getPositiveVote() >=
+            count($decision->getVotes()) * self::FIRST_PERCENTAGE
+            && count($decision->getVotes()) > self::MIN_VOTE
+        ) {
+            $workflowName = 'to_decision_opened_accepted';
+        } elseif (
+            $decision->getCurrentPlace() === 'opened' && $decision->getNegativeVote() >=
+            count($decision->getVotes()) * self::FIRST_PERCENTAGE
+            && count($decision->getVotes()) > self::MIN_VOTE
+        ) {
+            $workflowName = 'to_decision_opened_refused';
+        } elseif (
+            $decision->getCurrentPlace() === 'opened' && $decision->getPositiveVote() <=
+            count($decision->getVotes()) * self::FIRST_PERCENTAGE
+            && $decision->getNegativeVote() <= count($decision->getVotes()) * self::FIRST_PERCENTAGE
+            && count($decision->getVotes()) > self::MIN_VOTE
+        ) {
+            $workflowName = 'to_decision_opened_conflict';
+        } elseif ($decision->getCurrentPlace() === 'accepted') {
+            $workflowName = 'to_accepted_ended';
+        } elseif ($decision->getCurrentPlace() === 'refused') {
+            $workflowName = 'to_refused_ended';
+        } elseif ($decision->getCurrentPlace()  === 'conflict') {
+            $workflowName = 'to_conflict_modified';
+        } elseif (
+            $decision->getPositiveVote() >= count($decision->getVotes()) * self::CONFLICT_PERCENTAGE
+            && count($decision->getVotes()) > self::MIN_VOTE
+        ) {
+            $workflowName = 'to_modified_accepted';
+        } elseif (
+            $decision->getNegativeVote() >= count($decision->getVotes()) * self::CONFLICT_PERCENTAGE
+            && count($decision->getVotes()) > self::MIN_VOTE
+        ) {
+            $workflowName = 'to_modified_refused';
         }
         return $workflowName;
-    }
-    public function secondStepStatus(Decision $decision): ?string
-    {
-        $workflowStatus = $decision->getCurrentPlace();
-        switch ($workflowStatus) {
-            case $decision->getCurrentPlace() === 'accepted':
-                $workflowStatus = 'to_accepted_ended';
-                break;
-            case $decision->getCurrentPlace() === 'refused':
-                $workflowStatus = 'to_refused_ended';
-                break;
-            case $decision->getCurrentPlace() === 'conflict':
-                $workflowStatus = 'to_conflict_modified';
-                break;
-        }
-        return $workflowStatus;
-    }
-    public function conflictStepStatus(Decision $decision): ?string
-    {
-        $workflowConflict = null;
-        switch ($workflowConflict = $decision->getCurrentPlace() === 'modified') {
-            case $decision->getPositiveVote() >= count($decision->getVotes()) * self::CONFLICT_PERCENTAGE
-                or count($decision->getVotes()) < 20:
-                $workflowConflict = 'to_modified_accepted';
-                break;
-            case $decision->getNegativeVote() >= count($decision->getVotes()) * self::CONFLICT_PERCENTAGE
-                or count($decision->getVotes()) < 20:
-                $workflowConflict = 'to_modified_refused';
-                break;
-        }
-        return $workflowConflict;
     }
 }

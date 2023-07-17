@@ -1,43 +1,16 @@
-{% if workflowName is defined and workflow_can(decision, workflowName) %}
+{% if workflowName is not null and workflow_can(decision, workflowName) %}
 	<form method="post" action="{{ path('app_change', {'id': decision.id, 'toStatus': workflowName}) }}" >
 		<input type="hidden" name="_token" value="{{ csrf_token('workflow_change' ~ decision.id) }}">
 		<div class="text-end">
 
 			<button class="btn btn-light text-primary my-2 border border-secondary bg-white fw-bold rounded-pill mt-5">
-				{% if constant('App\Entity\Decision::WORKFLOWS' ~ workflowName) is defined %}
-					{{ decision.workflowName }}
+				{% if constant('App\\Entity\\Decision::WORKFLOWS')[workflowName] is defined %}
+					{{ constant('App\\Entity\\Decision::WORKFLOWS')[workflowName] }}
 				{% endif %}
 			</button>
 
 		</div>
 	</form>
 {% endif %}
-{% if workflowStatus is defined and workflow_can(decision, workflowStatus) %}
-	<form method="post" action="{{ path('app_change', {'id': decision.id, 'toStatus': workflowStatus}) }}" >
-		<input type="hidden" name="_token" value="{{ csrf_token('workflow_change' ~ decision.id) }}">
-		<div class="text-end">
 
-			<button class="btn btn-light text-primary my-2 border border-secondary bg-white fw-bold rounded-pill mt-5">
-				{% if constant('App\Entity\Decision::WORKFLOWS' ~ workflowStatus) is defined %}
-					{{ decision.workflowName }}
-				{% endif %}
-			</button>
-
-		</div>
-	</form>
-{% endif %}
-{% if workflowConflict is defined and workflow_can(decision, workflowConflict) %}
-	<form method="post" action="{{ path('app_change', {'id': decision.id, 'toStatus': workflowConflict}) }}" >
-		<input type="hidden" name="_token" value="{{ csrf_token('workflow_change' ~ decision.id) }}">
-		<div class="text-end">
-
-			<button class="btn btn-light text-primary my-2 border border-secondary bg-white fw-bold rounded-pill mt-5">
-				{% if constant('App\Entity\Decision::WORKFLOWS' ~ workflowConflict) is defined %}
-					{{ decision.workflowName }}
-				{% endif %}
-			</button>
-
-		</div>
-	</form>
-{% endif %}
 
