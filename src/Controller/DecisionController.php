@@ -83,7 +83,7 @@ class DecisionController extends AbstractController
                 $notifRepository->save($notif, true);
             }
 
-            return $this->redirectToRoute('app_decision_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('status_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('decision/new.html.twig', [
