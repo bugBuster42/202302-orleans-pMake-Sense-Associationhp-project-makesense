@@ -8,24 +8,28 @@
 		<div class="home">
 			<div class="position-relative fs-1">
 
-				<h1 class="title donne-sense">donne
+
+				<h1 class="title donne-sense text-center mb-5">donne
+
 					<span class="pastille"></span>
 					sense
 				</h1>
-				<h2 class="fw-bold center">à tes idées</h2>
-				<div class="citation">
-					<p>
-						<em class="fw-bold fs-5 text-primary max-width-citation">{{ citation.quote }}</em>
-					</p>
-					<p class="author fs-6 text-primary">-
-						{{ citation.author }}
-						-</p>
+				<div class="container">
+					<h2 class="fw-bold">à tes idées</h2>
+					<div class="citation">
+						<p>
+							<em class="fw-bold fs-5 text-primary max-width-citation">{{ citation.quote }}</em>
+						</p>
+						<p class="author fs-6 text-primary">-
+							{{ citation.author }}
+							-</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</header>
 	<main>
-		<div class="home">
+		<div class="home d-block">
 			{% if app.user %}
 				<div class="title title-vedette d-flex justify-content-center">
 					<h1 class="text-center fw-bold fs-1 my-5">En
@@ -33,7 +37,7 @@
 						vedette
 					</h1>
 				</div>
-				<div class="decision" id="cardsContainer">
+				<div class="decision mb-5" id="cardsContainer">
 					<div class="container g-0">
 						<div class="row">
 							{% for decision in decisions %}
@@ -53,17 +57,21 @@
 											<div class="position-relative">
 												<div class="card-main">
 													{% if decision.user.avatar %}
-														<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}">
+														<a href="{{ path('app_profile', {'id': decision.user.id}) }}">
+															<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}">
+														</a>
 													{% else %}
-														<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('build/images/profil.png')}}">
+														<a href="{{ path('app_profile', {'id': decision.user.id}) }}">
+															<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('build/images/profil.png')}}">
+														</a>
 													{% endif %}
 													<div class="color-card">
 														<div class="statut pt-3 mx-3 text-end">
 															<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded border-2 rounded-pill shadow mx-2 text-tertiary">{{ decision.category.title }}</div>
-
 														</div>
-														<p class="text-tertiary border-primary fw-bolder fs-5 mx-3 mb-2  border-5 p-2 border-bottom">{{ decision.user.fullname }}</p>
-
+														<a href="{{ path('app_profile', {'id': decision.user.id}) }}">
+															<p class="text-tertiary border-primary fw-bolder fs-5 mx-3 mb-2  border-5 p-2 border-bottom">{{ decision.user.fullname }}</p>
+														</a>
 													</div>
 													<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0">{{ decision.title|u.truncate(40, '...') }}</h4>
 

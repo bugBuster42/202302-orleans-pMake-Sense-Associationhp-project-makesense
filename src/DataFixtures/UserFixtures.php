@@ -17,7 +17,7 @@ class UserFixtures extends Fixture
         'ROLE_EMPLOYEE',
     ];
 
-    public const  USER_NUMBER = 80;
+    public const  USER_NUMBER = 40;
 
     private UserPasswordHasherInterface $passwordHasher;
 
@@ -35,7 +35,11 @@ class UserFixtures extends Fixture
         $user->setEmail('user@makesense.com');
         $user->setRoles(['ROLE_USER']);
         $user->setIsActivated(true);
-        $user->setAvatar('avatar83.jpg');
+        $user->setAvatar('avatarBenevole.jpg');
+        copy(
+            __DIR__ . '/avatar/avatarBenevole.jpg',
+            'public/uploads/avatar/avatarBenevole.jpg'
+        );
 
         $this->addReference('user_0', $user);
 
@@ -49,7 +53,11 @@ class UserFixtures extends Fixture
         $employee->setEmail('employee@makesense.com');
         $employee->setRoles(['ROLE_EMPLOYEE']);
         $employee->setIsActivated(true);
-        $employee->setAvatar('avatar82.jpg');
+        $employee->setAvatar('avatarEmployee.jpg');
+        copy(
+            __DIR__ . '/avatar/avatarEmployee.jpg',
+            'public/uploads/avatar/avatarEmployee.jpg'
+        );
 
         $this->addReference('user_1', $user);
 
@@ -63,7 +71,11 @@ class UserFixtures extends Fixture
         $admin->setEmail('admin@makesense.com');
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setIsActivated(true);
-        $admin->setAvatar('avatar81.jpg');
+        $admin->setAvatar('avatarAdmin.jpg');
+        copy(
+            __DIR__ . '/avatar/avatarAdmin.jpg',
+            'public/uploads/avatar/avatarAdmin.jpg'
+        );
 
         $this->addReference('user_2', $user);
 
@@ -81,6 +93,7 @@ class UserFixtures extends Fixture
             $user->setLastname($faker->lastName());
             $user->setEmail($faker->email());
             $user->setRoles([$faker->randomElement(self::USER_ROLES)]);
+            $user->setBiography($faker->text(250));
 
             $user->setAvatar($avatar);
 
@@ -88,11 +101,10 @@ class UserFixtures extends Fixture
 
             copy(
                 __DIR__ . '/avatar/' . $avatar,
-                'public/uploads/avatar/' . $avatar
+                'src/DataFixtures/avatar/' . $avatar
             );
 
-            $hashedPassword = $this->passwordHasher->hashPassword($user, $faker->password());
-            $user->setPassword($hashedPassword);
+            $user->setPassword('');
 
             $user->setIsActivated($faker->boolean);
 

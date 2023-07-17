@@ -1,0 +1,54 @@
+@import "variables";
+
+p {
+    font-family: $font-text;
+}
+
+h2 {
+    font-family: $font-title;
+}
+
+.btn {
+    font-family: $font-title;
+    outline-offset: 6px;
+    outline: 1px solid $secondary;
+    box-shadow: 0 0 8px 0 transparentize($dark, 0.5);
+}
+
+.btn:hover {
+    background-color: transparentize($primary, 0.95);
+}
+
+.expert,
+.impact {
+    outline: none;
+    border: 3px solid $secondary;
+    border-radius: 0.5rem;
+    background-color: transparentize($secondary, 0.90);
+    box-shadow: 0 0 5px 0 transparentize($dark, 0.5);
+}
+
+.expert:hover,
+.impact:hover {
+    background-color: transparentize($secondary, 0.65);
+}
+
+.comment {
+    border-bottom: 1px solid transparentize($dark, 0.8);
+}
+
+.accordion-header {
+    background-color: transparentize($secondary, 0.90);
+    box-shadow: 0 0 5px 0 transparentize($dark, 0.5);
+    border: 3px solid $secondary;
+    border-radius: 0.5rem;
+}
+
+.accordion-header:hover {
+    background-color: transparentize($secondary, 0.65);
+}
+
+.form-label {
+    font-family: $font-text;
+    font-size: 1.25rem;
+}
