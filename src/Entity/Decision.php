@@ -61,7 +61,7 @@ class Decision
     #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Comment::class)]
+    #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Comment::class, cascade: ["remove"])]
     private Collection $comments;
 
     #[ORM\ManyToOne(inversedBy: 'decisions')]
@@ -81,17 +81,17 @@ class Decision
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'expertUsers')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'expertUsers', cascade: ["remove"])]
     #[JoinTable('expert_user')]
     private Collection $expertUsers;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'impactedUsers')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'impactedUsers', cascade: ["remove"])]
     #[JoinTable('impacted_user')]
     private Collection $impactedUsers;
 
-    #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Vote::class)]
+    #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Vote::class, cascade: ["remove"])]
     private Collection $votes;
-    #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Notification::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'decision', targetEntity: Notification::class, cascade: ["remove"], orphanRemoval: true)]
     private Collection $notifications;
 
     public function __construct()

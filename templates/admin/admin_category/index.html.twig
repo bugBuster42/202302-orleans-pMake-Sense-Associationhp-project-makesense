@@ -34,7 +34,12 @@
 								Modifier</a>
 						</td>
 						<td>
-							{% include 'admin/admin_category/_delete_form.html.twig' %}
+							{% if category.decisions.isEmpty() %}
+								{% include 'admin/admin_category/_delete_form.html.twig' %}
+							{% else %}
+								{# Suppression impossible, catégorie liée. #}
+								Non supprimable
+							{% endif %}
 						</td>
 
 					</tr>
