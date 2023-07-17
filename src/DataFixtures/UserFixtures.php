@@ -88,7 +88,7 @@ class UserFixtures extends Fixture
 
             copy(
                 __DIR__ . '/avatar/' . $avatar,
-                'public/uploads/avatar/' . $avatar
+                'src/DataFixtures/avatar/' . $avatar
             );
 
             $hashedPassword = $this->passwordHasher->hashPassword($user, $faker->password());

@@ -8,24 +8,28 @@
 		<div class="home">
 			<div class="position-relative fs-1">
 
-				<h1 class="title donne-sense">donne
+
+				<h1 class="title donne-sense text-center mb-5">donne
+
 					<span class="pastille"></span>
 					sense
 				</h1>
-				<h2 class="fw-bold center">à tes idées</h2>
-				<div class="citation">
-					<p>
-						<em class="fw-bold fs-5 text-primary max-width-citation">{{ citation.quote }}</em>
-					</p>
-					<p class="author fs-6 text-primary">-
-						{{ citation.author }}
-						-</p>
+				<div class="container">
+					<h2 class="fw-bold">à tes idées</h2>
+					<div class="citation">
+						<p>
+							<em class="fw-bold fs-5 text-primary max-width-citation">{{ citation.quote }}</em>
+						</p>
+						<p class="author fs-6 text-primary">-
+							{{ citation.author }}
+							-</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</header>
 	<main>
-		<div class="home">
+		<div class="home d-block">
 			{% if app.user %}
 				<div class="title title-vedette d-flex justify-content-center">
 					<h1 class="text-center fw-bold fs-1 my-5">En
@@ -33,7 +37,7 @@
 						vedette
 					</h1>
 				</div>
-				<div class="decision" id="cardsContainer">
+				<div class="decision mb-5" id="cardsContainer">
 					<div class="container g-0">
 						<div class="row">
 							{% for decision in decisions %}
