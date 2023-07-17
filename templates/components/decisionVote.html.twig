@@ -1,11 +1,14 @@
 <div{{attributes}}>
 	{% if hasVoted == false %}
 		{% if decision.status == 'Prise de décision commencée' and app.user != decision.user or decision.status == 'Décision définitive' and app.user != decision.user %}
-			<button type="button" class="btn btn-secondary" data-action="live#action" data-action-name="voted(direction=up)">
-				Vote pour
+			<button type="button" class="" data-action="live#action" data-action-name="voted(direction=up)">
+				Pour
+				<i class="bi bi-check-square-fill"></i>
 			</button>
-			<button type="button" class="btn btn-secondary" data-action="live#action" data-action-name="voted(direction=down)">
+			<button type="button" class="" data-action="live#action" data-action-name="voted(direction=down)">
 				Vote contre
+				<i class="bi bi-x-square-fill"></i>
+
 			</button>
 		{% endif %}
 	{% endif %}
