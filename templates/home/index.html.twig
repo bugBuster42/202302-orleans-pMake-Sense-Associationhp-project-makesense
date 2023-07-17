@@ -52,7 +52,11 @@
 											</div>
 											<div class="position-relative">
 												<div class="card-main">
-													<img class="img-profile rounded-circle border border-2 border-tertiary position-absolute shadow mx-4 bg-tertiary" src="{{ asset('build/images/profil.png')}}">
+													{% if decision.user.avatar %}
+														<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}">
+													{% else %}
+														<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('build/images/profil.png')}}">
+													{% endif %}
 													<div class="color-card">
 														<div class="statut pt-3 mx-3 text-end">
 															<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded border-2 rounded-pill shadow mx-2 text-tertiary">{{ decision.category.title }}</div>
