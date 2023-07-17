@@ -36,7 +36,7 @@ framework:
                 to_modified_refused:
                     from: modified
                     to: refused 
-                to_accepted_ ended:
+                to_accepted_ended:
                     from: accepted
                     to: ended
                 to_refused_ended:

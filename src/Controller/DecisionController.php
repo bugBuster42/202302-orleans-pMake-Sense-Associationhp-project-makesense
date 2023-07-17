@@ -20,6 +20,7 @@ use Symfony\Component\Workflow\WorkflowInterface;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\WorkflowAdvancement;
 
 #[Route('/decision')]
 class DecisionController extends AbstractController
@@ -91,15 +92,18 @@ class DecisionController extends AbstractController
         ]);
     }
 
-    #[Route('/change/{id}/{toStatus}', name: 'app_change')]
+    #[Route('/change/{id}/{toStatus}', name: 'app_change', methods: ['POST'])]
     public function change(
         Decision $decision,
         string $toStatus,
         DecisionRepository $decisionRepository,
-        WorkflowInterface $decisionStateMachine
+        WorkflowInterface $decisionStateMachine,
     ): Response {
-        $decisionStateMachine->apply($decision, $toStatus);
-        $decisionRepository->save($decision, true);
+
+        if ($toStatus && $decisionStateMachine->can($decision, $toStatus)) {
+            $decisionStateMachine->apply($decision, $toStatus);
+            $decisionRepository->save($decision, true);
+        }
 
         return $this->redirectToRoute('app_decision_show', ['id' => $decision->getId()], Response::HTTP_SEE_OTHER);
     }
@@ -107,6 +111,7 @@ class DecisionController extends AbstractController
     #[Route('/{id}', name: 'app_decision_show', methods: ['GET', 'POST'])]
     public function show(Request $request, Decision $decision, CommentRepository $commentRepository): Response
     {
+
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
@@ -132,8 +137,14 @@ class DecisionController extends AbstractController
         attribute: new Expression('user === subject'),
         subject: new Expression('args["decision"].getUser()'),
     )]
-    public function edit(Request $request, Decision $decision, DecisionRepository $decisionRepository): Response
-    {
+    public function edit(
+        Request $request,
+        Decision $decision,
+        DecisionRepository $decisionRepository,
+        WorkflowAdvancement $workflowAdvancement
+    ): Response {
+        $workflowName = $workflowAdvancement->stepStatus($decision);
+
         $decision->setUser($this->getUser());
         $form = $this->createForm(DecisionType::class, $decision);
         $form->handleRequest($request);
@@ -151,6 +162,7 @@ class DecisionController extends AbstractController
         return $this->render('decision/edit.html.twig', [
             'decision' => $decision,
             'form' => $form,
+            'workflowName' => $workflowName,
         ]);
     }
 

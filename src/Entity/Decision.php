@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DecisionRepository::class)]
 #[Vich\Uploadable]
+/** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
 class Decision
 {
     public const STATUS = [
@@ -25,6 +26,17 @@ class Decision
         'modified' => 'Décision définitive',
         'refused' => 'Décision non aboutie',
         'ended' => 'Décision terminée'
+    ];
+
+    public const WORKFLOWS = [
+        'to_decision_opened_accepted' => 'Passer au statut accepté',
+        'to_decision_opened_conflict' => 'Passer au statut conflit',
+        'to_decision_opened_refused' => 'Passer au statut en conflit',
+        'to_conflict_modified' => 'Passer au statut deuxième décision',
+        'to_modified_accepted' => 'Passer au statut accepté',
+        'to_modified_refused' => 'Passer au statut refusé',
+        'to_accepted_ended' => 'Passer au statut terminé',
+        'to_refused_ended' => 'Passer au statut terminé',
     ];
 
     #[ORM\Id]
@@ -342,5 +354,27 @@ class Decision
             }
         }
         return $this;
+    }
+
+    public function getPositiveVote(): int
+    {
+        $total = 0;
+        foreach ($this->getVotes() as $vote) {
+            if ($vote->getVoting() === 1) {
+                $total++;
+            }
+        }
+        return $total;
+    }
+
+    public function getNegativeVote(): int
+    {
+        $total = 0;
+        foreach ($this->getVotes() as $vote) {
+            if ($vote->getVoting() === -1) {
+                $total++;
+            }
+        }
+        return $total;
     }
 }

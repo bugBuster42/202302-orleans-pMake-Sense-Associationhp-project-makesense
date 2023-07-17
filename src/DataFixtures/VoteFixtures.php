@@ -26,6 +26,56 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($vote);
         }
 
+        for ($i = 0; $i < 25; $i++) {
+            $vote = new Vote();
+            $vote->setVoting(-1);
+            $vote->setDecision(
+                $this->getReference('decision_test')
+            );
+            $vote->setUser($this->getReference('user_' . $faker->numberBetween(4, UserFixtures::USER_NUMBER - 1)));
+            $manager->persist($vote);
+        }
+
+        for ($i = 0; $i < 25; $i++) {
+            $vote = new Vote();
+            $vote->setVoting(1);
+            $vote->setDecision(
+                $this->getReference('decision_test_2')
+            );
+            $vote->setUser($this->getReference('user_' . $faker->numberBetween(4, UserFixtures::USER_NUMBER - 1)));
+            $manager->persist($vote);
+        }
+
+        for ($i = 0; $i < 25; $i++) {
+            $vote = new Vote();
+            $vote->setVoting($faker->randomElement([-1, 1]));
+            $vote->setDecision(
+                $this->getReference('decision_test_3')
+            );
+            $vote->setUser($this->getReference('user_' . $faker->numberBetween(4, UserFixtures::USER_NUMBER - 1)));
+            $manager->persist($vote);
+        }
+
+
+        for ($i = 0; $i < 25; $i++) {
+            $vote = new Vote();
+            $vote->setVoting($faker->randomElement([-1, 1]));
+            $vote->setDecision(
+                $this->getReference('decision_test_4')
+            );
+            $vote->setUser($this->getReference('user_' . $faker->numberBetween(4, UserFixtures::USER_NUMBER - 1)));
+            $manager->persist($vote);
+        }
+
+        for ($i = 0; $i < 25; $i++) {
+            $vote = new Vote();
+            $vote->setVoting($faker->randomElement([-1, 1]));
+            $vote->setDecision(
+                $this->getReference('decision_test_5')
+            );
+            $vote->setUser($this->getReference('user_' . $faker->numberBetween(4, UserFixtures::USER_NUMBER - 1)));
+            $manager->persist($vote);
+        }
 
         $manager->flush();
     }

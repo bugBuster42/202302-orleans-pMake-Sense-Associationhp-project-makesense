@@ -1,24 +1,16 @@
-{% if workflow_can(decision, 'to_decision_opened_accepted') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_decision_opened_accepted'}) }}" class="btn btn-primary fw-bold rounded-pill mb-5 mx-5 mt-3">Passer au statut accepté</a>
+{% if workflowName is not null and workflow_can(decision, workflowName) %}
+	<form method="post" action="{{ path('app_change', {'id': decision.id, 'toStatus': workflowName}) }}" >
+		<input type="hidden" name="_token" value="{{ csrf_token('workflow_change' ~ decision.id) }}">
+		<div class="text-end">
+
+			<button class="btn btn-light text-primary my-2 border border-secondary bg-white fw-bold rounded-pill mt-5">
+				{% if constant('App\\Entity\\Decision::WORKFLOWS')[workflowName] is defined %}
+					{{ constant('App\\Entity\\Decision::WORKFLOWS')[workflowName] }}
+				{% endif %}
+			</button>
+
+		</div>
+	</form>
 {% endif %}
-{% if workflow_can(decision, 'to_decision_opened_conflict') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_decision_opened_conflict'}) }}" class="btn btn-primary fw-bold rounded-pill mb-5 mx-5 mt-3">Passer au statut en conflit</a>
-{% endif %}
-{% if workflow_can(decision, 'to_decision_opened_refused') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_decision_opened_refused'}) }}" class="btn btn-primary fw-bold rounded-pill mb-5 mx-5 mt-3">Passer au statut refusé</a>
-{% endif %}
-{% if workflow_can(decision, 'to_conflict_modified') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_conflict_modified'}) }}" class="btn btn-primary rounded-pill fw-bold mb-5 mx-5 mt-3">Passer au statut deuxième décision</a>
-{% endif %}
-{% if workflow_can(decision, 'to_modified_accepted') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_modified_accepted'}) }}" class="btn btn-primary rounded-pill fw-bold mb-5 mx-5 mt-3">Passer au statut accepté</a>
-{% endif %}
-{% if workflow_can(decision, 'to_modified_refused') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_modified_refused'}) }}" class="btn btn-primary rounded-pill fw-bold mb-5 mx-5 mt-3">Passer au statut refusé</a>
-{% endif %}
-{% if workflow_can(decision, 'to_accepted_ ended') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_accepted_ ended'}) }}" class="btn btn-primary rounded-pill fw-bold mb-5 mx-5 mt-3">Passer au statut terminé</a>
-{% endif %}
-{% if workflow_can(decision, 'to_refused_ended') %}
-	<a href="{{ path('app_change', {'id': decision.id, 'toStatus': 'to_refused_ended'}) }}" class="btn btn-primary rounded-pill fw-bold mb-5 mx-5 mt-3">Passer au statut terminé</a>
-{% endif %}
+
+
