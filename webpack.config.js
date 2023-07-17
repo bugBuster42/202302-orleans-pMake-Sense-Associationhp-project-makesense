@@ -41,6 +41,8 @@ Encore
     .addStyleEntry('addDecision', './assets/styles/addDecision.scss')
     .addStyleEntry('reset-password', './assets/styles/reset-password.scss')
     .addStyleEntry('profile', './assets/styles/profile.scss')
+    .addStyleEntry('showDecision', './assets/styles/showDecision.scss')
+
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
