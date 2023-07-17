@@ -4,11 +4,12 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class UserType extends AbstractType
 {
@@ -22,13 +23,19 @@ class UserType extends AbstractType
                 'download_uri' => false,
                 'label' => false,
             ])
-            ->add('email', TextType::class, ['label' => false])
-            ->add('biography', TextareaType::class, [
+
+            ->add('biography', TextType::class, [
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Biographie',
-                    'style' => 'height: 150px;',
+                    'placeholder' => 'Décrivez-vous en 250 caractères maximum',
+                    'style' => 'height: 2em;',
+                ],
+                'constraints' => [
+                    new Length([
+                        'max' => 250,
+                        'maxMessage' => 'La biographie ne peut pas dépasser {{ limit }} caractères.',
+                    ]),
                 ],
             ]);
     }

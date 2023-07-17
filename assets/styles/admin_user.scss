@@ -34,6 +34,10 @@
   font-family: $font-text;
 }
 
+.table-header-fixed tbody td a {
+  text-decoration: none;
+}
+
 .btn.btn-outline-primary.dropdown-toggle {
   width: 180px; 
 }
