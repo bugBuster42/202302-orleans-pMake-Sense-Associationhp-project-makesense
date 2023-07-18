@@ -5,6 +5,10 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     upload_directory: "%kernel.project_dir%/public/uploads/avatar/"
+    upload_directory_category: "%kernel.project_dir%/public/uploads/images/category/"
+    upload_directory_decision: "%kernel.project_dir%/public/uploads/images/decision/"
+
+
     mailer_from: "%env(resolve:MAILER_FROM_ADDRESS)%"
 
 services:
