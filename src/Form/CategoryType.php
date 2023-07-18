@@ -20,8 +20,8 @@ class CategoryType extends AbstractType
             ->add('imageFile', VichFileType::class, [
                 'label' => 'Image',
                 'required'      => false,
-                'allow_delete'  => true,
-                'download_uri' => true,
+                'allow_delete'  => false,
+                'download_uri' => false,
             ]);
     }
 
