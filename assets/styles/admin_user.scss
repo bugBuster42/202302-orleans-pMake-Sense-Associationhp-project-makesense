@@ -48,3 +48,16 @@
   margin: 0 auto;
 }
 
+.btn {
+  font-family: $font-title;
+  outline-offset: 6px;
+  outline: 1px solid $secondary;
+  box-shadow: 0 0 8px 0 transparentize($dark, 0.5);
+}
+
+.edit, .delete {
+  font-family: $font-text;
+    outline-offset: 0;
+    outline: 0;
+    box-shadow: none;
+}
