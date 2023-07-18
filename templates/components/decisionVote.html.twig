@@ -1,19 +1,22 @@
 <div{{attributes}}>
 	{% if hasVoted == false %}
 		{% if decision.status == 'Prise de décision commencée' and app.user != decision.user or decision.status == 'Décision définitive' and app.user != decision.user %}
-			<button type="button" class="" data-action="live#action" data-action-name="voted(direction=up)">
-				Pour
-				<i class="bi bi-check-square-fill"></i>
-			</button>
-			<button type="button" class="" data-action="live#action" data-action-name="voted(direction=down)">
-				Vote contre
-				<i class="bi bi-x-square-fill"></i>
-
-			</button>
+			<div class=" d-flex">
+				<button type="button" class="btn btn-primary m-4 px-3 rounded-pill text-tertiary bg-primary fw-bold" data-action="live#action" data-action-name="voted(direction=up)">
+					{% include 'icons/like.svg' %}
+					<i class="bi bi-check-square-fill"></i>
+				</button>
+				<button type="button" class="btn btn-primary m-4 px-3 rounded-pill text-tertiary bg-primary fw-bold" data-action="live#action" data-action-name="voted(direction=down)">
+					{% include 'icons/dislike.svg' %}
+					<i class="bi bi-x-square-fill"></i>
+				</button>
+			</div>
 		{% endif %}
 	{% endif %}
-	<p>vote pour
-		{{ this.decision.votes|filter(vote => vote.voting == 1)|length }}</p>
-	<p>Vote contre
-		{{ this.decision.votes|filter(vote => vote.voting == -1)|length }}</p>
+	<div class=" d-flex">
+		<p class="mx-3">vote pour
+			{{ this.decision.votes|filter(vote => vote.voting == 1)|length }}</p>
+		<p class="mx-3">Vote contre
+			{{ this.decision.votes|filter(vote => vote.voting == -1)|length }}</p>
+	</div>
 </div>
