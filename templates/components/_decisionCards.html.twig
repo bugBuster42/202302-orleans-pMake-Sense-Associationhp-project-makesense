@@ -45,7 +45,7 @@
 
 									<p class="card-text btn text-primary fw-bolder fs-6 border border-2 border-primary px-3 btn-rounded rounded-pill m-3">{{ decision.status }}</p>
 									<div class="text-end p-3 text-l pt-0 primary mb-2 btn-rounded d-flex justify-content-between">
-										<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn bg-secondary border-primary border-2 fw-bolder text-primary my-3 me-2 px-2 fs-6 btn-rounded rounded-pill px-3">En savoir plus</a>
+										<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn btn2 bg-secondary border-primary border-2 fw-bolder text-primary my-3 me-2 px-2 fs-6 btn-rounded rounded-pill px-3">En savoir plus</a>
 										{% if app.user == decision.user %}
 											<a href="{{ path('app_decision_edit', {'id': decision.id}) }}" class="btn btn-primary border-tertiary border-2 fw-bolder text-tertiary my-3 me-2 fs-6 px-2 btn-rounded rounded-pill px-3">Modifier</a>
 										{% endif %}
