@@ -29,7 +29,7 @@
 			<button class="btn expert btn-secondary text-primary fw-bold p-2 px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 				Personnes expertes
 			</button>
-<ul class="dropdown-menu text-primary bg-tertiary border border-tertiary" aria-labelledby="dropdownMenuButton">
+			<ul class="dropdown-menu text-primary bg-tertiary border border-tertiary" aria-labelledby="dropdownMenuButton">
 				{% for impactedUser in decision.impactedUsers %}
 					<li>
 						<a class="dropdown-item text-primary fw-bold" href="{{ path('app_profile', {'id': impactedUser.id}) }}">
@@ -39,7 +39,8 @@
 						</a>
 					</li>
 				{% endfor %}
-			</ul>		</div>
+			</ul>
+		</div>
 	</div>
 	<div class="container">
 		<p class="text-primary fw-bold fs-5">{{ decision.status }}</p>
@@ -75,7 +76,7 @@
 	</div>
 	<div class="container">
 		<div class="my-5">
-			{% if app.user %}
+			{%  if decision.status == 'Prise de décision commencée' and app.user != decision.user or decision.status == 'Décision définitive' and app.user != decision.user %}
 				{{ form_start(form) }}
 				{{ form_widget(form, { 'attr': {'class': 'text-primary fw-bold'}}) }}
 				<button class="btn btn-light rounded-pill px-3 mt-2 mb-5 text-primary fw-bold">{{ button_label|default('Laissez un commentaire') }}</button>
