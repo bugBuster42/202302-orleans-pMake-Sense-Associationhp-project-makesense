@@ -10,13 +10,13 @@
 
 {% block body %}
 	<main class="container">
-		<h1 class="text-primary fw-bold fs-1 my-5">Gestion des catégories</h1>
+		<h1 class="text-center text-primary fw-bold my-5">Gestion des catégories</h1>
 
 
 		<table class="admin table table-success table-striped table-header-fixed">
 			<thead>
 				<tr>
-					<th>Titre de la catégorie</th>
+					<th>Titre</th>
 					<th>Image</th>
 					<th></th>
 					<th></th>
@@ -29,7 +29,7 @@
 						<td><img src="{{ vich_uploader_asset(category) }}"></td>
 
 						<td>
-							<a class="btn btn-sm btn-outline-primary" href="{{ path('admin_category_edit', {'id': category.id}) }}">
+							<a class="edit btn btn-sm btn-outline-primary" href="{{ path('admin_category_edit', {'id': category.id}) }}">
 								{% include 'icons/pencil.svg'%}
 								Modifier</a>
 						</td>
@@ -51,7 +51,7 @@
 				{% endfor %}
 			</tbody>
 		</table>
-		<a class="btn btn-primary rounded mb-5 mt-3" href="{{ path('admin_category_new') }}">Ajouter une catégorie</a>
+		<a class="btn btn-light rounded-pill px-3 my-4 text-primary fw-bold" href="{{ path('admin_category_new') }}">Ajouter</a>
 
 
 	</main>

@@ -101,7 +101,7 @@ class UserFixtures extends Fixture
 
             copy(
                 __DIR__ . '/avatar/' . $avatar,
-                'src/DataFixtures/avatar/' . $avatar
+                'public/uploads/avatar/' . $avatar
             );
 
             $user->setPassword('');

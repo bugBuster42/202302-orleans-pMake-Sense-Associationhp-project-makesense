@@ -50,7 +50,7 @@ class Decision
     private ?string $title = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\GreaterThan('today')]
+    #[Assert\GreaterThanOrEqual('today')]
     #[Assert\NotNull]
     private ?\DateTimeInterface $startDate = null;
 

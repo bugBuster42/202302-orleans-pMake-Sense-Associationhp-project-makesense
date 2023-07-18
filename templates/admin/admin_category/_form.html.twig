@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container px-0">
+
 	{{ form_start(form) }}
+	{{ form_row(form.title, {'attr': {'class': 'form-class text text-primary fw-bold'}})}}
 
-	{{ form_row(form.title)}}
+	{{ form_row(form.imageFile, {'attr': {'class': 'form-class text text-primary fw-bold border border-2  border-secondary form-control mb-3'}})}}
 
-
-	{{ form_row(form.imageFile)}}
-	<button class="my-5 btn btn-primary rounded mb-5 mt-3">{{ button_label|default('Ajouter') }}</button>
+	<button class="btn btn-light rounded-pill px-3 my-4 text-primary fw-bold">{{ button_label|default('Ajouter') }}</button>
 	{{ form_end(form) }}
 </div>
