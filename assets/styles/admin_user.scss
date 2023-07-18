@@ -55,7 +55,7 @@
   box-shadow: 0 0 8px 0 transparentize($dark, 0.5);
 }
 
-.edit, .delete {
+.edit, .delete, .search, .role {
   font-family: $font-text;
     outline-offset: 0;
     outline: 0;

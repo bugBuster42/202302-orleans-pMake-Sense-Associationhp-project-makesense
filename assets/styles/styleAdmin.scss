@@ -27,3 +27,7 @@ a {
     box-shadow: 0 0 5px 0 transparentize($dark, 0.5);
     color: $primary;
 }
+
+.form-class {
+    font-family: $font-text;
+}
