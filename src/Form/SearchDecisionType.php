@@ -19,7 +19,7 @@ class SearchDecisionType extends AbstractType
             ->setMethod('GET')
             ->add('search', SearchType::class, [
                 'required' => false,
-
+                'trim' => false,
             ])
             ->add(
                 'status',
