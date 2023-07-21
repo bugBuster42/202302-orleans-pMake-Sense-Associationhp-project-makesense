@@ -63,9 +63,10 @@
 				</h2>
 				<div id="collapseOne" class="accordion-collapse collapse text-primary" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 					{% for comment in decision.comments %}
-						<div class="accordion-body bg-light rounded">
-							<div class="comment">
-								<img src="{{ asset('uploads/avatar/' ~ comment.user.avatar) }}" alt="Portrait" style="width: 60px; height: 60px; border-radius: 10%;">
+						<div class="accordion-body bg-light rounded p-0">
+							<div class="comment bg-white rounded p-4">
+								<a href="{{ path('app_profile', {'id': comment.user.id}) }}">
+									<img src="{{ asset('uploads/avatar/' ~ comment.user.avatar) }}" alt="Portrait"></a>
 								<p class="text-primary fw-bold">{{ comment.user.fullname }}</p>
 								<p class="text-primary">{{ comment.text}}</p>
 							</div>
