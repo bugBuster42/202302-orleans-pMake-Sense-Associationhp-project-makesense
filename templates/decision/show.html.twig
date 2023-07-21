@@ -9,7 +9,7 @@
 	<h1 class="text-primary text-center fw-bold fs-1 my-5">{{ decision.title }}</h1>
 	<div class="container">
 		<div class="decision-show d-flex justify-content-end my-4">
-			<div class="me-5">
+			<div class="me-5 expert">
 				<h5 class="text-primary fw-bold">
 					Personnes impactées
 				</h5>
@@ -17,7 +17,7 @@
 					{% for expertUser in decision.expertUsers %}
 						<div class="d-flex text-primary">
 							<a href="{{ path('app_profile', {'id': expertUser.id}) }}">
-								<img src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}" class="me-2 mb-1 d-block" alt="Portrait" style="width: 35px; height: 35px; border-radius: 50%;">
+								<img src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}" class="me-2 mb-1 d-block" alt="Portrait">
 							</a>
 							{{ expertUser.firstname }}
 							{{ expertUser.lastname }}
@@ -26,7 +26,7 @@
 				</p>
 
 			</div>
-			<div class="ms-5">
+			<div class="ms-5 impacted">
 				<h5 class="text-primary fw-bold">
 					Personnes expertes
 				</h5>
@@ -34,7 +34,7 @@
 					{% for impactedUser in decision.impactedUsers %}
 						<div class="d-flex text-primary">
 							<a href="{{ path('app_profile', {'id': impactedUser.id}) }}">
-								<img src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}" class="me-2 mb-1 d-block" alt="Portrait" style="width: 35px; height: 35px; border-radius: 50%;">
+								<img src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}" class="me-2 mb-1 d-block" alt="Portrait">
 							</a>
 							{{ impactedUser.firstname }}
 							{{ impactedUser.lastname }}

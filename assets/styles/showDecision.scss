@@ -20,12 +20,12 @@ h2 {
 }
 
 .expert,
-.impact {
-    outline: none;
-    border: 3px solid $secondary;
-    border-radius: 0.5rem;
-    background-color: transparentize($secondary, 0.90);
-    box-shadow: 0 0 5px 0 transparentize($dark, 0.5);
+.impacted {
+    img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
 }
 
 .expert:hover,
