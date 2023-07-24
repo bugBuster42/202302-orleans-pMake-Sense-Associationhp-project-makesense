@@ -12,5 +12,12 @@
 	</div>
 	{% include 'components/_buttonTop.html.twig' %}
 
-	{% include 'components/_decisionCards.html.twig' %}
+	{% include 'components/_decisionCards.html.twig' with { 'decisions': decisions } %}
+	{% if decisions|length ==  0 %}
+		<div class="container text-center">
+			<h3 class="no-decision-text">Vous n'avez pas encore déposé de décision.</h3>
+			<h3 class="no-decision-text">Pour en déposer une nouvelle ->
+				<a class="no-decision-link" href="{{ path('app_decision_new') }}">cliquez ici</a>.</h3>
+		</div>
+	{% endif %}
 {% endblock %}

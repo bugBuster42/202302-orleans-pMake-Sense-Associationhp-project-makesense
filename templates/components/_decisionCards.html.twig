@@ -2,8 +2,9 @@
 	<div class="wave"></div>
 </div>
 
-{{ include('components/_search_form.html.twig') }}
-
+{% if decisions|length > 0 %}
+	{{ include('components/_search_form.html.twig') }}
+{% endif %}
 
 <div class="decision" id="cardsContainer">
 	<div class="container g-0">

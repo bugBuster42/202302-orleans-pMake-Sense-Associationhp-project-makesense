@@ -66,6 +66,7 @@ class Decision
 
     #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?User $user = null;
+
     #[ORM\Column(type: 'string')]
     private ?string $currentPlace = 'opened';
 
