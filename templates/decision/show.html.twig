@@ -67,16 +67,19 @@
 					</button>
 				</h2>
 				<div id="collapseOne" class="accordion-collapse collapse text-primary" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+
 					{% for comment in decision.comments %}
 						<div class="accordion-body bg-light rounded p-0">
 							<div class="comment bg-white rounded p-4">
 								<a href="{{ path('app_profile', {'id': comment.user.id}) }}">
 									<img src="{{ asset('uploads/avatar/' ~ comment.user.avatar) }}" alt="Portrait"></a>
 								<p class="text-primary fw-bold">{{ comment.user.fullname }}</p>
+								<p>{{"now"|date('d/m/Y')}}</p>
 								<p class="text-primary">{{ comment.text|nl2br}}</p>
 							</div>
 						</div>
 					{% endfor %}
+
 				</div>
 			</div>
 		</div>
