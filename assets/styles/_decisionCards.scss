@@ -69,3 +69,17 @@
 .nav-decision .navbar {
     border-radius: 50px;
 }
+
+h3.no-decision-text {
+    color: $light;
+}
+
+.no-decision-link {
+    color: $light;
+}
+
+.container.text-center {
+    margin-block-start: 6rem;
+    position: relative; 
+    z-index: 1; 
+  }
