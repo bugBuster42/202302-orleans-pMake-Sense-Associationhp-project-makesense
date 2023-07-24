@@ -59,7 +59,7 @@ class UserFixtures extends Fixture
             'public/uploads/avatar/avatarEmployee.jpg'
         );
 
-        $this->addReference('user_1', $user);
+        $this->addReference('employee_0', $employee);
 
         $hashedPassword = $this->passwordHasher->hashPassword($employee, 'azertyuiop');
         $employee->setPassword($hashedPassword);
@@ -77,7 +77,7 @@ class UserFixtures extends Fixture
             'public/uploads/avatar/avatarAdmin.jpg'
         );
 
-        $this->addReference('user_2', $user);
+        $this->addReference('admin_0', $admin);
 
 
         $hashedPassword = $this->passwordHasher->hashPassword($admin, 'azertyuiop');
@@ -97,7 +97,8 @@ class UserFixtures extends Fixture
 
             $user->setAvatar($avatar);
 
-            $this->addReference('user_' . ($i + 3), $user);
+            $this->addReference('user_' . ($i + 1), $user);
+
 
             copy(
                 __DIR__ . '/avatar/' . $avatar,
