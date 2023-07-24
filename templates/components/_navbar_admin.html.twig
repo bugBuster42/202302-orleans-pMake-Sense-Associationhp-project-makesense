@@ -24,7 +24,8 @@
 						{% if app.user %}
 
 							<a class="profile" href="{{ path('app_profile', {'id': app.user.id}) }}">
-								<img class="img-profile rounded-circle border border-2 border-primary" src="{{ asset('uploads/avatar/' ~ app.user.avatar) }}" alt="profil">
+								<img class="img-profile rounded-circle border border-2 border-primary" src="{{ app.user.avatar is empty ? asset('build/images/profile.svg') : vich_uploader_asset(app.user) }}" alt=" profil">
+
 							</a>
 
 						</li>
