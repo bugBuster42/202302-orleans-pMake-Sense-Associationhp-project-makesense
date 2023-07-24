@@ -68,7 +68,7 @@
 								<a href="{{ path('app_profile', {'id': comment.user.id}) }}">
 									<img src="{{ asset('uploads/avatar/' ~ comment.user.avatar) }}" alt="Portrait"></a>
 								<p class="text-primary fw-bold">{{ comment.user.fullname }}</p>
-								<p class="text-primary">{{ comment.text}}</p>
+								<p class="text-primary">{{ comment.text|nl2br}}</p>
 							</div>
 						</div>
 					{% endfor %}
