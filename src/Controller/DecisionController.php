@@ -29,7 +29,7 @@ class DecisionController extends AbstractController
     public function index(DecisionRepository $decisionRepository): Response
     {
 
-        return $this->render('decision/index.html.twig', [
+        return $this->render('admin/admin_decision/index.html.twig', [
             'decisions' => $decisionRepository->findAll(),
         ]);
     }
