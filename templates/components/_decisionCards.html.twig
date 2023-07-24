@@ -21,6 +21,7 @@
 								{% endif %}
 							</div>
 							<div class="position-relative">
+
 								<div class="card-main">
 									{% if decision.user.avatar %}
 										<a href="{{ path('app_profile', {'id': decision.user.id}) }}">
@@ -41,13 +42,13 @@
 							<div class="statut pt-2 mx-3 text-end">
 								<p class="label-status badge rounded-pill p-2">{{ decision.status }}</p>
 								<div class="label-category badge rounded-pill p-2">
-									Catégorie
 									{{ decision.category.title }}
 								</div>
 							</div>
 							<h2 class="card-title text-primary fw-bolder p-3 fs-4 mb-0">
-								{{ decision.title|u.truncate(100, '...') }}
+								{{ decision.title|u.truncate(50, '...') }}
 							</h2>
+
 							<div class="text-end p-3 text-l pt-0 primary mb-1 btn-rounded">
 								{% if app.user == decision.user %}
 									<a href="{{ path('app_decision_edit', {'id': decision.id}) }}" class="btn btn-card btn-primary mt-3 px-3 rounded-pill text-light bg-primary fw-bold">Modifier</a>
