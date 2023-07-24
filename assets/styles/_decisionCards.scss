@@ -15,6 +15,7 @@
             .img-profile {
                 width: 95px;
                 top: -45px;
+                border: 2px solid $primary;
             }
 
             .btn,
@@ -70,6 +71,36 @@
     border-radius: 50px;
 }
 
+.label-category {
+    
+    background-color: transparentize($secondary, 0.2);
+    border: 2px solid transparentize($light, 0.4);
+}
+
+.label-status {
+    background-color: transparentize($primary, 0.5);
+    border: 2px solid transparentize($light, 0.5);
+}
+
+.btn-card {
+    font-family: $font-title;
+    outline-offset: 6px;
+    outline: 1px solid $secondary;
+    box-shadow: 0 0 8px 0 transparentize($dark, 0.5);
+}
+
+.btn-card:hover {
+    background-color: transparentize($primary, 0.95);
+}
+
+.vote {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: $font-text;
+    font-size: 20px;
+    color: transparentize($primary, 0.25);
+}
 h3.no-decision-text {
     color: $light;
 }
