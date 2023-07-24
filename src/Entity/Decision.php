@@ -50,7 +50,7 @@ class Decision
     private ?string $title = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\GreaterThan('today')]
+    #[Assert\GreaterThanOrEqual('today')]
     #[Assert\NotNull]
     private ?\DateTimeInterface $startDate = null;
 
@@ -66,6 +66,7 @@ class Decision
 
     #[ORM\ManyToOne(inversedBy: 'decisions')]
     private ?User $user = null;
+
     #[ORM\Column(type: 'string')]
     private ?string $currentPlace = 'opened';
 

@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-<main class="container">
+<main class="container g-0">
 	<div class="d-flex align-items-center">
 		<div class="me-4">
 			<h1 class="text-primary fw-bold fs-1 my-5">Gestion des utilisateurs</h1>
@@ -22,7 +22,7 @@
 				<div class="flex-grow-1">
 					{{ form_widget(form.search, {'attr': {'placeholder': 'Rechercher par Nom d\'utilisateur'}}) }}
                 </div>
-                <button class="btn border-none rounded-pill" type="submit">
+                <button class="search btn border-none rounded-pill" type="submit">
                     <img src="{{ asset('build/images/search.svg') }}" style="width: 25px" alt="Rechercher">
                 </button>
             </div>
@@ -52,7 +52,7 @@
 						<td>
                    			{% if user.avatar %}
 							<a href="{{ path('app_profile', {'id': user.id}) }}">
-                        		<img src="{{ asset('uploads/avatar/' ~ user.avatar) }}" alt="Portrait" style="width: 60px; height: 60px; border-radius: 10%;">
+                        		<img src="{{ asset('uploads/avatar/' ~ user.avatar) }}" alt="Portrait" class="user-avatar">
                     		</a>
 							{% else %}
                         		<span>Aucune photo</span>

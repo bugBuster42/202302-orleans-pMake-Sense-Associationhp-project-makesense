@@ -27,6 +27,7 @@
   top: 0;
   height: 60px;
   font-family: $font-text;
+  z-index: 1;
 }
 
 .table-header-fixed tbody td {
@@ -48,3 +49,22 @@
   margin: 0 auto;
 }
 
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 10%;
+  object-fit: cover;
+}
+.btn {
+  font-family: $font-title;
+  outline-offset: 6px;
+  outline: 1px solid $secondary;
+  box-shadow: 0 0 8px 0 transparentize($dark, 0.5);
+}
+
+.edit, .delete, .search, .role {
+  font-family: $font-text;
+    outline-offset: 0;
+    outline: 0;
+    box-shadow: none;
+}
