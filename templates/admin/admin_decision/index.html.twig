@@ -1,0 +1,53 @@
+{% extends 'admin/adminLayout.html.twig' %}
+
+{% block title %}Decision index
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('admin_user') }}
+{% endblock %}
+{% block body %}
+	<main class="container g-0">
+		<div class="d-flex align-items-center">
+			<div class="me-4">
+				<h1 class="text-primary fw-bold fs-1 my-5">Gestion des décisions</h1>
+			</div>
+		</div>
+		<table class="table table-success table-striped table-header-fixed">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Catégorie</th>
+					<th>Date</th>
+					<th>Status</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for decision in decisions %}
+					<tr>
+						<td class="text-primary">{{ decision.title }}</td>
+						<td class="text-primary">
+							{{ decision.category.title }}
+						</td>
+
+						<td class="text-primary">{{ decision.startDate ? decision.startDate|date('d-m-Y') : '' }}</td>
+						<td class="text-primary">{{ decision.status }}</td>
+						<td>
+							<a class="edit btn btn-sm btn-outline-primary" href="{{ path('app_decision_show', {'id': decision.id}) }}">
+								{% include 'icons/eye.svg'%}
+								Détails</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Aucune décision trouvée</td>
+					</tr>
+
+				{% endfor %}
+
+
+			</tbody>
+		</table>
+	</main>
+{% endblock %}
