@@ -26,3 +26,21 @@
 .notif {
     width: 20rem;
 }
+
+.navbar {
+    .img-profile {
+        width: 60px;
+    }
+
+    .profile {
+        .dropdown-item {
+            color: $primary;
+        }
+
+        .dropdown-item:hover {
+            background-color: $primary;
+            color: $tertiary;
+        }
+    }
+
+}

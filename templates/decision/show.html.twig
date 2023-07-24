@@ -65,8 +65,10 @@
 					{% for comment in decision.comments %}
 						<div class="accordion-body bg-light rounded">
 							<div class="comment">
-								<p class="text-primary fw-bold">{{ comment.user.fullname }}</p>
-								<p class="text-primary">{{ comment.text}}</p>
+								<p class="text-primary fw-bold">
+									{{ comment.user.fullname }}
+									{{ "now"|date('d/m/Y') }}</p>
+								<p class="text-primary">{{ comment.text }}</p>
 							</div>
 						</div>
 					{% endfor %}
