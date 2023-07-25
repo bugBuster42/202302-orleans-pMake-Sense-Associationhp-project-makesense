@@ -17,6 +17,20 @@
                 top: -45px;
                 border: 2px solid $primary;
             }
+
+            .btn {
+                cursor: pointer;
+                bottom: 0.5rem;
+            }
+
+            p {
+                cursor: default;
+            }
+
+            .btn2 {
+                cursor: pointer;
+            }
+
         }
 
         .img-container {
@@ -62,7 +76,7 @@
 }
 
 .label-category {
-    
+
     background-color: transparentize($secondary, 0.2);
     border: 2px solid transparentize($light, 0.4);
 }
