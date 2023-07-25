@@ -1,20 +1,23 @@
-.bg-image{
-    background-image: url('../images/mapCreme.png');
+.bg-image {
+    background-image: url('../images/map.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height :80vh;
+    height: 100vh;
 }
+
 main {
     background-image: url('../images/map.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    min-height: 90vh;
+    min-height: 100vh;
+
+    .admin-title {
+        padding-top: 15rem;
+    }
 }
 
-.navbar{
+.navbar {
     border-bottom: 4px solid #FFF30D;
 }
-
-

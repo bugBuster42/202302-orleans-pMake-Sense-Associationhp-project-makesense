@@ -13,10 +13,10 @@
 			</div>
 		{% endif %}
 	{% endif %}
-	<div class=" d-flex">
-		<p class="mx-3">vote pour
+	<div class="pt-4 d-flex">
+		<p class="me-3">vote pour
 			{{ this.decision.votes|filter(vote => vote.voting == 1)|length }}</p>
-		<p class="mx-3">Vote contre
+		<p class="me-3">Vote contre
 			{{ this.decision.votes|filter(vote => vote.voting == -1)|length }}</p>
 	</div>
 </div>
