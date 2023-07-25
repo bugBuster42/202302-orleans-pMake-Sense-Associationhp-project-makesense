@@ -16,6 +16,12 @@
     padding: clamp(50px, 17%, 100px);
     padding-top: 75px;
     text-align: center;
+
+    img {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+    }
 }
 
 .upload-container {
