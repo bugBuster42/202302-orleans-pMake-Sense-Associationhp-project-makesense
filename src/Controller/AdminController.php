@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\UserType;
 use App\Form\UserSearchType;
-use App\Form\UserStatusType;
 use App\Repository\UserRepository;
+use App\Repository\DecisionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,6 +38,16 @@ class AdminController extends AbstractController
         return $this->render('admin/admin_user/index.html.twig', [
             'users' => $users,
             'form' => $form,
+        ]);
+    }
+
+
+    #[Route('/decision', name: 'decision_index', methods: ['GET', 'POST'])]
+    public function decisionIndex(DecisionRepository $decisionRepository): Response
+    {
+
+        return $this->render('admin/admin_decision/index.html.twig', [
+            'decisions' => $decisionRepository->findBy([], ['startDate' =>  'DESC']),
         ]);
     }
 }

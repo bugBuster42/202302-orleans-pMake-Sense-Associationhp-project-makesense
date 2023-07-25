@@ -11,6 +11,10 @@
 						<a class="link nav-link fw-bold text-primary px-3" href="{{ path('admin_home') }}">Accueil</a>
 					</li>
 					<li class="nav-item">
+						<a class="link nav-link fw-bold text-primary px-3" href="{{ path('admin_decision_index') }}">Décisions</a>
+					</li>
+
+					<li class="nav-item">
 						<a class="link nav-link fw-bold text-primary px-3" href="{{ path('admin_user_index') }}">Utilisateurs</a>
 					</li>
 					<li class="nav-item">
@@ -18,26 +22,36 @@
 					</li>
 					<li class="nav-item text-primary">
 						{% if app.user %}
-							<li class="nav-item dropdown">
-								<a class="profile" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="{{ asset('build/images/profile.svg') }}" alt="profil" width="60px">
-								</a>
-								<ul class="dropdown-menu dropdown-menu-end bg-primary border border-secondary">
-									<li>
-										<a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_profile', {'id': app.user.id}) }}">Profil</a>
-									</li>
-									<li>
-										<a class="dropdown-item text-light bg-primary fw-light" href="{{ path('app_logout') }}">Déconnexion</a>
-									</li>
-								</ul>
-							</li>
-						{% else %}
-							<a class="link nav-link fw-bold text-primary px-3" href="{{ path('app_login') }}">Connexion</a>
-						{% endif %}
-					</li>
 
-				</ul>
-			</div>
+							<a class="profile" href="{{ path('app_profile', {'id': app.user.id}) }}">
+								<img class="img-profile rounded-circle border border-2 border-primary" src="{{ app.user.avatar is empty ? asset('build/images/profile.svg') : vich_uploader_asset(app.user) }}" alt=" profil">
+
+							</a>
+
+						</li>
+
+						<div class="dropdown profile">
+							<button class="link btn-profile p-1 dropdown-toggle text-primary bg-tertiary fw-bold border-tertiary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								{{ app.user.firstname|first }}
+								{{ app.user.lastname|first }}
+							</button>
+							<ul class="dropdown-menu bg-tertiary border border-tertiary">
+								<li>
+									<a class="dropdown-item fw-bold" href="{{ path('app_profile', {'id': app.user.id}) }}">Profil</a>
+
+								</li>
+								<li class="nav-item text-primary">
+									<a class="dropdown-item fw-bold" href="{{ path('app_logout') }}">Déconnexion</a>
+								</li>
+							</ul>
+						</div>
+
+					{% else %}
+						<a class="link nav-link fw-bold text-primary px-3" href="{{ path('app_login') }}">Connexion</a>
+					{% endif %}
+				</li>
+
+			</ul>
 		</div>
 	</nav>
 </div>

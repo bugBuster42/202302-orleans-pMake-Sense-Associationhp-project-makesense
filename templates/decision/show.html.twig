@@ -7,52 +7,57 @@
 {% endblock %}
 {% block body %}
 	<h1 class="text-primary text-center fw-bold fs-1 my-5">{{ decision.title }}</h1>
-	<div class="container decision-show d-flex justify-content-end my-4">
-		<div class="dropdown  mx-2">
-			<button class="btn impact btn-secondary text-primary fw-bold py-2 px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-				Personnes impactées
-			</button>
-			<ul class="dropdown-menu text-primary bg-tertiary border border-tertiary" aria-labelledby="dropdownMenuButton">
-				{% for expertUser in decision.expertUsers %}
-					<li>
-						<a class="dropdown-item text-primary fw-bold" href="{{ path('app_profile', {'id': expertUser.id}) }}">
+	<div class="container">
+
+
+		<div class="container">
+			<p class="text-primary fw-bold fs-5">{{ decision.status }}</p>
+			<p class="mb-0 text-primary fw-bold fs-5">Date de début de la décision :</p>
+			<p class="text-primary fs-5">{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
+			<p class="mb-0 text-primary fw-bold fs-5">Catégorie :</p>
+			<p class="text-primary fs-5">{{ decision.category.title }}</p>
+			<h2 class="mt-4 text-primary fw-bold">Description de la décision</h2>
+			<i class="bi bi-x-square-fill"></i>
+			<p>{{ decision.description | raw }}</p>
+			{{ component('decisionVote', { decision: decision }) }}
+		</div>
+		<div class="decision-show d-flex my-5">
+			<div class="me-5 expert">
+				<h5 class="text-primary fw-bold">
+					Personnes impactées
+				</h5>
+				<p class="text-primary bg-tertiary border border-tertiary">
+					{% for expertUser in decision.expertUsers %}
+						<div class="d-flex text-primary">
+							<a href="{{ path('app_profile', {'id': expertUser.id}) }}">
+								<img src="{{ asset('uploads/avatar/' ~ expertUser.avatar) }}" class="me-2 mb-1 d-block" alt="Portrait">
+							</a>
 							{{ expertUser.firstname }}
 							{{ expertUser.lastname }}
-							{{ expertUser.avatar }}
-						</a>
-					</li>
-				{% endfor %}
-			</ul>
+						</div>
+					{% endfor %}
+				</p>
 
-		</div>
-		<div class="dropdown  mx-2">
-			<button class="btn expert btn-secondary text-primary fw-bold p-2 px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-				Personnes expertes
-			</button>
-			<ul class="dropdown-menu text-primary bg-tertiary border border-tertiary" aria-labelledby="dropdownMenuButton">
-				{% for impactedUser in decision.impactedUsers %}
-					<li>
-						<a class="dropdown-item text-primary fw-bold" href="{{ path('app_profile', {'id': impactedUser.id}) }}">
+			</div>
+			<div class="ms-5 impacted">
+				<h5 class="text-primary fw-bold">
+					Personnes expertes
+				</h5>
+				<p class="text-primary bg-tertiary border border-tertiary">
+					{% for impactedUser in decision.impactedUsers %}
+						<div class="d-flex text-primary">
+							<a href="{{ path('app_profile', {'id': impactedUser.id}) }}">
+								<img src="{{ asset('uploads/avatar/' ~ impactedUser.avatar) }}" class="me-2 mb-1 d-block" alt="Portrait">
+							</a>
 							{{ impactedUser.firstname }}
 							{{ impactedUser.lastname }}
-							{{ impactedUser.avatar }}
-						</a>
-					</li>
-				{% endfor %}
-			</ul>
+						</div>
+					{% endfor %}
+				</p>
+			</p>
 		</div>
 	</div>
-	<div class="container">
-		<p class="text-primary fw-bold fs-5">{{ decision.status }}</p>
-		<p class="mb-0 text-primary fw-bold fs-5">Date de début de la décision :</p>
-		<p class="text-primary fs-5">{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
-		<p class="mb-0 text-primary fw-bold fs-5">Catégorie :</p>
-		<p class="text-primary fs-5">{{ decision.category.title }}</p>
-		<h2 class="mt-4 text-primary fw-bold">Description de la décision</h2>
-		<i class="bi bi-x-square-fill"></i>
-		<p>{{ decision.description | raw }}</p>
-		{{ component('decisionVote', { decision: decision }) }}
-	</div>
+
 	<div class="container">
 		<div class="accordion" id="accordionExample">
 			<div class="accordion-item">
@@ -62,16 +67,19 @@
 					</button>
 				</h2>
 				<div id="collapseOne" class="accordion-collapse collapse text-primary" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+
 					{% for comment in decision.comments %}
 						<div class="accordion-body bg-light rounded p-0">
 							<div class="comment bg-white rounded p-4">
 								<a href="{{ path('app_profile', {'id': comment.user.id}) }}">
 									<img src="{{ asset('uploads/avatar/' ~ comment.user.avatar) }}" alt="Portrait"></a>
 								<p class="text-primary fw-bold">{{ comment.user.fullname }}</p>
+								<p>{{"now"|date('d/m/Y')}}</p>
 								<p class="text-primary">{{ comment.text|nl2br}}</p>
 							</div>
 						</div>
 					{% endfor %}
+
 				</div>
 			</div>
 		</div>

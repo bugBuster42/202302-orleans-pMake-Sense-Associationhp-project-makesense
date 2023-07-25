@@ -1,32 +1,28 @@
-<div{{ attributes }}>
+<div{{attributes}}>
 	<div class="dropdown">
-        <a class="bell nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {% if (not this.notifications|filter(notification => not notification.isRead)|length) == 0 %}
-                <span class="position-absolute top-1 start-50 badge rounded-pill bg-danger">{{ this.notifications|filter(notification => not notification.isRead)|length }}</span>
-            {% else %}
-                <span class=""></span>
-            {% endif %}
+		<a class="bell nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			{% if (not this.notifications|filter(notification => not notification.isRead)|length) == 0 %}
+				<span class="position-absolute top-1 start-50 badge rounded-pill bg-danger">{{ this.notifications|filter(notification => not notification.isRead)|length }}</span>
+			{% else %}
+				<span class=""></span>
+			{% endif %}
 			<img src="{{ asset('build/images/bell.svg') }}" alt="cloche" width="35px">
-	    </a>
-        <ul class="notif dropdown-menu dropdown-menu-end p-0 border border-0 bg-transparent" aria-labelledby="dropdownMenuButton">
-        {% for notification in this.notifications %}
-            <li class="p-2 {{ notification.isRead ? 'fw-normal' : 'fw-bold' }} {{ app.user in notification.decision.expertUsers ? 'bg-info-subtle border border-info rounded' : (app.user in notification.decision.impactedUsers ? 'bg-warning-subtle border border-warning rounded' : '') }}">
-                
-                <div class="d-flex justify-content-between">
-                {% if app.user in notification.decision.expertUsers %}
-                    <span class="">Expert :</span>
-                {% elseif app.user in notification.decision.impactedUsers %}
-                    <span class="">Impacté :</span>
-                {% endif %}
+		</a>
+		<ul class="notif dropdown-menu dropdown-menu-end p-0 border border-0" aria-labelledby="dropdownMenuButton">
+			{% for notification in this.notifications %}
+				<li class="p-2 {{ notification.isRead ? 'fw-light' : 'fw-bold' }} {{ app.user in notification.decision.expertUsers ? 'notif-expert' : (app.user in notification.decision.impactedUsers ? 'notif-impacted' : '') }}">
+					<div class="d-flex justify-content-between">
+						{% if app.user in notification.decision.expertUsers %}
+							<span class="type">Expert :</span>
+						{% elseif app.user in notification.decision.impactedUsers %}
+							<span class="type">Impacté :</span>
+						{% endif %}
+						<span class="{{ notification.isRead ? 'fw-light' : 'fw-bold' }}">{{ notification.isRead ? 'lu' : 'non lu' }}</span>
 
-                <span class="">{{ notification.isRead ? 'lu' : 'non lu' }}</span>
-                </div>
-                
-                <a data-action="live#action" data-action-name="prevent|markAsRead(notificationId={{notification.id}})" class="dropdown-item p-0 bg-transparent text-wrap {{ notification.isRead ? 'fw-normal' : 'fw-bold' }}" href="#">{{ notification.message }}</a>
-            
-            </li>
-        {% endfor %}
-        </ul>
-    </div>
+					</div>
+					<a data-action="live#action" data-action-name="prevent|markAsRead(notificationId={{notification.id}})" class="dropdown-item p-0 bg-transparent text-wrap {{ notification.isRead ? 'fw-light' : 'fw-bold' }}" href="#">{{ notification.message }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
 </div>
-
