@@ -30,6 +30,8 @@
 .navbar {
     .img-profile {
         width: 60px;
+        height: 60px;
+        object-fit: cover;
     }
 
     .profile {
@@ -45,16 +47,19 @@
 
 }
 
-.notif-impacted, .notif-expert {
+.notif-impacted,
+.notif-expert {
     font-family: $font-text;
     background-color: transparentize($secondary, 0.85);
     border: 1px solid $secondary;
 }
 
-.notif-impacted:hover, .notif-expert:hover {
+.notif-impacted:hover,
+.notif-expert:hover {
     background-color: transparentize($secondary, 0.75);
 }
 
-.type, .read {
+.type,
+.read {
     font-family: $font-text;
 }
