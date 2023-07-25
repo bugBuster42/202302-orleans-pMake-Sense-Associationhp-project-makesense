@@ -24,7 +24,7 @@
 }
 
 .notif {
-    width: 20rem;
+    max-width: 20rem;
 }
 
 .navbar {
@@ -43,4 +43,18 @@
         }
     }
 
+}
+
+.notif-impacted, .notif-expert {
+    font-family: $font-text;
+    background-color: transparentize($secondary, 0.85);
+    border: 1px solid $secondary;
+}
+
+.notif-impacted:hover, .notif-expert:hover {
+    background-color: transparentize($secondary, 0.75);
+}
+
+.type, .read {
+    font-family: $font-text;
 }
