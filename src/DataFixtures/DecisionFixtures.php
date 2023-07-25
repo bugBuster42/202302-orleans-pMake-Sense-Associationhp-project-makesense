@@ -21,14 +21,14 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < self::DECISION_NUMBER; $i++) {
             $decision = new Decision();
 
-            $numberOfImpactedUsers = mt_rand(1, 5);
-            $numberOfExpertUsers = mt_rand(1, 5);
+            $nbImpactedUsers = mt_rand(1, 5);
+            $nbExpertUsers = mt_rand(1, 5);
 
-            for ($j = 0; $j < $numberOfImpactedUsers; $j++) {
+            for ($j = 0; $j < $nbImpactedUsers; $j++) {
                 $impactedUsers[] = $this->getReference('user_' . $faker->numberBetween(0, 39));
             }
 
-            for ($j = 0; $j < $numberOfExpertUsers; $j++) {
+            for ($j = 0; $j < $nbExpertUsers; $j++) {
                 $expertUsers[] = $this->getReference('user_' . $faker->numberBetween(0, 40));
             }
 
