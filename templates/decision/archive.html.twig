@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Décision archivées
+{% endblock %}
+
+{% block body %}
+	<div class="title d-flex justify-content-center">
+		<h1 class="text-center fw-bold fs-1 my-5">Les
+			<span class="pastille"></span>
+			archives
+		</h1>
+	</div>
+	<div class="decision" id="cardsContainer">
+		<div class="container g-0">
+			<div class="row">
+				{% for decision in decisions %}
+					{% if decision.status == constant('App\\Entity\\Decision::STATUS')['ended'] %}
+						<div class="col-lg-4 col-md-6">
+							<div class="card shadow mb-5 border border-0 rounded bg-tertiary">
+								<div class="card-body">
+									<div class="img-container">
+										{% if decision.image %}
+											<img class="img" src="{{ asset('uploads/images/decision/' ~ decision.image)}}">
+										{% else %}
+											<img class="img" src="{{ asset('uploads/images/category/' ~ decision.category.image) }}" alt="Image">
+										{% endif %}
+									</div>
+									<div class="position-relative">
+										<div class="card-main">
+											{% if decision.user.avatar %}
+												<a href="{{ path('app_profile', {'id': decision.user.id}) }}">
+													<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}">
+												</a>
+											{% else %}
+												<a href="{{ path('app_profile', {'id': decision.user.id}) }}">
+													<img class="img-profile rounded-circle position-absolute mx-4" src="{{ asset('build/images/profil.png')}}">
+												</a>
+											{% endif %}
+											<div class="color-card">
+												<div class="statut pt-3 mx-3 text-end">
+													<div class="btn btn-outline-tertiary bg-danger fw-bolder fs-6 btn-rounded border-2 rounded-pill shadow mx-2 text-tertiary">{{ decision.category.title }}</div>
+												</div>
+												<a href="{{ path('app_profile', {'id': decision.user.id}) }}">
+													<p class="text-tertiary border-primary fw-bolder fs-5 mx-3 mb-2  border-5 p-2 border-bottom">{{ decision.user.fullname }}</p>
+												</a>
+											</div>
+											<h4 class="card-title text-primary fw-bolder p-3 fs-4 mb-0">{{ decision.title|u.truncate(40, '...') }}</h4>
+											{% if decision.votes|filter(vote => vote.voting == 1)|length > decision.votes|filter(vote => vote.voting == -1)|length %}
+												<p class="card-text btn text-primary fw-bolder fs-6 border border-2 border-primary px-3 btn-rounded rounded-pill m-3">Accepté</p>
+											{% else %}
+												<p class="card-text btn text-primary fw-bolder fs-6 border border-2 border-primary px-3 btn-rounded rounded-pill m-3">Refusé</p>
+											{% endif %}
+											<div class="text-end p-3 text-l pt-0 primary mb-2 btn-rounded d-flex justify-content-between">
+												<a href="{{ path('app_decision_show', {'id': decision.id}) }}" class="btn btn2 bg-secondary border-primary border-2 fw-bolder text-primary my-3 me-2 px-2 fs-6 btn-rounded rounded-pill px-3">En savoir plus</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

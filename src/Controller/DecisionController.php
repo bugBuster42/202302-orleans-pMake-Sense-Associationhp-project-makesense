@@ -92,6 +92,14 @@ class DecisionController extends AbstractController
         ]);
     }
 
+    #[Route('/archive', name: 'app_archive')]
+    public function archive(DecisionRepository $decisionRepository): Response
+    {
+        return $this->render('decision/archive.html.twig', [
+            'decisions' => $decisionRepository->findall(),
+        ]);
+    }
+
     #[Route('/change/{id}/{toStatus}', name: 'app_change', methods: ['POST'])]
     public function change(
         Decision $decision,
