@@ -70,7 +70,13 @@ a {
     background-color: transparentize($secondary, 0.90);
 }
 
-.ts-wrapper .multi .ts-control>div {
-    background: $primary;
+form .ts-wrapper.multi .ts-control [data-value] {
     border: 1px solid $primary;
+    background-color: $primary;
+    background-image: none;
+}
+
+.ts-wrapper.plugin-remove_button:not(.rtl) .item .remove {
+    border-left: 1px solid $tertiary;
+    margin-left: 6px;
 }
