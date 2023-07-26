@@ -35,7 +35,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
 
         $decision = new Decision();
         $decision->setTitle('new test');
-        $decision->setStartDate($faker->dateTimeBetween('-3 years', 'now'));
+        $decision->setStartDate($faker->dateTimeBetween('now'));
         $decision->setDescription($faker->paragraph(200));
         $decision->setCurrentPlace('opened');
         $decision->setCategory($this->getReference('category_' . $faker->numberBetween(0, 4)));
@@ -46,7 +46,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
 
         $decision = new Decision();
         $decision->setTitle('new test 2');
-        $decision->setStartDate($faker->dateTimeBetween('-3 years', 'now'));
+        $decision->setStartDate($faker->dateTimeBetween('now'));
         $decision->setDescription($faker->paragraph(200));
         $decision->setCurrentPlace('opened');
         $decision->setCategory($this->getReference('category_' . $faker->numberBetween(0, 4)));
@@ -56,7 +56,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
 
         $decision = new Decision();
         $decision->setTitle('new test 3');
-        $decision->setStartDate($faker->dateTimeBetween('-3 years', 'now'));
+        $decision->setStartDate($faker->dateTimeBetween('now'));
         $decision->setDescription($faker->paragraph(200));
         $decision->setCurrentPlace('opened');
         $decision->setCategory($this->getReference('category_' . $faker->numberBetween(0, 4)));
@@ -66,7 +66,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
 
         $decision = new Decision();
         $decision->setTitle('new test 4');
-        $decision->setStartDate($faker->dateTimeBetween('-3 years', 'now'));
+        $decision->setStartDate($faker->dateTimeBetween('now'));
         $decision->setDescription($faker->paragraph(200));
         $decision->setCurrentPlace('opened');
         $decision->setCategory($this->getReference('category_' . $faker->numberBetween(0, 4)));
@@ -76,7 +76,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
 
         $decision = new Decision();
         $decision->setTitle('new test 5');
-        $decision->setStartDate($faker->dateTimeBetween('-3 years', 'now'));
+        $decision->setStartDate($faker->dateTimeBetween('now'));
         $decision->setDescription($faker->paragraph(200));
         $decision->setCurrentPlace('opened');
         $decision->setCategory($this->getReference('category_' . $faker->numberBetween(0, 4)));
