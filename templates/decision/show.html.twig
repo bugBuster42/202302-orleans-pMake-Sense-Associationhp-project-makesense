@@ -6,19 +6,75 @@
 {% block title %}Decision
 {% endblock %}
 {% block body %}
-	<h1 class="text-primary text-center fw-bold fs-1 my-5">{{ decision.title }}</h1>
 	<div class="container">
+		<div class="background-decision">
+			<div class="label-decision">
 
-		<h2 class="text-primary fw-bold fs-5 pb-3">{{ decision.status }}</h2>
-		<h2 class="mb-0 text-primary fw-bold fs-5">Date de début de la décision :</h2>
-		<p class="text-primary fs-5">{{ decision.startDate ? decision.startDate|date('Y-m-d H:i:s') : '' }}</p>
-		<h2 class="mb-0 text-primary fw-bold fs-5">Catégorie :</h2>
-		<p class="text-primary fs-5">{{ decision.category.title }}</p>
-		<h2 class="mt-4 text-primary fw-bold fs-4">Description de la décision</h2>
-		<i class="bi bi-x-square-fill"></i>
-		<p>{{ decision.description | raw }}</p>
-		{{ component('decisionVote', { decision: decision }) }}
+				<p class="label-category badge rounded-pill p-2">{{ decision.category.title }}</p>
+				<p class="label-status badge rounded-pill p-2">{{ decision.status }}</p>
+			</div>
+			<h1 class="text-primary fw-bold fs-1 mt-3">{{ decision.title }}</h1>
+			<div class="user-decision d-flex align-items-center">
+				<a href="{{ path('app_profile', {'id': decision.user.id}) }}">
+					<img class="img-profile rounded-circle me-3" src="{{ asset('uploads/avatar/' ~ decision.user.avatar) }}">
+				</a>
+				<a href="{{ path('app_profile', {'id': decision.user.id}) }}" class="text-decoration-none">
+					<p class="text-primary  ">par
+						{{ decision.user.fullname }}</p>
+				</a>
+				<p class="text-muted ms-5">/
+					{{ decision.startDate ? decision.startDate|date('d-m-Y') : '' }}</p>
+			</div>
 
+			<h2 class="mt-4 text-primary mt-5 fw-bold">Description de la décision</h2>
+			<p>{{ decision.description | raw }}</p>
+		</div>
+	</div>
+</div>
+<div class="container">
+
+	<i class="bi bi-x-square-fill"></i>
+	{{ component('decisionVote', { decision: decision }) }}
+
+
+	<div class="accordion" id="accordionExample">
+		<div class="accordion-item">
+			<h2 class="accordion-header rounded" id="headingOne">
+				<button class="accordion-button bg-transparent text-primary fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					Avis
+				</button>
+			</h2>
+			<div id="collapseOne" class="accordion-collapse collapse text-primary" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+
+				{% for comment in decision.comments %}
+					<div class="accordion-body bg-light rounded p-0">
+						<div class="comment bg-white rounded p-4 pt-2">
+							<div class="d-flex p-4 align-items-center ps-0">
+								<a href="{{ path('app_profile', {'id': comment.user.id}) }}">
+									<img src="{{ asset('uploads/avatar/' ~ comment.user.avatar) }}" alt="Portrait"></a>
+
+								<p class="text-primary fw-bold ms-4 justify-content-between">{{ comment.user.fullname }}</p>
+								<p class="text-muted ms-auto">{{"now"|date('d/m/Y')}}</p>
+
+							</div>
+							<p class="text-primary">{{ comment.text|nl2br}}</p>
+						</div>
+					</div>
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+	<div class="container my-5">
+		{% if decision.status == constant('App\\Entity\\Decision::STATUS')['opened'] and app.user != decision.user or decision.status == constant('App\\Entity\\Decision::STATUS')['modified'] and app.user != decision.user %}
+
+			{{ form_start(form) }}
+			{{ form_widget(form, { 'attr': {'class': 'text-primary fw-bold'}}) }}
+			<button class="btn btn-light rounded-pill px-3 mt-4 mb-5 text-primary fw-bold">{{ button_label|default('Laissez un commentaire') }}</button>
+			{{ form_end(form) }}
+		{% endif %}
 		<div class="decision-show d-flex my-5">
 			<div class="me-5 expert">
 				<h5 class="text-primary fw-bold">
@@ -54,45 +110,8 @@
 				</p>
 			</p>
 		</div>
+
 	</div>
 
-	<div class="accordion" id="accordionExample">
-		<div class="accordion-item">
-			<h2 class="accordion-header rounded" id="headingOne">
-				<button class="accordion-button bg-transparent text-primary fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					Avis
-				</button>
-			</h2>
-			<div id="collapseOne" class="accordion-collapse collapse text-primary" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-
-				{% for comment in decision.comments %}
-					<div class="accordion-body bg-light rounded p-0">
-						<div class="comment bg-white rounded p-4 pt-2">
-							<div class="d-flex p-4 align-items-center ps-0">
-								<a href="{{ path('app_profile', {'id': comment.user.id}) }}">
-									<img src="{{ asset('uploads/avatar/' ~ comment.user.avatar) }}" alt="Portrait"></a>
-
-								<p class="text-primary fw-bold ms-4 justify-content-between">{{ comment.user.fullname }}</p>
-								<p class="text-muted ms-auto">{{"now"|date('d/m/Y')}}</p>
-
-							</div>
-							<p class="text-primary">{{ comment.text|nl2br}}</p>
-						</div>
-					</div>
-				{% endfor %}
-
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="my-5">
-			{%  if decision.status == 'Prise de décision commencée' and app.user != decision.user or decision.status == 'Décision définitive' and app.user != decision.user %}
-				{{ form_start(form) }}
-				{{ form_widget(form, { 'attr': {'class': 'text-primary fw-bold'}}) }}
-				<button class="btn btn-light rounded-pill px-3 mt-2 mb-5 text-primary fw-bold">{{ button_label|default('Laissez un commentaire') }}</button>
-				{{ form_end(form) }}
-			{% endif %}
-			<a class="btn btn-primary mt-3 px-3 rounded-pill text-tertiary bg-primary fw-bold" href="{{ path('status_home') }}">Retour</a>
-		</div>
-	</div>
+	<a class="btn btn-primary mt-3 px-3 mb-5 rounded-pill text-tertiary bg-primary fw-bold" href="{{ path('status_home') }}">Retour</a>
 {% endblock %}
