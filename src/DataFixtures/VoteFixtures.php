@@ -26,7 +26,7 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($vote);
         }
 
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 19; $i++) {
             $vote = new Vote();
             $vote->setVoting(-1);
             $vote->setDecision(
@@ -36,7 +36,7 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($vote);
         }
 
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 19; $i++) {
             $vote = new Vote();
             $vote->setVoting(1);
             $vote->setDecision(
@@ -46,7 +46,7 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($vote);
         }
 
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 19; $i++) {
             $vote = new Vote();
             $vote->setVoting($faker->randomElement([-1, 1]));
             $vote->setDecision(
@@ -57,7 +57,7 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
         }
 
 
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 19; $i++) {
             $vote = new Vote();
             $vote->setVoting($faker->randomElement([-1, 1]));
             $vote->setDecision(
@@ -67,7 +67,7 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($vote);
         }
 
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 19; $i++) {
             $vote = new Vote();
             $vote->setVoting($faker->randomElement([-1, 1]));
             $vote->setDecision(
