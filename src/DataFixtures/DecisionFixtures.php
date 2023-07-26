@@ -34,7 +34,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
 
 
         $decision = new Decision();
-        $decision->setTitle('new test');
+        $decision->setTitle('Décision Sensée');
         $decision->setStartDate($faker->dateTimeBetween('now'));
         $decision->setDescription($faker->paragraph(200));
         $decision->setCurrentPlace('opened');
@@ -45,7 +45,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
 
 
         $decision = new Decision();
-        $decision->setTitle('new test 2');
+        $decision->setTitle('Choix Raisonnable');
         $decision->setStartDate($faker->dateTimeBetween('now'));
         $decision->setDescription($faker->paragraph(200));
         $decision->setCurrentPlace('opened');
@@ -55,7 +55,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($decision);
 
         $decision = new Decision();
-        $decision->setTitle('new test 3');
+        $decision->setTitle('Option Éclairée');
         $decision->setStartDate($faker->dateTimeBetween('now'));
         $decision->setDescription($faker->paragraph(200));
         $decision->setCurrentPlace('opened');
@@ -65,7 +65,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($decision);
 
         $decision = new Decision();
-        $decision->setTitle('new test 4');
+        $decision->setTitle('Résolution Intelligente');
         $decision->setStartDate($faker->dateTimeBetween('now'));
         $decision->setDescription($faker->paragraph(200));
         $decision->setCurrentPlace('opened');
@@ -75,7 +75,7 @@ class DecisionFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($decision);
 
         $decision = new Decision();
-        $decision->setTitle('new test 5');
+        $decision->setTitle('Directive Perspicace');
         $decision->setStartDate($faker->dateTimeBetween('now'));
         $decision->setDescription($faker->paragraph(200));
         $decision->setCurrentPlace('opened');
