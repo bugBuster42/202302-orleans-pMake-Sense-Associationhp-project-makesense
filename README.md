@@ -12,7 +12,7 @@ These instructions will guide you on how to get a copy of the project up and run
 - PHP 7.4 or higher
 - MySQL
 - Composer
-- Yarn 
+- npm
 
 ## Steps
 
@@ -34,11 +34,11 @@ These instructions will guide you on how to get a copy of the project up and run
 3. **Install and Build Front-End Dependencies**
     - Still in the project directory, install the front-end dependencies using Yarn
       ```
-      yarn install
+      npm install
       ```
-    - Build the assets using Webpack
+    - Build Assets
       ```
-      yarn watch
+      npm run build
       ```
 
 4. **Database Configuration**
