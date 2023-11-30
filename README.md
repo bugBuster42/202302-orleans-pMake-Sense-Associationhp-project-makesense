@@ -96,9 +96,15 @@ These instructions will guide you on how to get a copy of the project up and run
       symfony console d:m:m
       ```
       This command will execute the migration files and set up the database structure according to your entity configurations.
-
-     
-
+      
+    - Once the database is set up and migrations are applied, load the data fixtures to populate the database with necessary initial data:
+        ```
+         symfony console d:f:l
+        ```
+   
+       This will load the data defined in your fixtures files into the database, which may include necessary user accounts and other initial data.
+    
+        
 6. **Run the Application**
     Start the Symfony server:
     ```
