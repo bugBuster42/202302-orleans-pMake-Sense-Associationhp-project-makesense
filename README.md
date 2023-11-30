@@ -3,6 +3,14 @@
 ## Description
 This project is an internal ideation platform developed for the Make Sense association. 
 It enables employees to propose, view, and vote on ideas, aiding the transformation of these ideas into concrete projects.
+- **Key Features**:
+  - **Idea Submission**: Employees can propose their ideas.
+  - **Viewing and Voting**: Access and vote on submitted ideas.
+  - **Idea Progress Tracking**: Status updates from initial consideration to final decision.
+  - **Notifications**: Alerts for impacts on submitted ideas or expert nominations.
+  - **Category Management**: Admins can create and modify idea categories.
+  - **Profile Management**: Admins control user roles and platform access.
+  - **Security**: Implemented CSRF protection for data and access security.
 
 ## Getting Started
 
