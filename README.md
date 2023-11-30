@@ -103,7 +103,12 @@ These instructions will guide you on how to get a copy of the project up and run
         ```
    
        This will load the data defined in your fixtures files into the database, which may include necessary user accounts and other initial data.
-    
+      
+5. **Default User Accounts**
+   - To log in to the application for the first time, use the credentials defined in the `UserFixtures` file.
+   - You can find this file at `src/DataFixtures/UserFixtures.php`.
+   - The file contains the default usernames and passwords for initial user accounts.
+
         
 6. **Run the Application**
     Start the Symfony server:
