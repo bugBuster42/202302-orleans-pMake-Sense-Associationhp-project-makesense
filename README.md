@@ -32,22 +32,45 @@ These instructions will guide you on how to get a copy of the project up and run
     ```
 
 3. **Install and Build Front-End Dependencies**
-    - Still in the project directory, install the front-end dependencies using Yarn:
+    - Still in the project directory, install the front-end dependencies using Yarn
       ```
       yarn install
       ```
-    - Build the assets using Webpack:
+    - Build the assets using Webpack
       ```
       yarn watch
       ```
 
 4. **Database Configuration**
 
-    To set up the database for the project, follow these steps:
+    To set up the database for the project, follow these steps
 
-    **Create a MySQL Database**
-   - First, create a new MySQL database for the project. You can name it as you like, for example, `makesense_db`
-
+    **Create a MySQL Database :**
+   
+   First, create a new MySQL database for the project. You can name it as you like, for example, `makesense_db`
+  
+     **Open your Terminal :**
+   
+   Type the following command
+   ```
+    mysql -u root -p
+   ```
+   
+     You will be prompted to enter the password for the MySQL `root` user.
+    Enter it, and press Enter.
+       
+     **Create the Database :**
+   
+     Once connected to MySQL, create the database by executing
+   ```
+   CREATE DATABASE makesense_db;
+   ```
+     **Exit MySQL :**
+   
+     To leave the MySQL interface, type
+   ```
+   exit;
+    ```
    **Configure Database Credentials**
    - Duplicate the `.env` file at the root of your project and rename the copy to `.env.local`
    - Open the `.env.local`and find the line that starts with `DATABASE_URL="mysql:`
@@ -63,14 +86,23 @@ These instructions will guide you on how to get a copy of the project up and run
 
    **Apply the Database Configuration**
    - Once you have updated the `.env.local` file, save your changes.
-   - The application will now use these settings to connect to your MySQL database.
-   - Note : the `.env.local` file should not be committed to your version control system as it contains sensitive information.
+     
+     Note : The application will now use these settings to connect to your MySQL database.
+     The `.env.local` file should not be committed to your version control system as it contains sensitive information.
+  
+    **Apply Database Migrations**
+    - After setting up your database and credentials, apply migrations to create the necessary database structure:
+      ```
+      symfony console d:m:m
+      ```
+      This command will execute the migration files and set up the database structure according to your entity configurations.
+
      
 
-5. **Run the Application**
+6. **Run the Application**
     Start the Symfony server:
     ```
     symfony server:start
     ```
-6. **Access the application at**
+7. **Access the application at**
     `http://localhost:8000` or the URL provided by Symfony.
