@@ -4,23 +4,29 @@
 This project is an internal ideation platform developed for the Make Sense association. 
 It enables employees to propose, view, and vote on ideas, aiding the transformation of these ideas into concrete projects.
 
-## Installation and Setup
+## Getting Started
+
+These instructions will guide you on how to get a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 - PHP 7.4 or higher
 - MySQL
 - Composer
 
-### Clone the Repository
-Clone the repository to your local machine: 
-git@github.com:bugBuster42/202302-orleans-pMake-Sense-Associationhp-project-makesense.git
+## Steps
 
-### Setup the Environment
-Navigate to the project directory: 
-cd 202302-orleans-php-project-makesense
+1. **Clone the Repository**
+    ```
+    git clone git@github.com:bugBuster42/Make-Sense-Association.git
+    ```
 
-Install the dependencies:
-composer install
+2. **Run composer install**
+
+    Navigate to the cloned repository directory 
+    `cd Make-Sense-Association`
+   
+   and run
+    `composer install`
 
 ### Database Configuration
 Create a MySQL database for the project. Duplicate the `.env` file to `.env.local` and update it with your database credentials.
